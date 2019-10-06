@@ -6,38 +6,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
+
 </head>
 
 <body>
 
   <div class="container">
 
-      <div  #alertWrapper class="alert-wrapper"   >
-        <div class="alert-modal" >
-          <h1 class="alert-title" > {{answeredQuestion}} </h1> 
-        </div>
+    <header>
+      <div class="design-border-header-main" >
+          <div class="header-div" id="pause"></div>
+          <div class="header-div" id="score" ></div>
+          <div class="header-div" id="userName" >  Samuel</div>
       </div>
+      
+      <div class="design-border-header" >
+          <div id="blue" ></div>
+          <div  id="pink" ></div>
+      </div>
+     
+    </header>
+
+   
 
 
-
-      <div class="icon" > <img id="icon"  src="../../assets/imagens/librasIcon.png" alt=""> </div>
 
     <div class="questions-container">
-      <div class="questions-title">
-        <h1 id='title' > Qual Palavra </h1>
-      </div  >
-        <h2 id=1  (click)="onSubmit(a)" class="questions"> {{a}} </h2>
-        <h2 id=2  (click)="onSubmit(b)" class="questions"> {{b}} </h2>
-        <h2 id=3  (click)="onSubmit(c)" class="questions"> {{c}} </h2>
-        <h2 id=4  (click)="onSubmit(d)" class="questions"> {{d}} </h2>
-        <h2 id=5  (click)="onSubmit(e)" class="questions"> {{e}} </h2>
+      <div class="questions-title  "  >  Qual Palavra?</div>
+
+      <div class="blocks-wraper" >
+     
+        <div #answer1  class="questions-div" (click)="onSubmit(a)"  > {{a}} </div>
+        <div class="questions-div "  >  {{b}} </div>
+        <div class="questions-div "> {{c}} </div>
+        <div class="questions-div " > {{d}} </div>
+
+      </div>
     </div>
+   
 
     <div class="image-container">
-        <div class="img-wraper" >
-          <img class="img" src="../../assets/imagens/chorar.jpg" >
-        </div>
+      <div class="img-wraper"> </div>
+    </div>
+
+
+
+    <div #alertWrapper class="alert-wrapper">
+      <div class="alert-modal">
+        <h1 class="alert-title"> {{answeredQuestion}} </h1>
+      </div>
     </div>
 
   </div>

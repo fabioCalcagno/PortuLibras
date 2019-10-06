@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-lessons',
@@ -9,9 +9,9 @@ export class LessonsComponent implements OnInit {
 
 
 
-  @ViewChild('alertWrapper', { read: ElementRef, static: false }) private alertWrapper: ElementRef<HTMLDivElement>
-  @ViewChild('sim', { read: ElementRef, static: false }) private sim: ElementRef<HTMLElement>
-  @ViewChild('nao', { read: ElementRef, static: false }) private nao: ElementRef<HTMLElement>
+  @ViewChild('alertWrapper', { read: ElementRef, static: false }) private alertWrapper: ElementRef<HTMLDivElement>;
+  @ViewChild('answer1', { read: ElementRef, static: false }) private answer1: ElementRef<HTMLDivElement>
+  
 
   constructor(private renderer: Renderer2, ) { }
   a :string = 'Chorar';
@@ -31,7 +31,11 @@ export class LessonsComponent implements OnInit {
      }, 10000);
   }
 
-
+  @HostListener('mouseover') 
+   onMouseOver() {
+       this.renderer.addClass(this.answer1.nativeElement, 'animated-bounceInDown-fast');
+       console.log('oii')
+   }
 
 
   onSubmit(item) {
@@ -40,9 +44,6 @@ export class LessonsComponent implements OnInit {
       this.alertWrapper.nativeElement.style.display = 'inherit';
       this.answeredQuestion = ' Você Acertar';
       this.removeModal();
-     
-      
-
 
     } else {
       this.alertWrapper.nativeElement.style.display = 'inherit';
