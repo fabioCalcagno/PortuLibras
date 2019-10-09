@@ -14,12 +14,12 @@
     <div class="container" >
     <h1 class="title" >Educação em jogo</h1> 
     <div class="login-container" >
-        <div class="login" > <input class="input" type="email" placeholder="e-mail">  </div>
-        <div class="login" ><input class="input" type="password" placeholder="senha:"> </div>
-        <div class="entrar" ><img src="../../assets/imagens/login.png" alt=""> <h2>Entrar Conta</h2> </div>
+        <div class="login" > <input class="input" type="email" placeholder="E-mail:">  </div>
+        <div class="login" ><input class="input" type="password" placeholder="Senha:"> </div>
+        <div class="entrar" ><img src="../../assets/imagens/login.png" alt=""> <h2 [routerLink]="['lessons']" >Entrar Conta</h2> </div>
         <div class="login-options" >
             <div class="options">Esqueci a senha</div>
-            <div class="options" id="criar-conta">Criar Conta</div>
+            <div class="options" id="criar-conta" [routerLink]="['/criarconta']" >Criar Conta</div>
         </div>
        <!--  <div class="creditos" > <img  id="creditos-img" src="../../assets/imagens/information-symbol.png" alt=""><h2 id="creditos" > Créditos</h2></div> -->
     </div>

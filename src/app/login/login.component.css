@@ -37,7 +37,7 @@ height: 12%;
 .login-container{
     margin-left: 30%;
     margin-right: 30%;
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: #ef5151;
     height: 80%;
 } 
@@ -53,7 +53,7 @@ height: 12%;
     border-left-color: transparent;
    border-bottom-color: transparent;
    color: white;
-   font-size: 100%;
+   font-size: 200%;
 }
 
 .entrar{
@@ -66,8 +66,10 @@ height: 12%;
 
 img{
     width: 10%;
-    height: 100%;
-    margin-left: 19%;
+    height: 80%;
+    margin-left: 25%;
+    vertical-align: middle;
+    margin-top: 1%;
     
     
 }
@@ -77,9 +79,9 @@ h2{
    
     margin-left: 4%;
     color: white;
-    font-size: 150%;
+    font-size: 200%;
     display: inline;
-    vertical-align: super;
+    vertical-align: middle;
   
 }
 
@@ -107,7 +109,7 @@ h2{
     width: 49%;  
     height: 10%;
     color: white;
-    font-size: 135%;
+    font-size: 200%;
     display: inline-block;
     margin-top: 6%;
   
@@ -144,25 +146,25 @@ h2:hover{
 
 ::-webkit-input-placeholder {
     color: white;
-    font-size: 130%;
+    font-size: 110%;
     font-family: fantasy;
  }
   
  :-moz-placeholder { /* Firefox 18- */
     color: white;  
-    font-size: 130%;
+    font-size: 110%;
     font-family: fantasy;
  }
   
  ::-moz-placeholder {  /* Firefox 19+ */
     color: white;  
-    font-size: 130%;
+    font-size: 110%;
     font-family: fantasy;
  }
   
  :-ms-input-placeholder {  
     color: white; 
-    font-size: 130%;
+    font-size: 110%;
     font-family: fantasy;
  }
 

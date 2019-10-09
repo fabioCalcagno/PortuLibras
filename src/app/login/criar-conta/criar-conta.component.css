@@ -1,0 +1,49 @@
+
+.container{
+    height:98%;
+    width: 98%;
+    background-color: #ef5151;
+    position: absolute;
+    margin: 0px;
+    overflow: hidden;
+    font-family: fantasy;
+}
+
+
+
+.title{
+color:white;
+font-size: 250%;
+margin-left: 35%;
+margin-top: 5%;
+
+
+} 
+
+.login{
+height: 12%;
+
+  
+
+} 
+.login-container{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 5%;
+    background-color: #ef5151;
+    height: 80%;
+} 
+
+.input{
+    width: 99%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 80%;
+    background-color: #fa7268 !important;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+   border-bottom-color: transparent;
+   color: white;
+   font-size: 200%;
+}

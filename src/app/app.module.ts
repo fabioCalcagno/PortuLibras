@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CriarContaComponent } from './login/criar-conta/criar-conta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LessonsComponent,
-    LoginComponent
+    LoginComponent,
+    CriarContaComponent
   ],
   imports: [
     BrowserModule,
