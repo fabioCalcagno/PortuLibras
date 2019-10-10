@@ -6,13 +6,15 @@ import { LessonsComponent } from './lessons/lessons.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CriarContaComponent } from './login/criar-conta/criar-conta.component';
+import { RecuperarSenhaComponent } from './login/recuperar-senha/recuperar-senha.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LessonsComponent,
     LoginComponent,
-    CriarContaComponent
+    CriarContaComponent,
+    RecuperarSenhaComponent
   ],
   imports: [
     BrowserModule,

@@ -19,11 +19,14 @@
           <div class="header-div" id="score" > <h2 class="score" > {{score}} </h2></div>
           <div class="header-div" id="userName" >  Samuel</div>
       </div>
+
+      <div #myBar id="myProgress">
+          <div  id="myBar"></div>
+        </div>
       
-      <div class="design-border-header" >
-          <div id="blue" ></div>
-          <div  id="pink" ></div>
-      </div>
+     <!--  <div class="design-border-header" id="myProgress" >
+          <div #myBar id="myBar" ></div>
+      </div> -->
      
     </header>
 
@@ -40,9 +43,7 @@
         <div class="questions-div " (click)="onSubmit(b)">  {{b}} </div>
         <div class="questions-div " (click)="onSubmit(c)"> {{c}} </div>
         <div class="questions-div " (click)="onSubmit(d)"> {{d}} </div>
-        <div id="myProgress">
-            <div #myBar id="myBar"></div>
-          </div>
+      
 
       </div>
     </div>
@@ -63,19 +64,20 @@
       </div>
     </div>
 
-    <div *ngIf="timeOut" class="alert-wrapper-not">
+    <div *ngIf='timeOut' class="alert-wrapper-not">
       <div class="alert-modal">
-        <h1 class="alert-title" id="not" > Você ter  {{score}} pontos novamente? </h1>
-        <div class="alert-options" >
+        <h1 class="alert-title" id="not" >  Tempo acabar, você ter {{score}}  pontos, continuar?
+           </h1>
+         <div class="alert-options" >
           <div class="yesOrNo" (click)="ficarNoJogo(true)" id="yes">Sim</div>
           <div class="yesOrNo" (click)="ficarNoJogo(false)" id="no">Não</div>
-        </div>
+        </div> 
       </div>
     </div>
 
 
 
-    <div *ngIf="temCerteza" class="alert-wrapper-not">
+     <div *ngIf="temCerteza" class="alert-wrapper-not">
       <div class="alert-modal">
         <h1 class="alert-title" id="not" > Você ter certeza? </h1>
         <div class="alert-options" >
@@ -84,7 +86,7 @@
         </div>
       </div>
     </div>
-
+ 
   </div>
 
 

@@ -95,19 +95,6 @@ header{
     display: inline-block;
 }
 
-#blue{
-    width: 70%;
-    height: 100%;
-    background-color: #35a7ff;
-    display: inline-block;
-}
-
-#pink{
-    width: 30%;
-    height: 100%;
-    background-color: #fa7268;
-    display: inline-block;
-}
 
 
 .questions-container{
@@ -156,6 +143,7 @@ header{
 .questions-div:hover {
     -webkit-animation: pulse 1s;
     animation: pulse 1s;
+    cursor: pointer;
    
 }
 
@@ -216,10 +204,7 @@ h2{
     position: absolute;
     display: none;
     text-align: center;
-    
-
    
-    
 }
 
 .alert-title{
@@ -244,8 +229,7 @@ h2{
     text-align: center;
     font-size: 80%;
     color: white;
-    
-   
+   display: none;
 }
 
 .yesOrNo{
@@ -273,11 +257,11 @@ h2{
 
 #myProgress {
     width: 100%;
-    background-color: grey;
+    background-color: #fa7268
   }
   
   #myBar {
     width: 1%;
     height: 30px;
-    background-color: green;
+    background-color: #35a7ff;
   }

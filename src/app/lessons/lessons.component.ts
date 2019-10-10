@@ -1,4 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { setTimeout } from 'timers';
+import { async, timeout } from 'q';
+import { resolve } from 'dns';
 
 @Component({
   selector: 'app-lessons',
@@ -13,7 +16,10 @@ export class LessonsComponent implements OnInit {
   @ViewChild('answer1', { read: ElementRef, static: false }) private answer1: ElementRef<HTMLDivElement>
   @ViewChild('alertTitle', { read: ElementRef, static: false }) private alertTitle : ElementRef<HTMLElement>
   @ViewChild('myBar', { read: ElementRef, static: false }) private myBar : ElementRef<HTMLElement>
+/*   @ViewChild('timeOut', { read: ElementRef, static: false }) private timeOut : ElementRef<HTMLDivElement>
+ */
   
+ 
   
 
   constructor(private renderer: Renderer2,) { }
@@ -23,11 +29,29 @@ export class LessonsComponent implements OnInit {
   c :string = 'Coçar';
   d :string = 'Respirar';
   e :string = 'Rir';
-    score: number = 0;
-    timeOut:boolean =false;
-    temCerteza:boolean = false;
+   score: number = 0;
+  timeOut:boolean =false; 
+   temCerteza:boolean = false;
    answeredQuestion: string;
    counter = 45;
+
+
+
+   setModal(){
+    return new Promise(r =>{
+        this.timeOut =  true;
+    })
+   }
+
+
+   async doShowModal() {
+   
+        await this.setModal().then(()=>{
+          console.log(this.timeOut);
+        })
+        
+        
+    }
 
 
 /* 
@@ -46,15 +70,18 @@ export class LessonsComponent implements OnInit {
     }
  */
 
-move() {
  
-  var width = 1;
-  var id = setInterval(frame, 10);
+
+ move() {
+  
+  var width = 100;
+  var id = setInterval(frame, 130);
   function frame() {
-    if (width >= 100) {
+    if (width == 0) {   
+     
       clearInterval(id);
     } else {
-      width++;
+      width--;
       this.myBar.style.width = width + '%';
     }
   }
@@ -103,6 +130,7 @@ this.move()
       this.alertWrapper.nativeElement.className = 'alert-wrapper1';
       this.answeredQuestion = ' Você errar ';
       this.removeModal(this.alertWrapper);
+      this.temCerteza =true;
       
 
     
@@ -116,9 +144,7 @@ this.move()
              this.temCerteza = true}
         }
 
-        remove(){
-          this.temCerteza = false;
-        }
+        
 
 
 
