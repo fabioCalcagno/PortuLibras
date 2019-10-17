@@ -2,27 +2,35 @@
 
 
 <head>
-  <title>Lessons</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lessons</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 </head>
 
 <body>
 
-    <div class="container" >
-    <h1 class="title" >PortuLibras</h1> 
-    <div class="login-container" >
-        <div class="login" > <input class="input" type="email" placeholder="E-mail:">  </div>
-        <div class="login" ><input class="input" type="password" placeholder="Senha:"> </div>
-        <div class="entrar" ><img src="../../assets/imagens/login.png" alt=""> <h2 [routerLink]="['lessons']" >Entrar Conta</h2> </div>
-        <div class="login-options" >
-            <div class="options" [routerLink]="['/redefinir']" >Esqueci a senha</div>
-            <div class="options" id="criar-conta" [routerLink]="['/criarconta']" >Criar Conta</div>
-        </div>
-       <!--  <div class="creditos" > <img  id="creditos-img" src="../../assets/imagens/information-symbol.png" alt=""><h2 id="creditos" > Créditos</h2></div> -->
-    </div>
+    <div class="container">
+        <h1 class="title">PortuLibras</h1>
+        <form [formGroup]="user" (ngSubmit)="onSubmit()">
+            <div class="login-container">
+                <div class="login">
+                    <input class="input" formControlName="email" type="email" placeholder="E-mail:" autofocus> </div>
+                <div class="login">
+                    <input class="input" formControlName="password" type="password" placeholder="Senha:"> </div>
+                <button class="entrar">
+                    <img src="../../assets/imagens/login.png" alt="">
+                    <h2 [routerLink]="['lessons']">Entrar Conta</h2>
+                </button>
+                <div class="login-options">
+                    <div class="options" [routerLink]="['/redefinir']">Esqueci a senha</div>
+                    <div class="options" id="criar-conta" [routerLink]="['/criarconta']">Criar Conta</div>
+                </div>
 
-</div>
+                <!--  <div class="creditos" > <img  id="creditos-img" src="../../assets/imagens/information-symbol.png" alt=""><h2 id="creditos" > Créditos</h2></div> -->
+            </div>
+        </form>
+
+    </div>
 </body>

@@ -36,8 +36,7 @@ height: 12%;
 
 .input{
     width: 99%;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     height: 80%;
     background-color: #fa7268 !important;
     border-top-color: transparent;
@@ -51,9 +50,13 @@ height: 12%;
 .entrar{
     background-color: #35a7ff;
     width: 100%;
-    margin-top: 8%;
     height: 10%;
+    margin-top: 2%;
     
+}
+
+.entrar:hover{
+    cursor: pointer;
 }
 
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { setTimeout } from 'timers';
-import { async, timeout } from 'q';
-import { resolve } from 'dns';
+
+
 
 @Component({
   selector: 'app-lessons',
