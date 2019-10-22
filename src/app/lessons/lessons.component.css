@@ -10,6 +10,13 @@ paleta{
     color:#403232;
 }
 
+@font-face {
+    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
+    font-family: 'Skranji-Regular';    
+    font-weight: normal;
+} 
+
+
 
 body{
     height: 98%;
@@ -19,7 +26,7 @@ body{
     position: absolute;
     margin: 0;
     background-color: #ef5151;
-    font-family: fantasy;
+    font-family: 'Skranji-Regular';
 
     
 }
@@ -215,7 +222,7 @@ h2{
 
 #not{
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Skranji-Regular';
 }
 
 .alert-wrapper-not{

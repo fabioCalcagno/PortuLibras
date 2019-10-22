@@ -7,6 +7,16 @@ paleta{
     color:#fa7268;
 }
 
+@font-face {
+    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
+    font-family: 'Skranji-Regular';    
+    font-weight: normal;
+} 
+
+body{
+    font-family: 'Skranji-Regular'; 
+}
+
 .container{
     height:98%;
     width: 98%;
@@ -14,7 +24,7 @@ paleta{
     position: absolute;
     margin: 0px;
     overflow: hidden;
-    font-family: fantasy;
+   
 }
 
 
@@ -24,7 +34,6 @@ color:white;
 font-size: 450%;
 margin-left: 35%;
 margin-top: 5%;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
 
 } 
@@ -45,8 +54,7 @@ height: 12%;
 
 .input{
     width: 99%;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 2%;
     height: 80%;
     background-color: #fa7268 !important;
     border-top-color: transparent;
@@ -60,8 +68,10 @@ height: 12%;
 .entrar{
     background-color: #35a7ff;
     width: 100%;
-    margin-top: 8%;
+    margin-top: 2%;
     height: 10%;
+    border: none;
+    font-family: 'Skranji-Regular'; 
     
 }
 
@@ -102,9 +112,7 @@ h2{
     vertical-align: super;
 }
 
-.login-options{
-   
-}
+
 
 .options{
     width: 49%;  
@@ -148,24 +156,24 @@ h2:hover{
 ::-webkit-input-placeholder {
     color: white;
     font-size: 110%;
-    font-family: fantasy;
+    font-family: 'Skranji-Regular'; 
  }
   
  :-moz-placeholder { /* Firefox 18- */
     color: white;  
     font-size: 110%;
-    font-family: fantasy;
+    font-family: 'Skranji-Regular'; 
  }
   
  ::-moz-placeholder {  /* Firefox 19+ */
     color: white;  
     font-size: 110%;
-    font-family: fantasy;
+    font-family: 'Skranji-Regular'; 
  }
   
  :-ms-input-placeholder {  
     color: white; 
     font-size: 110%;
-    font-family: fantasy;
+    font-family: 'Skranji-Regular'; 
  }
 

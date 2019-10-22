@@ -2,7 +2,7 @@
 
 
 <head>
-    <title>Lessons</title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -19,13 +19,13 @@
                     <input class="input" formControlName="email" type="email" placeholder="E-mail:" autofocus> </div>
                 <div class="login">
                     <input class="input" formControlName="password" type="password" placeholder="Senha:"> </div>
-                <button class="entrar">
-                    <img src="../../assets/imagens/login.png" alt="">
-                    <h2 [routerLink]="['lessons']">Entrar Conta</h2>
+                <button type="submit" class="entrar" [disabled]="!user.validate" >
+                    <img style="margin-left: 5%" src="../../assets/imagens/login.png" alt="">
+                    <h2 [routerLink]="['menu']">Entrar Conta</h2>
                 </button>
                 <div class="login-options">
-                    <div class="options" [routerLink]="['/redefinir']">Esqueci a senha</div>
-                    <div class="options" id="criar-conta" [routerLink]="['/criarconta']">Criar Conta</div>
+                    <div class="options" [routerLink]="['/menu/redefinir']">Esqueci a senha</div>
+                    <div class="options" id="criar-conta" [routerLink]="['/menu/criarconta']">Criar Conta</div>
                 </div>
 
                 <!--  <div class="creditos" > <img  id="creditos-img" src="../../assets/imagens/information-symbol.png" alt=""><h2 id="creditos" > Créditos</h2></div> -->
