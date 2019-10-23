@@ -9,6 +9,7 @@
       "JogoApi.Dados/1.0.0": {
         "dependencies": {
           "JogoApi.DTO": "1.0.0",
+          "JogoApi.Util": "1.0.0",
           "System.Configuration.ConfigurationManager": "4.6.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.1.1.0",
           "Microsoft.Extensions.Configuration.Abstractions": "2.1.1.0",
@@ -109,6 +110,14 @@
           "JogoApi.DTO.dll": {}
         }
       },
+      "JogoApi.Util/1.0.0": {
+        "dependencies": {
+          "JogoApi.DTO": "1.0.0"
+        },
+        "runtime": {
+          "JogoApi.Util.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Mvc.Abstractions/2.1.1.0": {
         "runtime": {
           "Microsoft.AspNetCore.Mvc.Abstractions.dll": {
@@ -192,6 +201,11 @@
       "hashPath": "system.security.principal.windows.4.6.0.nupkg.sha512"
     },
     "JogoApi.DTO/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JogoApi.Util/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

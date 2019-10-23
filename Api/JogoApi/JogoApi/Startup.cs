@@ -39,11 +39,13 @@ namespace JogoApi
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowAnyOrigin()
-                    .AllowCredentials());
+                    .AllowCredentials()
+                    );
             });
             services.AddTransient<IConnectionRepository, ConnectionRepository>();
-            services.AddTransient<IJogoApiDao, JogoApiDao>();
-            services.AddTransient<IJogoApiService, JogoApiService>();
+            services.AddTransient<ITransacaoDao, TransacaoDao>();
+            services.AddTransient<IPontosService, PontosService>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

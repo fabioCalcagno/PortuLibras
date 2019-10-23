@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JogoApi.DTO\JogoApi.DTO.csproj" />
+    <ProjectReference Include="..\JogoApi.Util\JogoApi.Util.csproj" />
   </ItemGroup>
 
   <ItemGroup>

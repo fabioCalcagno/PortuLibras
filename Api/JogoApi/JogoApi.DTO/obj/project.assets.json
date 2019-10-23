@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\source\\repos\\JogoApi\\JogoApi.DTO\\JogoApi.DTO.csproj",
+      "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\Api\\JogoApi\\JogoApi.DTO\\JogoApi.DTO.csproj",
       "projectName": "JogoApi.DTO",
-      "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\source\\repos\\JogoApi\\JogoApi.DTO\\JogoApi.DTO.csproj",
+      "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\Api\\JogoApi\\JogoApi.DTO\\JogoApi.DTO.csproj",
       "packagesPath": "C:\\Users\\RicardoFerrazdeArrud\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\source\\repos\\JogoApi\\JogoApi.DTO\\obj\\",
+      "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\Api\\JogoApi\\JogoApi.DTO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -736,10 +736,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

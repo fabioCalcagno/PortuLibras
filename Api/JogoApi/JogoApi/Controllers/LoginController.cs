@@ -14,9 +14,9 @@ namespace JogoApi.Controllers
     [EnableCors("AllowSpecificOrigin")]
     public class LoginController : Controller
     {
-        private readonly IJogoApiService service;
+        private readonly IUsuarioService service;
 
-        public LoginController(IJogoApiService service)
+        public LoginController(IUsuarioService service)
         {
             this.service = service;
         }
@@ -64,23 +64,18 @@ namespace JogoApi.Controllers
             }
         }
 
-        //[HttpDelete]
-        //[ActionName("RemoverUsuario")]
-        //public IActionResult RemoverUsuario(int codigo)
-        //{
-        //    try
-        //    {
-        //        var retorno = service.RemoverUsuario(codigo);
-        //        return Content(JsonConvert.SerializeObject(retorno), new MediaTypeHeaderValue("application/json").ToString());
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500);
-        //    }
-        //}
-
-
-
+        [HttpPost]
+        [ActionName("BuscarUsuario")]
+        public IActionResult BuscarUsuario([FromBody]UsuarioDTO usuario)
+        {
+            try
+            {
+                return Content(JsonConvert.SerializeObject(service.ProcuraUsuario(usuario)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+            catch (Exception ex)
+            {
+                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+        }
     }
 }

@@ -1,35 +1,34 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Runtime.Serialization;
 
 namespace JogoApi.DTO
 {
-    [DataContract(Name = "Usuario")]
+    [JsonObject(Title = "Usuario")]
     public class UsuarioDTO
     {
-        [DataMember(Name = "CodigoUsuario")]
+        [JsonProperty(PropertyName = "CodigoUsuario")]
         public int CodigoUsuario { get; set; }
 
-        [DataMember(Name = "Nome")]
+        [JsonProperty(PropertyName = "Nome")]
         public string Nome { get; set; }
 
-        [DataMember(Name = "Sobrenome")]
+        [JsonProperty(PropertyName = "Sobrenome")]
         public string Sobrenome { get; set; }
 
-        [DataMember(Name = "Username")]
+        [JsonProperty(PropertyName = "Username")]
         public string Username { get; set; }
 
-        [DataMember(Name = "Senha")]
+        [JsonProperty(PropertyName = "Senha")]
         public string Senha { get; set; }
 
-        [DataMember(Name = "DataNascimento")]
+        [JsonProperty(PropertyName = "DataNascimento")]
         public string DataNascimento { get; set; }
 
-        [DataMember(Name = "Email")]
+        [JsonProperty(PropertyName = "Email")]
         public string Email { get; set; }
 
-        [DataMember(Name = "Telefone")]
+        [JsonProperty(PropertyName = "Telefone")]
         public string Telefone { get; set; }
-
-        public DateTime Nascimento { get; set; }
     }
 }

@@ -10,3 +10,5 @@ C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Util\obj\Debug\netcor
 C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Util\obj\Debug\netcoreapp2.1\JogoApi.Util.csproj.CopyComplete
 C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Util\obj\Debug\netcoreapp2.1\JogoApi.Util.dll
 C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Util\obj\Debug\netcoreapp2.1\JogoApi.Util.pdb
+C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Util\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
+C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Util\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml

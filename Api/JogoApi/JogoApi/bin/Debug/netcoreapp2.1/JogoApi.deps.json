@@ -309,6 +309,7 @@
       "JogoApi.Dados/1.0.0": {
         "dependencies": {
           "JogoApi.DTO": "1.0.0",
+          "JogoApi.Util": "1.0.0",
           "System.Configuration.ConfigurationManager": "4.6.0"
         },
         "runtime": {
