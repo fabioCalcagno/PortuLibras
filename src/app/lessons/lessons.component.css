@@ -7,7 +7,15 @@ paleta{
     color:#35a7ff;
     color:#ef5151;
     color:#fa7268;
+    color:#403232;
 }
+
+@font-face {
+    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
+    font-family: 'Skranji-Regular';    
+    font-weight: normal;
+} 
+
 
 
 body{
@@ -18,7 +26,7 @@ body{
     position: absolute;
     margin: 0;
     background-color: #ef5151;
-    font-family: fantasy;
+    font-family: 'Skranji-Regular';
 
     
 }
@@ -33,7 +41,7 @@ body{
 header{
     height: 10%;
     width: 100%;
-    background-color: black;
+    background-color: #403232;
     display: block;
    
 }
@@ -48,7 +56,18 @@ header{
     width: 30%;
     height: 100%;
     display: inline-block;
+    color: white;
 
+}
+
+.score{
+    margin-left: 5%;
+    vertical-align: super;
+    width: 50%;
+    height: 100%;
+    margin-top: 0%;
+    position: absolute;
+    color:white;
 }
 #pause{
     background-image: url('../../assets/imagens/icons8-pausa-40.png');
@@ -74,7 +93,8 @@ header{
     height: 10%;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden
+    overflow: hidden;
+    margin-top: 1%;
 }
 .design-border-header{
     height: 15%;
@@ -82,19 +102,6 @@ header{
     display: inline-block;
 }
 
-#blue{
-    width: 70%;
-    height: 100%;
-    background-color: #35a7ff;
-    display: inline-block;
-}
-
-#pink{
-    width: 30%;
-    height: 100%;
-    background-color: #fa7268;
-    display: inline-block;
-}
 
 
 .questions-container{
@@ -133,6 +140,7 @@ header{
     background-color: #fa7268;
     color: white;
     font-size: 160%;
+    padding-top: 1%;
     text-align: center;
     
 
@@ -140,8 +148,10 @@ header{
 
 
 .questions-div:hover {
-    -webkit-animation: bounce 1s;
-    animation: bounce 1s;
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+    cursor: pointer;
+   
 }
 
 
@@ -163,11 +173,10 @@ h2{
 }
 
 .img-wraper{
-    width: 100%;
-    height: 100%;
-    background-image: url('../../assets/imagens/chorar.jpg');
-    background-repeat: no-repeat;
-    margin-top: 40%;
+    width: 70%;
+    height: 70%;
+    background-image: url('../../assets/imagens/Trabalhar.gif');
+    margin-top: 25%;
    
     
     
@@ -179,22 +188,87 @@ h2{
 .alert-wrapper{
     width: fit-content;
     height: fit-content;
-    margin-top: 35%;
+    margin-top: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
     z-index: 3;
-    margin-left: 60%;
-    background-color: inherit;
+    margin-left: 42%;
+    background-color: #22e245;
     position: absolute;
     display: none;
-    border-radius: 20%;
     text-align: center;
-    
+}
 
+.alert-wrapper1{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    z-index: 3;
+    margin-left: 42%;
+    background-color: #403232;
+    position: absolute;
+    display: none;
+    text-align: center;
    
-    
 }
 
 .alert-title{
    
-    color:#e67e22;
+    color:white;
     
 }
+
+#not{
+    color: white;
+    font-family: 'Skranji-Regular';
+}
+
+.alert-wrapper-not{
+    position: absolute;
+    width: 30%;
+    height: fit-content;
+    margin-top: 25%;
+    z-index: 3;
+    margin-left: 35%;
+    background-color: #403232;
+    text-align: center;
+    font-size: 80%;
+    color: white;
+   display: none;
+}
+
+.yesOrNo{
+    display: inline-block;
+    font-size: 200%;
+    color: white;
+    margin-bottom: 5%;
+    
+    
+    
+}
+
+#yes{
+    margin-right: 30%;
+    background-color: #22e245;
+    width: 30%;
+}
+
+#no{
+    background-color: #ef5151;
+    width: 30%;
+}
+
+
+
+#myProgress {
+    width: 100%;
+    background-color: #fa7268
+  }
+  
+  #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #35a7ff;
+  }
