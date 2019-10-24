@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj": {}
+    "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj": {}
   },
   "projects": {
-    "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj": {
+    "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj",
+        "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj",
         "projectName": "JogoApi.DTO",
-        "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj",
+        "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj",
         "packagesPath": "C:\\Users\\RicardoFerrazdeArrud\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\obj\\",
+        "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
             }
           },
           "imports": [
@@ -62,14 +66,14 @@
         }
       }
     },
-    "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj": {
+    "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
+        "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
         "projectName": "JogoApi.Util",
-        "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
+        "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
         "packagesPath": "C:\\Users\\RicardoFerrazdeArrud\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\obj\\",
+        "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -88,8 +92,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj": {
-                "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj"
+              "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj": {
+                "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj"
               }
             }
           }

@@ -21,3 +21,13 @@ C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Dados\obj\Debug\netco
 C:\Users\RicardoFerrazdeArrud\source\repos\JogoApi\JogoApi.Dados\obj\Debug\netcoreapp2.1\JogoApi.Dados.pdb
 C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\Tcc Final\tcc\jogo-app-back\JogoApi.Dados\obj\Debug\netcoreapp2.1\JogoApi.Dados.dll
 C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\Tcc Final\tcc\jogo-app-back\JogoApi.Dados\obj\Debug\netcoreapp2.1\JogoApi.Dados.pdb
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\obj\Debug\netcoreapp2.1\JogoApi.Dados.csprojAssemblyReference.cache
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\obj\Debug\netcoreapp2.1\JogoApi.Dados.AssemblyInfoInputs.cache
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\obj\Debug\netcoreapp2.1\JogoApi.Dados.AssemblyInfo.cs
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\bin\Debug\netcoreapp2.1\JogoApi.Dados.deps.json
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\bin\Debug\netcoreapp2.1\JogoApi.Dados.dll
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\bin\Debug\netcoreapp2.1\JogoApi.DTO.dll
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\bin\Debug\netcoreapp2.1\JogoApi.Util.dll
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\bin\Debug\netcoreapp2.1\JogoApi.DTO.pdb
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\bin\Debug\netcoreapp2.1\JogoApi.Util.pdb
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.Dados\obj\Debug\netcoreapp2.1\JogoApi.Dados.csproj.CopyComplete

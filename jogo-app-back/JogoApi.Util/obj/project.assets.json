@@ -208,9 +208,21 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "Newtonsoft.Json/12.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "JogoApi.DTO/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
         "compile": {
           "bin/placeholder/JogoApi.DTO.dll": {}
         },
@@ -691,6 +703,36 @@
         "netstandard.library.nuspec"
       ]
     },
+    "Newtonsoft.Json/12.0.2": {
+      "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.2.nupkg.sha512",
+        "newtonsoft.json.nuspec"
+      ]
+    },
     "JogoApi.DTO/1.0.0": {
       "type": "project",
       "path": "../JogoApi.DTO/JogoApi.DTO.csproj",
@@ -710,11 +752,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
+      "projectUniqueName": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
       "projectName": "JogoApi.Util",
-      "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
+      "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\JogoApi.Util.csproj",
       "packagesPath": "C:\\Users\\RicardoFerrazdeArrud\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.Util\\obj\\",
+      "outputPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.Util\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -733,8 +775,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj": {
-              "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\Tcc Final\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj"
+            "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj": {
+              "projectPath": "C:\\Users\\RicardoFerrazdeArrud\\Desktop\\Fatec\\Americana\\TCC 2019\\tcc\\jogo-app-back\\JogoApi.DTO\\JogoApi.DTO.csproj"
             }
           }
         }

@@ -13,3 +13,10 @@ C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\Tcc Final\tcc\jogo-app-bac
 C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\Tcc Final\tcc\jogo-app-back\JogoApi.DTO\obj\Debug\netcoreapp2.1\JogoApi.DTO.AssemblyInfo.cs
 C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\Tcc Final\tcc\jogo-app-back\JogoApi.DTO\obj\Debug\netcoreapp2.1\JogoApi.DTO.dll
 C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\Tcc Final\tcc\jogo-app-back\JogoApi.DTO\obj\Debug\netcoreapp2.1\JogoApi.DTO.pdb
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.DTO\obj\Debug\netcoreapp2.1\JogoApi.DTO.AssemblyInfoInputs.cache
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.DTO\obj\Debug\netcoreapp2.1\JogoApi.DTO.AssemblyInfo.cs
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.DTO\bin\Debug\netcoreapp2.1\JogoApi.DTO.deps.json
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.DTO\bin\Debug\netcoreapp2.1\JogoApi.DTO.dll
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.DTO\bin\Debug\netcoreapp2.1\JogoApi.DTO.pdb
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.DTO\obj\Debug\netcoreapp2.1\JogoApi.DTO.dll
+C:\Users\RicardoFerrazdeArrud\Desktop\Fatec\Americana\TCC 2019\tcc\jogo-app-back\JogoApi.DTO\obj\Debug\netcoreapp2.1\JogoApi.DTO.pdb
