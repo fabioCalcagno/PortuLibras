@@ -142,6 +142,7 @@
         "dependencies": {
           "JogoApi.DTO": "1.0.0",
           "JogoApi.Util": "1.0.0",
+          "Newtonsoft.Json": "11.0.2",
           "System.Configuration.ConfigurationManager": "4.6.0"
         },
         "runtime": {

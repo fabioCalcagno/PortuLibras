@@ -15,7 +15,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
       <Private>true</Private>
-      <SpecificVersion>true</SpecificVersion>
     </Reference>
   </ItemGroup>
 
