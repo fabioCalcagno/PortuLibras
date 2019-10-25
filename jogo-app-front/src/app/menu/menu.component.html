@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+
+<head>
+    <title>Menu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu-container">
+            <div class="title">PortuLibras</div>
+            <div class="menu-options" id="jogarJogo" [routerLink]="['/lessons']" >
+                Jogar Jogo
+            </div>
+            <div class="menu-options" id="placar"   [routerLink]="['/menu/pontuacao']"> Placar </div>
+            <div class="menu-options" id="creditos" [routerLink]="['']"> Créditos </div>
+            <div class="menu-options" id="sairJogo" [routerLink]="['']"> Sair Jogo</div>
+        </div>
+    </div>
+
+</body>

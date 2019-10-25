@@ -1,0 +1,274 @@
+
+
+
+paleta{
+    color:#22e245;
+    color:#054393;
+    color:#35a7ff;
+    color:#ef5151;
+    color:#fa7268;
+    color:#403232;
+}
+
+@font-face {
+    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
+    font-family: 'Skranji-Regular';    
+    font-weight: normal;
+} 
+
+
+
+body{
+    height: 98%;
+    width: 98%;
+    overflow: hidden;
+    overflow-y: hidden;
+    position: absolute;
+    margin: 0;
+    background-color: #ef5151;
+    font-family: 'Skranji-Regular';
+
+    
+}
+
+
+.container{
+    height: 100%;
+    width: 100%;
+    
+}
+
+header{
+    height: 10%;
+    width: 100%;
+    background-color: #403232;
+    display: block;
+   
+}
+
+.design-border-header-main{
+    height: 90%;
+    width: 100%;
+}
+
+
+.header-div{
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+    color: white;
+
+}
+
+.score{
+    margin-left: 5%;
+    vertical-align: super;
+    width: 50%;
+    height: 100%;
+    margin-top: 0%;
+    position: absolute;
+    color:white;
+}
+#pause{
+    background-image: url('../../assets/imagens/icons8-pausa-40.png');
+    background-repeat:no-repeat; 
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+#score{
+    background-image: url('../../assets/imagens/icons8-moedas-48.png');
+    background-repeat:no-repeat; 
+    margin-left: 1%;
+    margin-top: 1%;
+    
+}
+
+#userName{
+    color: white;
+    text-align: center;
+    font-size: 200%;
+    width: 30%;
+    position: absolute;
+    height: 10%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 1%;
+}
+.design-border-header{
+    height: 15%;
+    width: 100%;
+    display: inline-block;
+}
+
+
+
+.questions-container{
+        width: 60%;
+        height: 90%;
+        background-color: #ef5151;
+        float: left;
+        
+}
+
+.questions-title{
+    height: 20%;
+    width: 80%;
+    font-size: 300%;
+    color: white;
+    text-align: center;
+    margin-top: 15%;
+    
+ 
+}
+.blocks-wraper{
+    width: 100%;
+    height:70%;
+    
+    
+}
+
+
+.questions-div{
+    margin-left: 15%;
+    margin-top: 3%;
+    width: 50%;
+    height: 10%;
+    display: inline-block;
+    text-align: center;
+    background-color: #fa7268;
+    color: white;
+    font-size: 160%;
+    padding-top: 1%;
+    text-align: center;
+    
+
+}
+
+
+.questions-div:hover {
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+    cursor: pointer;
+   
+}
+
+
+h2{
+    
+    height: 100%;
+    color:white;
+    font-size: 200%;
+    
+}
+
+
+.image-container{
+    width: 40%;
+    height: 90%;
+    background-color:#ef5151;
+    float: left;
+    
+}
+
+.img-wraper{
+    width: 70%;
+    height: 70%;
+    background-image: url('../../assets/imagens/Trabalhar.gif');
+    margin-top: 25%;
+   
+    
+    
+}
+
+
+
+
+.alert-wrapper{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    z-index: 3;
+    margin-left: 42%;
+    background-color: #22e245;
+    position: absolute;
+    display: none;
+    text-align: center;
+}
+
+.alert-wrapper1{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    z-index: 3;
+    margin-left: 42%;
+    background-color: #403232;
+    position: absolute;
+    display: none;
+    text-align: center;
+   
+}
+
+.alert-title{
+   
+    color:white;
+    
+}
+
+#not{
+    color: white;
+    font-family: 'Skranji-Regular';
+}
+
+.alert-wrapper-not{
+    position: absolute;
+    width: 30%;
+    height: fit-content;
+    margin-top: 25%;
+    z-index: 3;
+    margin-left: 35%;
+    background-color: #403232;
+    text-align: center;
+    font-size: 80%;
+    color: white;
+   display: none;
+}
+
+.yesOrNo{
+    display: inline-block;
+    font-size: 200%;
+    color: white;
+    margin-bottom: 5%;
+    
+    
+    
+}
+
+#yes{
+    margin-right: 30%;
+    background-color: #22e245;
+    width: 30%;
+}
+
+#no{
+    background-color: #ef5151;
+    width: 30%;
+}
+
+
+
+#myProgress {
+    width: 100%;
+    background-color: #fa7268
+  }
+  
+  #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #35a7ff;
+  }
