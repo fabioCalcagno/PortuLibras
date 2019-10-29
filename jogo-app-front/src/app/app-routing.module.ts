@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from '../app/login/login.component';
-import { LessonsComponent } from '../app/lessons/lessons.component';
-import { CriarContaComponent } from 'src/app/login/criar-conta/criar-conta.component';
+import { LoginComponent } from './login/login.component';
+import { LessonsComponent } from './lessons/lessons.component';
+import { CriarContaComponent } from './login/criar-conta/criar-conta.component';
 import { RecuperarSenhaComponent } from './login/recuperar-senha/recuperar-senha.component';
-import { ScoreComponent } from "../app/score/score.component"
-import { MenuComponent } from '../app/menu/menu.component'
+import { ScoreComponent } from "./score/score.component"
+import { MenuComponent } from './menu/menu.component'
 import { HeaderComponent } from './header/header.component';
 
 

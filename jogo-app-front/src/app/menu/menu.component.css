@@ -37,6 +37,7 @@ color:white;
 font-size: 450%;
 margin-top: 5%;
 text-align: center;
+text-shadow: 4px 4px #fa7268;
 
 } 
 
@@ -62,6 +63,12 @@ text-align: center;
     text-align: center;
     
 }
+
+.menu-options:hover{
+   cursor: pointer;
+}
+
+
 
 #jogarJogo{
     background-color: #22e245 ;

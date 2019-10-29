@@ -10,9 +10,9 @@
 </head>
 <body>
         <div class="header">
-            <div class="header-divs">opção da tela</div>
+            <div class="header-divs" id="opcaoTela" [routerLink]="['/menu']" > {{currentScreen}} </div>
             <div class="header-divs" id="main-header-div"></div>
-            <div class="header-divs">Nome do usuario</div>
+            <div class="header-divs" id="username"> {{user.username}} </div>
         </div>  
 
         <router-outlet></router-outlet>

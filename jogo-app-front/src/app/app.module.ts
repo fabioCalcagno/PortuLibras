@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScoreComponent } from './score/score.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
+import { User } from './models/User';
 
 @NgModule({
   declarations: [
@@ -21,16 +22,18 @@ import { HeaderComponent } from './header/header.component';
     RecuperarSenhaComponent,
     ScoreComponent,
     MenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
-  providers: [],
+  providers: [User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,21 +13,51 @@
 <body>
     <div class="container">
         <h1 class="title">PortuLibras</h1>
-        <form [formGroup]="user" (ngSubmit)="onSubmit()">
-            <div class="login-container">
-                <div class="login">
-                    <input class="input" type="text" formControlName="username" placeholder="Usuário:"> </div>
-                <div class="login">
-                    <input class="input" type="email" formControlName="email" placeholder="E-mail:"> </div>
-                <div class="login">
-                    <input class="input" type="password" formControlName="password" placeholder="Senha:"> </div>
-                <div class="login">
-                    <input class="input" type="password" placeholder="Repetir senha:"> </div>
-                <button class="entrar" type="submit">
-                    <img src="../../assets/imagens/login.png" alt="">
-                    <h2>Criar Conta</h2>
-                </button>
+            <div class="container-scroll flexcroll">
+                <form [formGroup]="user" (ngSubmit)="onSubmit(user)">
+                    <div class="login-container">
+                        <div class="login">
+                            <input class="input" type="text" formControlName="username" placeholder="Usuário:"> </div>   
+                            <div class="login">
+                            <input class="input" type="email" formControlName="email" placeholder="E-mail:"> </div>
+                        <div class="login">
+                            <input class="input" type="password" formControlName="password" placeholder="Senha:"> </div>
+                        <div class="login">
+                            <input class="input" type="password" formControlName="rePassword" placeholder="Repetir senha:"> </div>
+                            <label  class="input error" type="text"> {{erro.msg}} </label>
+                        <h3>Termos de uso</h3>
+                        <textarea class="termos-uso" name="termosUso" id="" cols="65" disabled rows="15">
+É preciso que você siga as políticas disponibilizadas a você dentro 
+dos Serviços.
+Não faça uso indevido de nossos Serviços.
+Por exemplo, não interfira com nossos Serviços nem tente 
+acessá-los por um método diferente da interface e das instruções
+que fornecemos. Você pode usar nossos serviços somente conforme
+permitido por lei, inclusive leis e regulamentos de controle
+de exportação e reexportação. Podemos suspender ou deixar
+de fornecer nossos Serviços se você descumprir nossos termos
+ou políticas ou se estivermos investigando casos de suspeita
+e má conduta.
+O uso de nossos Serviços não lhe confere a propriedade sobre
+direitos de propriedade intelectual sobre os nossos Serviços
+ou sobre o conteúdo que você acessar. Você não pode usar
+conteúdos de nossos Serviços a menos que obtenha permissão
+do proprietário de tais conteúdos ou que o faça por algum 
+meio permitido por lei. Estes termos não conferem a você
+o direito de usar quaisquer marcas ou logotipos utilizados
+em nossos Serviços. Não remova, oculte ou altere quaisquer
+avisos legais exibidos em ou junto a nossos Serviços.
+</textarea>
+                        <br>
+                        <input class="checkbox" formControlName="termo" type="checkbox">Aceitar Termos de uso
+                        <br>
+                        <button class="entrar" type="submit" [disabled]="!campoValidate(user)">
+                            <img src="../../../assets/imagens/user.png" alt="">
+                            <h2>Criar Conta</h2>
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
+        </div>
+    
 </body>

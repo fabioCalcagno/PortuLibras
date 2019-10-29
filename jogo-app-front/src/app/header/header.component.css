@@ -8,6 +8,16 @@ paleta{
     color:#403232;
 }
 
+@font-face {
+    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
+    font-family: 'Skranji-Regular';    
+    font-weight: normal;
+} 
+
+body{
+    font-family: 'Skranji-Regular'; 
+}
+
 
 
 .header{
@@ -21,7 +31,8 @@ paleta{
     right: 0;
     z-index: 5;
     display: flex;
-    overflow-x: hidden !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 .3em #a33838 ;
 }
 
 .header-divs{
@@ -29,8 +40,28 @@ paleta{
     height: 100%;
     background-color: inherit;
     float: left;
+    color: white;
+    font-size: 2em;
+    margin-top: 1%;
+   
+}
+#opcaoTela{
+ background-image: url('../../assets/imagens/long-arrow-pointing-to-left.png');
+ background-position-x: left;
+ background-size: 10%;
+ background-repeat: no-repeat;
+ padding-left: 4%;
+ text-shadow: 4px 4px #ef5151 ; 
+
 }
 
+#opcaoTela:hover{
+    cursor: pointer;
+}
+
+#username{
+
+}
 #main-header-div{
     width: 40%;
     background-color: inherit;

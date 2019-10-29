@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { User } from '../models/login';
+import { User } from '../models/User';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
 
@@ -13,26 +13,44 @@ import { LoginService } from './services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
+
+  verificaValidTouched(campo): any {
+    return !this.user.get(campo).valid && this.user.get(campo).touched
+  }
+
   private user: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+   
 
   ) { }
+  private erro = {
+    status: false,
+    msg: ''
+  }
 
+
+ 
   ngOnInit() {
+    this.erro.status = false;
+    this.erro.msg= ''
     this.user = this.formBuilder.group({
 
-      email: ['',
+      username: [null,
         [
           Validators.required,
-          Validators.email]
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          ]
       ],
-      password: ['',
+      password: [null,
         Validators.required
       ],
+     
+      
 
     })
 
@@ -40,6 +58,19 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
+
+    this.erro.status = false;
     console.log(this.user)
+   this.loginService.register(this.user).subscribe(login => {
+      if(login) console.log('ok deu certo' + this.user)
+      else console.log('deu erro')
+   })
+ 
   }
+    
+
+
+
+
+
 }

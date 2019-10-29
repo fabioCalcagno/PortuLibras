@@ -6,6 +6,8 @@
 
 body{
     font-family: 'Skranji-Regular'; 
+   
+   
 }
 .container{
     height:98%;
@@ -18,52 +20,68 @@ body{
     
 }
 
+.container-scroll{
+    height:98%;
+    width:50%;
+    margin-left: 35%;
+    background-color: #ef5151;
+    overflow-x: hidden;
+    
+}
+
+.login-container{
+    margin-top: 5%;
+    background-color: #ef5151;
+    height: 80%;
+    width: 90%;
+} 
+
 
 .title{
     color:white;
     font-size: 450%;
-    margin-left: 35%;
+    margin-left: 36%;
     margin-top: 6%;
-    
-    
-    
+    text-shadow: 4px 4px  #fa7268; 
+
     } 
 
 .login{
 height: 12%;
-
-  
-
-} 
-.login-container{
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top: 5%;
-    background-color: #ef5151;
-    height: 80%;
 } 
 
 .input{
-    width: 99%;
+    width: 70%;
+    margin-right: 30%;
     margin-bottom: 2%;
     height: 80%;
     background-color: #fa7268 !important;
     border-top-color: transparent;
     border-right-color: transparent;
     border-left-color: transparent;
-   border-bottom-color: transparent;
-   color: white;
-   font-size: 200%;
+    border-bottom-color: transparent;
+    color: white;
+    font-size: 200%;
+    box-shadow: 0 0 .2em #d14949, inset 0 0 .2em #ec7e76;
+
+
 }
 
 .entrar{
     background-color: #35a7ff;
-    width: 100%;
+    width: 80%;
     height: 10%;
     margin-top: 2%;
     font-family: 'Skranji-Regular'; 
     border: none;
+    box-shadow: 0 0 .7em #2d8dd6 , inset 0 0 .5em #2d8dd6; 
+
     
+}
+
+.entrar:disabled{
+    opacity: 0.3;
+    cursor: not-allowed; 
 }
 
 .entrar:hover{
@@ -91,8 +109,102 @@ h2{
     font-size: 200%;
     display: inline;
     vertical-align: middle;
+    text-shadow: 4px 4px  #2d8dd6; 
   
 }
+
+h3{
+    
+    color:white;
+    font-size: 2em;
+    text-align: start;
+    padding-left: 15%;
+}
+
+.termos-uso{
+    white-space: pre;
+    background-color: #fa7268;
+    color: white;
+    font-size: 1em;   
+    box-shadow: 0 0 .3em white;
+}
+
+.checkbox{
+    display: inline-block;
+    color: white;
+}
+
+
+.error{
+    background-color: #ef5151;
+    font-size: 1em;
+    color:darkslategray;
+}
+
+
+
+.termos-uso::-webkit-scrollbar {
+    width: 10px;
+    }
+    
+    /* Track */
+    .termos-uso::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 50px #fa7268;
+    
+    }
+    
+    /* Handle */
+    .termos-uso::-webkit-scrollbar-thumb {
+    background:#ef5151;
+    opacity: 0.3;
+    }
+
+
+
+.flexcroll{ 
+  
+    overflow-y:scroll;
+    overflow-x: hidden;
+    position: absolute;
+    height: 60%;
+
+   }
+
+
+   
+.flexcroll{
+scrollbar-face-color: #367CD2;
+scrollbar-shadow-color: #FFFFFF;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-3dlight-color: #FFFFFF;
+scrollbar-darkshadow-color: #FFFFFF;
+scrollbar-track-color: #FFFFFF;
+scrollbar-arrow-color: #FFFFFF;
+}
+
+/* Let's get this party started */
+.flexcroll::-webkit-scrollbar {
+width: 20px;
+height: 20px;
+cursor: grab;
+}
+
+/* Track */
+.flexcroll::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 50px #fa7268;
+cursor: grab;
+
+}
+
+/* Handle */
+.flexcroll::-webkit-scrollbar-thumb {
+background:#35A7FF;
+
+}
+
+
+
+
 
 
 
