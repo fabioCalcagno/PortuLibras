@@ -1,6 +1,7 @@
 ﻿using JogoApi.Dados.Interface;
 using JogoApi.DTO;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -108,6 +109,15 @@ namespace JogoApi.Dados.Service
 
         public Retorno Acessar(UsuarioDTO usuario)
         {
+            if (String.IsNullOrEmpty(usuario.Username) || String.IsNullOrEmpty(usuario.Senha))
+            {
+                return new Retorno()
+                {
+                    Codigo = 400,
+                    Mensagem = "Usuário e senha precisam ser preenchidos"
+                };
+            }
+
             var retorno = BuscaUsuario(usuario);
 
             if (retorno == null)
