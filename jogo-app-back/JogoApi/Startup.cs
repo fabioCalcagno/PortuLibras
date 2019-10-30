@@ -82,8 +82,8 @@ namespace JogoApi
                 });
             });
 
-            app.UseCors(option => option.AllowAnyOrigin());
             app.UseHttpsRedirection();
+            app.UseCors("AllowSpecificOrigin");
             app.UseMvc();
         }
     }
