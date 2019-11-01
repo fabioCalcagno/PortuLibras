@@ -56,6 +56,7 @@ body{
    color: white;
   background-position-x: left;
   float: left;
+  margin-left: 10%;
 }
 
 .score-points{
@@ -65,6 +66,7 @@ body{
     color: white;
     text-align: end ;
     float: left;
+    padding-right: 10%;
 }
 
 

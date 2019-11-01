@@ -118,7 +118,7 @@ namespace JogoApi.Dados.Service
                 };
             }
 
-            var retorno = BuscaUsuario(usuario);
+            var retorno = BuscaUsuario(usuario); 
 
             if (retorno == null)
             {

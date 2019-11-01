@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { User } from '../models/User';
+import { HeaderService } from '../header/services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +10,29 @@ import { User } from '../models/User';
 })
 export class HeaderComponent implements OnInit {
 
+  currentScreen = 'Voltar'
+  telaAnterior = '';
+  string:string;
+  stringHelper;
+
   constructor(private user: User,
+              private headerService: HeaderService,
 
-  )
+  ){ }
 
-{ }
-private currentScreen:string
+  
+  ngOnInit(): void {
 
-  ngOnInit() {
- this.currentScreen = 'menu começo'
+    this.user.username = 'Samuel';
+    
   }
+
+  
+ 
+
+ 
+
+  
+
 
 }

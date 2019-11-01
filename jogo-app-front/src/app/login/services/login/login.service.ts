@@ -13,12 +13,14 @@ export class LoginService {
 
 
  
-    private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+    private  headers= new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
     
 
   register(user){
     
-     return this.http.post(this.url, [user.username, user.password], this.options);
+     return this.http.post(this.url, [user.username, user.password], {headers: this.headers});
   }
 
 

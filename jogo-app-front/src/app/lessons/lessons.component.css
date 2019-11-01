@@ -18,6 +18,8 @@ paleta{
 
 
 
+
+
 body{
     height: 98%;
     width: 98%;
@@ -227,16 +229,17 @@ h2{
 
 .alert-wrapper-not{
     position: absolute;
+    margin-top: 10%;
     width: 30%;
     height: fit-content;
-    margin-top: 25%;
     z-index: 3;
-    margin-left: 35%;
+    margin-left: 25%;
     background-color: #403232;
     text-align: center;
     font-size: 80%;
     color: white;
-   display: none;
+    box-shadow: 0 0 .5em #fa7268;
+   
 }
 
 .yesOrNo{

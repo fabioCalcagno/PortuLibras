@@ -24,16 +24,18 @@ body{
 
 
 
-.title{
+.title-senha{
     color:white;
-    font-size: 450%;
+    font-size: 350%;
     margin-left: 35%;
     margin-top: 3%;
     margin-bottom: 3%;
+    text-shadow: 4px 4px #fa7268;
     } 
 
 .login{
 height: 12%;
+margin-top: 2%;
 
   
 
@@ -52,13 +54,17 @@ height: 12%;
     border-color: transparent;
     color: white;
     font-size: 200%;
+    
 }
+
+
 
 .entrar{
     background-color: #35a7ff;
     width: 100%;
-    margin-top: 3%;
+    margin-top: 2%;
     height: 14%;
+    box-shadow: 0 0 .7em #2d8dd6 , inset 0 0 .5em #2d8dd6; 
     
 }
 
@@ -82,6 +88,11 @@ h2{
     display: inline;
     vertical-align: middle;
   
+}
+
+#green{
+    background-color: #22E245 !important;
+    box-shadow: 0 0 .7em rgb(0, 218, 40) , inset 0 0 .5em rgb(67, 211, 93); 
 }
 
 

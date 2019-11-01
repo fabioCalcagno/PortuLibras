@@ -60,7 +60,7 @@ body{
 }
 
 #username{
-
+        text-align: right;
 }
 #main-header-div{
     width: 40%;

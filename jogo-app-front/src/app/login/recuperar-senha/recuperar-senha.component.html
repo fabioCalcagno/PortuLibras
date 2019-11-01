@@ -6,24 +6,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
 
 </head>
 
 <body>
     <div class="container">
-        <h1 class="title">PortuLibras</h1>
-        <div class="login-container">
+        <h1 class="title-senha">Esquecer senha</h1>
+        <div class="login-container" *ngIf="confirmacaoEmail">
             <div class="login">
-                <input class="input" type="text" placeholder="Usuário:"> </div>
+                <input class="input" id="usuario" type="text" placeholder="Usuário:"> </div>
             <div class="login">
                 <input class="input" type="email" placeholder="E-mail:"> </div>
-            <div class="login">
-                <input class="input" type="password" placeholder="Senha:"> </div>
-            <div class="login">
-                <input class="input" type="password" placeholder="Repetir senha:"> </div>
-                <div class="entrar" ><img src="../../assets/imagens/login.png" alt=""> <h2 [routerLink]="['']" >Redefinir senha</h2> </div>
-        
+            <div class="entrar" (click)="confirmaEmail()">
+                <img src="../../assets/imagens/login.png" alt="">
+                <h2>Confirmar conta</h2>
             </div>
+            <div class="entrar" id="green">
+                <img src="../../../assets/imagens/user.png" alt="">
+                <h2 [routerLink]="['']">Criar conta</h2>
+            </div>
+        </div>
     </div>
+
+
+    <div class="container" *ngIf="!confirmacaoEmail">
+        <h1 class="title-senha">Esquecer senha</h1>
+        <div class="login-container" *ngIf="!confirmacaoEmail">
+            <div class="login">
+                <input class="input" id="numeroRecuperacao" type="text" placeholder="Numero:"> </div>
+            <div class="entrar">
+                <img src="../../assets/imagens/login.png" alt="">
+                <h2 [routerLink]="['']">Enviar Numero</h2>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
 </body>

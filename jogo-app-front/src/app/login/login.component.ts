@@ -3,6 +3,8 @@ import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@a
 import { User } from '../models/User';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
+import { HttpResponse } from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 
 
@@ -39,14 +41,14 @@ export class LoginComponent implements OnInit {
     this.erro.msg= ''
     this.user = this.formBuilder.group({
 
-      username: [null,
+      Username: [null,
         [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(20),
           ]
       ],
-      password: [null,
+      Senha: [null,
         Validators.required
       ],
      
@@ -62,8 +64,10 @@ export class LoginComponent implements OnInit {
     this.erro.status = false;
     console.log(this.user)
    this.loginService.register(this.user).subscribe(login => {
-      if(login) console.log('ok deu certo' + this.user)
-      else console.log('deu erro')
+      if(login) {
+        console.log('ok deu certo' + login.toString());
+       this.router.navigate(['/menu']); }
+      else console.log(login , 'deu error')
    })
  
   }
