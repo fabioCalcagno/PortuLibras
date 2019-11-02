@@ -10,21 +10,81 @@ namespace JogoApi.Dados.Service
     public class UsuarioService : IUsuarioService
     {
         private readonly ITransacaoDao objDao;
+        private readonly ICriptografia criptografia;
 
-        public UsuarioService(ITransacaoDao objDao)
+        public UsuarioService(ITransacaoDao objDao, ICriptografia criptografia)
         {
             this.objDao = objDao;
+            this.criptografia = criptografia;
+        }
+
+        public Retorno Acessar(UsuarioDTO usuario)
+        {
+            if (String.IsNullOrEmpty(usuario.Username) || String.IsNullOrEmpty(usuario.Senha))
+            {
+                return new Retorno()
+                {
+                    Mensagem = ("Usuário e senha precisam ser preenchidos"),
+                    Codigo = 400,
+                };
+
+            }
+
+            usuario.Senha = criptografia.Criptografar(usuario.Senha);
+
+            var buscaUsuario = BuscaUsuario(usuario);
+
+            if (buscaUsuario == null)
+            {
+                return new Retorno()
+                {
+                    Codigo = 401,
+                    Mensagem = ("Usuário não encontrado")
+                };
+            }
+
+            buscaUsuario.Senha = criptografia.Descriptografar(buscaUsuario.Senha);
+
+            if (buscaUsuario.Senha == usuario.Senha && buscaUsuario.Username == usuario.Username)
+            {
+                buscaUsuario.DataNascimento = Helper.AjustaDataNascimento(buscaUsuario.DataNascimento);
+                return new Retorno()
+                {
+                    Codigo = 200,
+                    Data = JsonConvert.SerializeObject(buscaUsuario),
+                    Mensagem = "Usuário encontrado"
+                };
+            }
+            else
+            {
+                return new Retorno()
+                {
+                    Codigo = 403,
+                    Mensagem = ("Usuário não cadastrado")
+                };
+            }
         }
 
         public Retorno CriarUsuario(UsuarioDTO usuario)
         {
+            if (!String.IsNullOrEmpty(usuario.Senha))
+            {
+                usuario.Senha = criptografia.Criptografar(usuario.Senha);
+            }
+            else
+            {
+                return new Retorno() { Mensagem = "Senha não digitada", Codigo = 400 };
+            }
+
             if (VerificaUsuario(usuario))
             {
                 return new Retorno() { Mensagem = "Usuário já existe", Codigo = 409 };
             }
             else
             {
+
                 string query = Helper.CriarQueryUsuario(usuario);
+
                 var codigoUsuario = objDao.RegistrarCadastro(query);
 
                 var retorno = BuscaUsuarioCodigo(codigoUsuario);
@@ -49,6 +109,8 @@ namespace JogoApi.Dados.Service
 
         public Retorno EditaUsuario(UsuarioDTO usuario)
         {
+            usuario.Senha = criptografia.Criptografar(usuario.Senha);
+
             string query = Helper.CriarQueryEdicao(usuario);
 
             objDao.EditaUsuario(query);
@@ -61,6 +123,10 @@ namespace JogoApi.Dados.Service
 
         public List<UsuarioDTO> ListaUsuario(UsuarioDTO usuario)
         {
+            if (!String.IsNullOrEmpty(usuario.DataNascimento))
+            {
+                usuario.DataNascimento = Helper.DataNascimentoBanco(usuario.DataNascimento);
+            }
             string query = Helper.CriarQueryBuscaUsuario(usuario);
 
             var lstRetorno = objDao.BuscaUsuario(query);
@@ -105,40 +171,6 @@ namespace JogoApi.Dados.Service
             objDao.RemoveUsuario(query);
 
             return new Retorno() { Codigo = 200, Mensagem = "Usuário removido com sucesso" };
-        }
-
-        public Retorno Acessar(UsuarioDTO usuario)
-        {
-            if (String.IsNullOrEmpty(usuario.Username) || String.IsNullOrEmpty(usuario.Senha))
-            {
-                return new Retorno()
-                {
-                    Codigo = 400,
-                    Mensagem = "Usuário e senha precisam ser preenchidos"
-                };
-            }
-
-            var retorno = BuscaUsuario(usuario); 
-
-            if (retorno == null)
-            {
-                return new Retorno() { Codigo = 500, Mensagem = "Usuário não cadastrado" };
-            }
-            if (retorno.Senha == usuario.Senha && retorno.Username == usuario.Username)
-            {
-                retorno.DataNascimento = Helper.AjustaDataNascimento(retorno.DataNascimento);
-
-                return new Retorno()
-                {
-                    Codigo = 200,
-                    Mensagem = "Login com sucesso",
-                    Data = JsonConvert.SerializeObject(retorno).ToString()
-                };
-            }
-            else
-            {
-                return new Retorno() { Codigo = 401, Mensagem = "Acesso negado" };
-            }
         }
 
         public Retorno ProcuraUsuario(UsuarioDTO usuario)

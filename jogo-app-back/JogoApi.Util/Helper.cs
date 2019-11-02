@@ -121,6 +121,13 @@ namespace JogoApi.Dados.Service
             return Convert.ToDateTime(nascimento).ToString("dd/MM/yyyy");
         }
 
+        public static string DataNascimentoBanco(string nascimento)
+        {
+            var date = DateTime.ParseExact(nascimento, "dd/MM/yyyy", null).ToString();
+
+            return Convert.ToDateTime(date).ToString("yyyy-MM-dd");
+        }
+
         public static string CriarQueryBuscaUsuario(UsuarioDTO usuario)
         {
             string query = @"USE [Libras] SELECT u.[ID_USUARIO], u.[NOME], u.[SOBRENOME], u.[DT_NASC], u.[EMAIL], u.[LOGIN], u.[SENHA], t.TELEFONE FROM [dbo].[USUARIO] as u LEFT JOIN [dbo].[TELEFONE] as t ON u.ID_USUARIO = t.ID_USUARIO ";
