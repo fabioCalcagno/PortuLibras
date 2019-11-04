@@ -97,26 +97,29 @@ namespace JogoApi.Dados.DAO
 
             }
             return lstRetorno;
-            
+        }
 
-            //List<PontosDTO> lstPontos = new List<PontosDTO>();
-            //var connection = repository.CriaConexao();
-            //repository.AbrirConexao(connection);
-            //var dataReader = repository.ExecutaDataReader(connection, query);
+        public List<TokenEmailDTO> BuscaTokenEmail(string queryTokenEmail)
+        {
+            List<TokenEmailDTO> lstTokenEmail = new List<TokenEmailDTO>();
+            var connection = repository.CriaConexao();
+            repository.AbrirConexao(connection);
+            var dataReader = repository.ExecutaDataReader(connection, queryTokenEmail);
 
-            //while (dataReader.Read())
-            //{
-            //    PontosDTO reses = new PontosDTO
-            //    {
-            //        CodigoJogo = (int)dataReader["ID_JOGO"],
-            //        CodigoUsuario = (int)dataReader["ID_USUARIO"],
-            //        Pontos = (int)dataReader["SCORE"]
-            //    };
+            while (dataReader.Read())
+            {
+                TokenEmailDTO token = new TokenEmailDTO
+                {
+                    CodigoUsuario = (int)dataReader["ID_USUARIO"],
+                    CodigoToken = (int)dataReader["ID_TOKEN"],
+                    DataValida = dataReader["DATAVALIDA"].ToString(),
+                    Token = dataReader["TOKEN"].ToString()                    
+                };
 
-            //    lstPontos.Add(usuario);
-            //}
+                lstTokenEmail.Add(token);
+            }
 
-            //return lstPontos;
+            return lstTokenEmail;
         }
     }
 }

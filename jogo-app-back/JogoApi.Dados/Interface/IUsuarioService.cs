@@ -13,5 +13,6 @@ namespace JogoApi.Dados.Interface
         Retorno Acessar(UsuarioDTO usuario);
         Retorno ProcuraUsuario(UsuarioDTO usuario);
         UsuarioDTO BuscaUsuarioCodigo(int codigo);
+        Retorno ConfirmaConta(string email);
     }
 }

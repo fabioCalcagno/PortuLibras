@@ -40,6 +40,7 @@ namespace JogoApi
             services.AddTransient<IPontosService, PontosService>();
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<ICriptografia, Criptografia>();
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

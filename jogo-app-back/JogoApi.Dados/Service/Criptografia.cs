@@ -165,7 +165,7 @@ namespace JogoApi.Dados.Service
 
         public string Criptografar(string senhaNormal)
         {
-            string key = "Criptografia"; //Está chave você mesmo é quem escolhe.
+            string key = "Criptografia";
 
             Criptografia crip = new Criptografia(CryptProvider.DES);
 

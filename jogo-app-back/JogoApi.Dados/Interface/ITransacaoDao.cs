@@ -10,5 +10,6 @@ namespace JogoApi.Dados.Interface
         List<UsuarioPontosDTO> BuscaPontos(string query);
         void EditaUsuario(string query);
         void RemoveUsuario(string query);
+        List<TokenEmailDTO> BuscaTokenEmail(string queryTokenEmail);
     }
 }

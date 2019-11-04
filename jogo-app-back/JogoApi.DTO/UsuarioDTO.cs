@@ -28,5 +28,8 @@ namespace JogoApi.DTO
 
         [JsonProperty(PropertyName = "Telefone")]
         public string Telefone { get; set; }
+
+        [JsonProperty(PropertyName = "Ativo")]
+        public bool Ativo { get; set; }
     }
 }

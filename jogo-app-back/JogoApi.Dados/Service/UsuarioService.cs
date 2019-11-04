@@ -11,11 +11,13 @@ namespace JogoApi.Dados.Service
     {
         private readonly ITransacaoDao objDao;
         private readonly ICriptografia criptografia;
+        private readonly IEmailService emailService;
 
-        public UsuarioService(ITransacaoDao objDao, ICriptografia criptografia)
+        public UsuarioService(ITransacaoDao objDao, ICriptografia criptografia, IEmailService emailService)
         {
             this.objDao = objDao;
             this.criptografia = criptografia;
+            this.emailService = emailService;
         }
 
         public Retorno Acessar(UsuarioDTO usuario)
@@ -80,19 +82,23 @@ namespace JogoApi.Dados.Service
             {
                 return new Retorno() { Mensagem = "Usuário já existe", Codigo = 409 };
             }
-            else
+
+            string query = Helper.CriarQueryUsuario(usuario);
+
+            var codigoUsuario = objDao.RegistrarCadastro(query);
+
+            var retorno = BuscaUsuarioCodigo(codigoUsuario);
+
+            var retornoEmail = emailService.EnviaEmailConfirmacao(usuario);
+
+            if(retornoEmail.Codigo == 500)
             {
-
-                string query = Helper.CriarQueryUsuario(usuario);
-
-                var codigoUsuario = objDao.RegistrarCadastro(query);
-
-                var retorno = BuscaUsuarioCodigo(codigoUsuario);
-
-                usuario.DataNascimento = Helper.AjustaDataNascimento(usuario.DataNascimento);
-
-                return new Retorno() { Mensagem = "Cadastro realizado com sucesso", Codigo = 200, Data = JsonConvert.SerializeObject(retorno).ToString() };
+                return retornoEmail;
             }
+
+            usuario.DataNascimento = Helper.AjustaDataNascimento(usuario.DataNascimento);
+
+            return new Retorno() { Mensagem = "Cadastro realizado com sucesso, um e-mail foi enviado para confirmação da conta", Codigo = 200, Data = JsonConvert.SerializeObject(retorno).ToString() };
         }
 
         public bool VerificaUsuario(UsuarioDTO usuario)
@@ -193,6 +199,33 @@ namespace JogoApi.Dados.Service
             }
 
             return new Retorno() { Codigo = 401, Mensagem = "Usuário não existe" };
+        }
+
+        public Retorno ConfirmaConta(string email)
+        {
+            var usuario = BuscaUsuario(new UsuarioDTO() { Email = email });
+
+            if (usuario.Ativo)
+            {
+                return new Retorno()
+                {
+                    Codigo = 404,
+                    Mensagem = "Usuário já está ativo"
+                };
+            }
+
+            usuario.Ativo = true;
+
+            string query = Helper.CriarQueryEdicao(usuario);
+
+            objDao.EditaUsuario(query);
+
+            return new Retorno()
+            {
+                Codigo = 200,
+                Mensagem = "Conta do usuário confirmada",
+                Data = JsonConvert.SerializeObject(usuario).ToString()
+            };
         }
     }
 }

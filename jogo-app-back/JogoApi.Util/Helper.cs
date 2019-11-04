@@ -22,6 +22,8 @@ namespace JogoApi.Dados.Service
             builder.Append(usuario.Username);
             builder.Append(" ', [SENHA] = '");
             builder.Append(usuario.Senha);
+            builder.Append(" ', [ATIVO] = '");
+            builder.Append(usuario.Ativo);
             builder.Append("' WHERE ID_USUARIO = ");
             builder.Append(usuario.CodigoUsuario);
 
@@ -226,6 +228,29 @@ namespace JogoApi.Dados.Service
             StringBuilder builder = new StringBuilder();
             builder.Append("USE [Libras] DELETE FROM [dbo].[USUARIO] WHERE ID_USUARIO = ");
             builder.Append(codigo);
+            return builder.ToString();
+        }
+
+        public static string CriaQueryTokenEmail(string token, int codigoUsuario)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("USE [Libras] INSERT INTO[dbo].[TOKENEMAIL] ([TOKEN] ,[DATAVALIDA], [ID_USUARIO]) VALUES (");
+            builder.Append(token);
+            builder.Append(", ");
+            builder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            builder.Append(", ");
+            builder.Append(codigoUsuario);
+            builder.Append(")");
+
+            return builder.ToString();
+        }
+
+        public static string CriaQueryBuscaTokenEmail(int codigoUsuario)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("USE [Libras] SELECT * FROM [dbo].[TOKENEMAIL] WHERE ID_USUARIO = ");
+            builder.Append(codigoUsuario.ToString());
+
             return builder.ToString();
         }
     }

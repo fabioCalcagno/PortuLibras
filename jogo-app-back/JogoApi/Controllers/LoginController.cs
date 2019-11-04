@@ -35,6 +35,20 @@ namespace JogoApi.Controllers
             }
         }
 
+        [HttpGet]
+        [ActionName("ConfirmaConta")]
+        public IActionResult ConfirmaConta(string email)
+        {
+            try
+            {
+                return Content(JsonConvert.SerializeObject(service.ConfirmaConta(email)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+            catch (Exception ex)
+            {
+                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+        }
+
         [HttpPost]
         [ActionName("EditarUsuario")]
         public IActionResult EditarUsuario([FromBody]UsuarioDTO usuario)
