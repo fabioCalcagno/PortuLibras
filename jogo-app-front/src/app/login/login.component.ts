@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
 import { HttpResponse } from '@angular/common/http'
 import { Observable } from 'rxjs';
-
+import { Retorno } from '../models/Retorno';
 
 
 @Component({
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
+   
    
 
   ) { }
@@ -56,18 +57,20 @@ export class LoginComponent implements OnInit {
 
     })
 
-  }
+  }  
+
+  
 
 
   onSubmit() {
 
     this.erro.status = false;
     console.log(this.user)
-   this.loginService.register(this.user).subscribe(login => {
-      if(login) {
-        console.log('ok deu certo' + login.toString());
+   this.loginService.register(this.user).subscribe((login : Retorno) => {
+      if(login.Codigo == 200) {
+        console.log( 'ok deu certo' + login.Codigo +  'ou login ' + login );
        this.router.navigate(['/menu']); }
-      else console.log(login , 'deu error')
+      else console.log(login.Mensagem , 'deu error')
    })
  
   }

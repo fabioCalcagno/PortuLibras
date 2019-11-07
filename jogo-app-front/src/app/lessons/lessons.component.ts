@@ -1,4 +1,11 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { VideoSanitizerService } from '../lessons/services/video-sanitizer.service'
+
+import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators'
+
+
 
 
 
@@ -8,7 +15,8 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener } fro
   templateUrl: './lessons.component.html',
   styleUrls: ['./lessons.component.css']
 })
-export class LessonsComponent implements OnInit {
+export class LessonsComponent implements OnInit, OnDestroy {
+
 
 
 
@@ -21,7 +29,7 @@ export class LessonsComponent implements OnInit {
 
 
 
-  constructor(private renderer: Renderer2, ) { }
+  constructor(private renderer: Renderer2, private videoSanitizer: VideoSanitizerService) { }
 
   a: string = 'Trabalhar';
   b: string = 'Brincar';
@@ -33,52 +41,60 @@ export class LessonsComponent implements OnInit {
   temCerteza: boolean = false;
   answeredQuestion: string;
   counter = 45;
-  private timeOut = false;
+  private timeOut: any = false;
+  private acertou = false;
 
 
 
-  resolverDepoisDe2Segundos(x) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        this.timeOut = x;
-        resolve(x);
-      }, 13000);
-    });
-  }
-
-  async  adicionar1(x) {
-    this.resolverDepoisDe2Segundos(x);
-    return this.timeOut;
-  }
+  private video: any = "../../assets/imagens/cortado.mp4";
+  private unsinitizedVideo;
+  private temporizador;
 
 
 
-  move() {
+
+  progressBar = new Observable((subscriber) => {
     var width = 100;
-    var id = setInterval(frame, 130);
-    function frame() {
+    var id = setInterval(frame, 50);
 
-      if (width == 0) {
+    if (this.acertou === true) {
+      console.log(this.timeOut, 'inside observable acertou')
+     this.subscription$.unsubscribe()
+    }
+    function frame() {
+      if (width <= 1) {
+        subscriber.next(true)
+        subscriber.complete()
         return clearInterval(id);
-      } else {
+      }
+      else {
         width--;
         this.myBar.style.width = width + '%';
       }
     }
-  }
 
+  })
+
+
+  subscription$: Subscription;
 
   ngOnInit() {
+   
+    this.subscription$ = this.progressBar
+      .pipe(tap(value => {
+        console.log(value, 'valor do pipe')
+      }))
+      .subscribe(subscrib => {
+        this.timeOut = subscrib
+        console.log(this.timeOut, 'onInit')
+        
+      })
 
-    this.move();
-    this.adicionar1(true).then(v => {
-      this.timeOut = v;
-    });
 
+  }
 
-
-
-
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe()
   }
 
 
@@ -95,11 +111,25 @@ export class LessonsComponent implements OnInit {
 
 
   onSubmit(item) {
-    console.log(item)
+   
     if (item == 'Trabalhar') {
-      this.alertWrapper.nativeElement.style.display = 'inherit';
-      this.alertWrapper.nativeElement.style.backgroundColor = '#22e245;'
-      this.answeredQuestion = ' Você Acertar!';
+     /*  this.alertWrapper.nativeElement.style.display = 'inherit';
+      this.alertWrapper.nativeElement.style.backgroundColor = '#22e245';
+      this.answeredQuestion = ' Você Acertar!'; */
+      this.unsinitizedVideo = "../../assets/imagens/Trabalhar.mp4"
+      this.video = this.videoSanitizer.videoSanitizer(this.unsinitizedVideo);
+     
+      this.acertou = true;
+      this.subscription$ =
+        this.progressBar.pipe(tap(value => {
+          console.log(value, 'pipe submit')
+
+        }))
+          .subscribe(subscrib => {
+            this.timeOut = subscrib
+            console.log(this.timeOut, 'submit')
+          })
+
 
       if (this.score > 0) {
         this.score = this.score + 10;
@@ -125,9 +155,15 @@ export class LessonsComponent implements OnInit {
     }
   }
   ficarNoJogo(item: boolean) {
+    this.timeOut = false;
     if (item) {
-      console.log(this.timeOut + 'escolheu ficar')
-      this.timeOut = false;
+      console.log(this.timeOut + '  escolheu ficar')
+      this.subscription$ = this.progressBar.pipe(tap(value => {
+        console.log('modal valor' +  value)
+      })).subscribe(subscrib => {
+        this.timeOut = subscrib
+        console.log(this.timeOut, 'modal')
+      })
     } else {
       console.log(this.temCerteza + 'escolheu sair');
       this.timeOut = false;
