@@ -120,58 +120,5 @@ namespace JogoApi.Dados.DAO
                 FecharConexao(connection);
             }
         }
-
-        //public void IniciaTransacao(string comando)
-        //{
-        //    string connectionString = configuration["myConnection"];
-
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-
-        //        SqlCommand command = connection.CreateCommand();
-        //        SqlTransaction transaction;
-
-        //        transaction = connection.BeginTransaction();
-        //        command.Connection = connection;
-        //        command.Transaction = transaction;
-
-        //        try
-        //        {
-        //            command.CommandText = comando;
-
-        //            command.ExecuteNonQuery();
-
-        //            transaction.Commit();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            try
-        //            {
-        //                transaction.Rollback();
-        //            }
-        //            catch (Exception ex2)
-        //            {
-        //                throw new Exception(ex2.Message);
-        //            }
-        //            throw new Exception(ex.Message);
-        //        }
-        //    }
-        //}
-
-        //public void ExecuteNonQuery(string comando)
-        //{
-        //    string connectionString = configuration["myConnection"];
-
-        //    SqlConnection connection = new SqlConnection(connectionString);
-
-        //    connection.Open();
-
-        //    SqlCommand sqlCommand = new SqlCommand(comando, connection);
-
-        //    sqlCommand.ExecuteNonQuery();
-
-        //    connection.Close();
-        //}
     }
 }

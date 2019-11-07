@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Runtime.Serialization;
 
 namespace JogoApi.DTO
 {
@@ -30,5 +28,8 @@ namespace JogoApi.DTO
 
         [JsonProperty(PropertyName = "Telefone")]
         public string Telefone { get; set; }
+
+        [JsonProperty(PropertyName = "Ativo")]
+        public bool Ativo { get; set; }
     }
 }

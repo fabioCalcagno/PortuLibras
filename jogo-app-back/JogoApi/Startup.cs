@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using JogoApi.Dados.DAO;
+﻿using JogoApi.Dados.DAO;
 using JogoApi.Dados.Interface;
 using JogoApi.Dados.Service;
 using JogoApi.DTO;
@@ -10,12 +6,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace JogoApi
 {
@@ -46,6 +39,8 @@ namespace JogoApi
             services.AddTransient<ITransacaoDao, TransacaoDao>();
             services.AddTransient<IPontosService, PontosService>();
             services.AddTransient<IUsuarioService, UsuarioService>();
+            services.AddTransient<ICriptografia, Criptografia>();
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
