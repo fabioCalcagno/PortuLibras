@@ -16,7 +16,7 @@ import { Retorno } from '../../models/Retorno';
 export class CriarContaComponent implements OnInit {
 
   private user: FormGroup;
-  private iuser : User
+  private iuser : IUser
   private erro = {
     status: false,
     msg: '',
