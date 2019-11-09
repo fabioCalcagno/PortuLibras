@@ -20,7 +20,7 @@ export class LoginService {
 
   register(user){
     
-     return this.http.post(this.url, [user.username, user.password], {headers: this.headers});
+     return this.http.post(this.url, user, {headers: this.headers});
   }
 
 

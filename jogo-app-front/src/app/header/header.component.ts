@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 
-import { User } from '../models/User';
+import { IUser } from '../models/User';
 import { HeaderService } from './services/header.service';
 
 @Component({
@@ -18,9 +18,11 @@ export class HeaderComponent implements OnInit {
   constructor( private headerService: HeaderService,
 
   ){ }
-  private user: User;
+  private user: IUser;
   
   private username;
+
+ 
   
   ngOnInit(): void {
 

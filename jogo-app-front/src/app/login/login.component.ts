@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { User } from '../models/User';
+import { IUser } from '../models/User';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
 import { HttpResponse } from '@angular/common/http'
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   private user: FormGroup;
+  private iuser:IUser;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -60,9 +61,9 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-
+    this.iuser = this.user.value;
     this.erro.status = false;
-    console.log(this.user)
+    console.log(this.iuser , 'from form' )
    this.loginService.register(this.user).subscribe((login : Retorno) => {
       if(login.Codigo == 200) {
         console.log( 'ok deu certo' + login.Codigo +  'ou login ' + login );
