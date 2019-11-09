@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScoreComponent } from './score/score.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
-import { User } from './models/User';
+
 
 @NgModule({
   declarations: [
