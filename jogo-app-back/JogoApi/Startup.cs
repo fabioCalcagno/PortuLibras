@@ -1,5 +1,7 @@
 ﻿using JogoApi.Dados.DAO;
+using JogoApi.Dados.DAO.Repository;
 using JogoApi.Dados.Interface;
+using JogoApi.Dados.Interface.Repository;
 using JogoApi.Dados.Service;
 using JogoApi.DTO;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +43,9 @@ namespace JogoApi
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<ICriptografia, Criptografia>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IRepositoryUsuario, RepositoryUsuario>();
+            services.AddTransient<IRepositoryTokenEmail, RepositoryTokenEmail>();
+            services.AddTransient<IConexaoSql, ConexaoSql>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

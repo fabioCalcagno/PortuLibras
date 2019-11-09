@@ -13,6 +13,9 @@ namespace JogoApi.DTO
 
         [DataMember(Name = "Mensagem")]
         public string Mensagem { get; set; }
+
+        [DataMember(Name = "Token")]
+        public string Token { get; set; }
     }
 }
 

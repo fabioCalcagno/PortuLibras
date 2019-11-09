@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogoApi", "JogoApi\JogoApi.csproj", "{DA53BD39-9197-4071-B8EB-4C2273F91CFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JogoApi.Util", "JogoApi.Util\JogoApi.Util.csproj", "{719B03D0-64A3-4964-AF55-238DF5E1A12B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogoApi.Util", "JogoApi.Util\JogoApi.Util.csproj", "{719B03D0-64A3-4964-AF55-238DF5E1A12B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JogoApi.DTO", "JogoApi.DTO\JogoApi.DTO.csproj", "{2ECCD12F-BA29-4993-9BB5-692509C5265E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogoApi.DTO", "JogoApi.DTO\JogoApi.DTO.csproj", "{2ECCD12F-BA29-4993-9BB5-692509C5265E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JogoApi.Dados", "JogoApi.Dados\JogoApi.Dados.csproj", "{1D201565-E580-433F-A2DF-FFE06314248E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogoApi.Dados", "JogoApi.Dados\JogoApi.Dados.csproj", "{1D201565-E580-433F-A2DF-FFE06314248E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

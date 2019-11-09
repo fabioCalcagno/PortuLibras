@@ -21,12 +21,12 @@ namespace JogoApi.Controllers
         }
 
         [HttpGet]
-        [ActionName("EnviaResetEmail")]
-        public IActionResult EnviaResetEmail(string email)
+        [ActionName("EnviaResetSenha")]
+        public IActionResult EnviaResetSenha(string email)
         {
             try
             {
-                return Content(JsonConvert.SerializeObject(service.EnviaResetEmail(email)), new MediaTypeHeaderValue("application/json").ToString());
+                return Content(JsonConvert.SerializeObject(service.EnviaResetSenha(email)), new MediaTypeHeaderValue("application/json").ToString());
             }
             catch (Exception ex)
             {

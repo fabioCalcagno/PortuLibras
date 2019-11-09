@@ -9,6 +9,6 @@ namespace JogoApi.DTO
         public PontosDTO PontosDTO { get; set; }
 
         [JsonProperty(PropertyName = "Usuario")]
-        public UsuarioDTO UsuarioDTO { get; set; }
+        public Usuario UsuarioDTO { get; set; }
     }
 }

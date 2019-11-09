@@ -1,6 +1,7 @@
 ﻿using JogoApi.DTO;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace JogoApi.Util
@@ -34,18 +35,17 @@ namespace JogoApi.Util
             return "PortuLibras - Código de geração da senha";
         }
 
-        public static string BodyConfirmacao(string link, string portuLibras, UsuarioDTO usuario)
+        public static string BodyConfirmacao(string link, string portuLibras, Usuario usuario)
         {
             StringBuilder builder = new StringBuilder();
 
             builder.Append("Olá, ");
-            builder.Append(usuario.Nome);
+            builder.Append(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usuario.Nome.ToLower()));
             builder.Append(" ");
-            builder.Append(usuario.Sobrenome);
+            builder.Append(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usuario.Sobrenome.ToLower()));
             builder.Append("<br/><br/>Bem vindo ao <b>PortuLibras</b>.<br/><br/>");
             builder.Append("Por favor, para prosseguir confirme sua conta acessando o link abaixo.<br/><br/><b>");
-            builder.Append(link + usuario.Email);
-            builder.Append("</b><br/><br/>O código é válido por <b>2 horas</b>.<br/><br/>");
+            builder.Append(link + usuario.Email.ToLower());
             builder.Append("Esta é uma mensagem automática, caso você não tenha feito essa solicitação ou se precisar de ajuda, entre em contato com a nossa equipe: <b><br/><br/>");
             builder.Append(portuLibras);
             builder.Append("<br/><br/></b>Agradecemos o contato.");
@@ -56,6 +56,29 @@ namespace JogoApi.Util
         public static string AssuntoConfirmacao()
         {
             return "PortuLibras - Confirmação da conta";
+        }
+
+        public static string BodySenhaEnviada(string portuLibras, Usuario usuario, string novaSenha)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append("Olá, ");
+            builder.Append(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usuario.Nome.ToLower()));
+            builder.Append(" ");
+            builder.Append(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usuario.Sobrenome.ToLower()));
+            builder.Append("<br/><br/>Sua nova senha é: <b>");
+            builder.Append(novaSenha);
+            builder.Append("</b><br/><br/>");
+            builder.Append("Esta é uma mensagem automática, caso você não tenha feito essa solicitação ou se precisar de ajuda, entre em contato com a nossa equipe: <b><br/><br/>");
+            builder.Append(portuLibras);
+            builder.Append("<br/><br/></b>Agradecemos o contato.");
+
+            return builder.ToString();
+        }
+
+        public static string AssuntoNovaSenha()
+        {
+            return "PortuLibras - Nova senha";
         }
     }
 }

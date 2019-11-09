@@ -22,23 +22,21 @@ namespace JogoApi.Dados.DAO
             return repository.ExecutaTransacaoScalar(connection, query);
         }
 
-        public List<UsuarioDTO> BuscaUsuario(string query)
+        public List<Usuario> BuscaUsuario(string query)
         {
-            List<UsuarioDTO> lstUsuarios = new List<UsuarioDTO>();
+            List<Usuario> lstUsuarios = new List<Usuario>();
             var connection = repository.CriaConexao();
             repository.AbrirConexao(connection);
             var dataReader = repository.ExecutaDataReader(connection, query);
 
             while(dataReader.Read())
             {
-                UsuarioDTO usuario = new UsuarioDTO
+                Usuario usuario = new Usuario
                 {
                     CodigoUsuario = (int)dataReader["ID_USUARIO"],
-                    DataNascimento = dataReader["DT_NASC"].ToString(),
                     Email = dataReader["EMAIL"].ToString(),
                     Nome = dataReader["NOME"].ToString(),
                     Sobrenome = dataReader["SOBRENOME"].ToString(),
-                    Telefone = dataReader["TELEFONE"].ToString(),
                     Username = dataReader["LOGIN"].ToString(),
                     Senha = dataReader["SENHA"].ToString()
                 };
@@ -81,14 +79,14 @@ namespace JogoApi.Dados.DAO
                     CodigoUsuario = (int)dataReader["ID_USUARIO"],
                     Pontos = (int)dataReader["SCORE"]
                 };
-                var usuario = new UsuarioDTO()
+                var usuario = new Usuario()
                 {
                     CodigoUsuario = (int)dataReader["ID_USUARIO"],
-                    DataNascimento = dataReader["DT_NASC"].ToString(),
+                    //DataNascimento = dataReader["DT_NASC"].ToString(),
                     Email = dataReader["EMAIL"].ToString(),
                     Nome = dataReader["NOME"].ToString(),
                     Sobrenome = dataReader["SOBRENOME"].ToString(),
-                    Telefone = dataReader["TELEFONE"].ToString(),
+                    //Telefone = dataReader["TELEFONE"].ToString(),
                     Username = dataReader["LOGIN"].ToString()
                 };
                 retorno.UsuarioDTO = usuario;
@@ -99,16 +97,16 @@ namespace JogoApi.Dados.DAO
             return lstRetorno;
         }
 
-        public List<TokenEmailDTO> BuscaTokenEmail(string queryTokenEmail)
+        public List<TokenEmail> BuscaTokenEmail(string queryTokenEmail)
         {
-            List<TokenEmailDTO> lstTokenEmail = new List<TokenEmailDTO>();
+            List<TokenEmail> lstTokenEmail = new List<TokenEmail>();
             var connection = repository.CriaConexao();
             repository.AbrirConexao(connection);
             var dataReader = repository.ExecutaDataReader(connection, queryTokenEmail);
 
             while (dataReader.Read())
             {
-                TokenEmailDTO token = new TokenEmailDTO
+                TokenEmail token = new TokenEmail
                 {
                     CodigoUsuario = (int)dataReader["ID_USUARIO"],
                     CodigoToken = (int)dataReader["ID_TOKEN"],

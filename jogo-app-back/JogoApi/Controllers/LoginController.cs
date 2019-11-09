@@ -23,7 +23,7 @@ namespace JogoApi.Controllers
 
         [HttpPost]
         [ActionName("CadastrarUsuario")]
-        public IActionResult CadastrarUsuario([FromBody]UsuarioDTO usuario)
+        public IActionResult CadastrarUsuario([FromBody]Usuario usuario)
         {
             try
             {
@@ -50,23 +50,8 @@ namespace JogoApi.Controllers
         }
 
         [HttpPost]
-        [ActionName("EditarUsuario")]
-        public IActionResult EditarUsuario([FromBody]UsuarioDTO usuario)
-        {
-            try
-            {
-                return Content(JsonConvert.SerializeObject(service.EditaUsuario(usuario)), new MediaTypeHeaderValue("application/json").ToString());
-
-            }
-            catch (Exception ex)
-            {
-                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-        }
-
-        [HttpPost]
         [ActionName("Acessar")]
-        public IActionResult Acessar([FromBody]UsuarioDTO usuario)
+        public IActionResult Acessar([FromBody]Usuario usuario)
         {
             try
             {
@@ -79,12 +64,13 @@ namespace JogoApi.Controllers
         }
 
         [HttpPost]
-        [ActionName("BuscarUsuario")]
-        public IActionResult BuscarUsuario([FromBody]UsuarioDTO usuario)
+        [ActionName("EditarUsuario")]
+        public IActionResult EditarUsuario([FromBody]Usuario usuario)
         {
             try
             {
-                return Content(JsonConvert.SerializeObject(service.ProcuraUsuario(usuario)), new MediaTypeHeaderValue("application/json").ToString());
+                return Content(JsonConvert.SerializeObject(service.EditaUsuario(usuario)), new MediaTypeHeaderValue("application/json").ToString());
+
             }
             catch (Exception ex)
             {

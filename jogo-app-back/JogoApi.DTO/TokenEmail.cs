@@ -3,7 +3,7 @@
 namespace JogoApi.DTO
 {
     [JsonObject(Title = "TokenEmail")]
-    public class TokenEmailDTO
+    public class TokenEmail
     {
         [JsonProperty(PropertyName = "ID_TOKEN")]
         public int CodigoToken { get; set; }
