@@ -26,9 +26,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-   
-   
-
   ) { }
   private erro = {
     status: false,

@@ -17,13 +17,13 @@
                 <form [formGroup]="user" (ngSubmit)="onSubmit(user)">
                     <div class="login-container">
                         <div class="login">
-                            <input class="input" type="text" formControlName="username" placeholder="Usuário:"> </div>   
+                            <input class="input" type="text" formControlName="Username" placeholder="Usuário:"> </div>   
                             <div class="login">
-                            <input class="input" type="email" formControlName="email" placeholder="E-mail:"> </div>
+                            <input class="input" type="email" formControlName="Email" placeholder="E-mail:"> </div>
                         <div class="login">
-                            <input class="input" type="password" formControlName="password" placeholder="Senha:"> </div>
+                            <input class="input" type="password" formControlName="Senha" placeholder="Senha:"> </div>
                         <div class="login">
-                            <input class="input" type="password" formControlName="rePassword" placeholder="Repetir senha:"> </div>
+                            <input class="input" type="password" formControlName="reSenha" placeholder="Repetir senha:"> </div>
                             <label  class="input error" type="text"> {{erro.msg}} </label>
                         <h3>Termos de uso</h3>
                         <textarea class="termos-uso" name="termosUso" id="" cols="65" disabled rows="15">

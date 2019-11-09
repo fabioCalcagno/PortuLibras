@@ -15,15 +15,19 @@ export class HeaderComponent implements OnInit {
   string:string;
   stringHelper;
 
-  constructor(private user: User,
-              private headerService: HeaderService,
+  constructor( private headerService: HeaderService,
 
   ){ }
-
+  private user: User;
+  
+  private username;
   
   ngOnInit(): void {
 
-    this.user.username = 'Samuel';
+   
+
+     this.username = 'samuel';
+    
     
   }
 

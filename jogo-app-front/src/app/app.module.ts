@@ -24,6 +24,7 @@ import { User } from './models/User';
     MenuComponent,
     HeaderComponent,
     
+    
   ],
   imports: [
     BrowserModule,
@@ -33,7 +34,7 @@ import { User } from './models/User';
     HttpClientModule,
     
   ],
-  providers: [User],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

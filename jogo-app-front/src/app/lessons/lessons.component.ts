@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { VideoSanitizerService } from '../lessons/services/video-sanitizer.service'
+import { VideoSanitizerService } from './services/video-sanitizer.service'
 
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators'

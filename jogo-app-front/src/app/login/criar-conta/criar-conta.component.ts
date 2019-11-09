@@ -5,6 +5,9 @@ import { LoginService } from '../services/login/login.service'
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 
+import { CadastrarUsuarioService } from './services/cadastro/cadastrar-usuario.service'
+import { Retorno } from '../../models/Retorno';
+
 @Component({
   selector: 'app-criar-conta',
   templateUrl: './criar-conta.component.html',
@@ -13,7 +16,7 @@ import { NgIf } from '@angular/common';
 export class CriarContaComponent implements OnInit {
 
   private user: FormGroup;
-  private iuser = new User();
+  private iuser : User
   private erro = {
     status: false,
     msg: '',
@@ -23,33 +26,33 @@ export class CriarContaComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private cadastrarUsuarioService: CadastrarUsuarioService,
     private router: Router
 
   ) { }
 
   ngOnInit() {
     this.user = this.formBuilder.group({
-      username: ['',
+      Username: ['',
         [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(20),
         ]
       ],
-      password: ['',
+      Senha: ['',
         [Validators.required,
         Validators.minLength(3),
         Validators.maxLength(10),
         ]
       ],
-      rePassword: ['',
+      reSenha: ['',
         [Validators.required,
         Validators.minLength(3),
         Validators.maxLength(10),
         ]
       ],
-      email: ['',
+      Email: ['',
         [Validators.required,
         Validators.email
         ]
@@ -63,42 +66,42 @@ export class CriarContaComponent implements OnInit {
 
   campoValidate(user: FormGroup) {
     this.erro.msg = '';
-    if (!user.controls['username'].valid) {
+    if (!user.controls['Username'].valid) {
       console.log(user)
-      if (user.controls['username'].errors['required']) {
+      if (user.controls['Username'].errors['required']) {
         this.erro.msg = "usuário é requerido";
         return false;
       }
-      else if (user.controls['username'].errors['minlength']) {
+      else if (user.controls['Username'].errors['minlength']) {
         this.erro.msg = "tamanho minino de usuário são 3 letras";
         return false;
       }
-      else if (user.controls['username'].errors['maxlength']) {
+      else if (user.controls['Username'].errors['maxlength']) {
         this.erro.msg = "tamanho maximo de usuario são 20 letras";
         return false;
       }
     }
-    if (!user.controls['email'].valid) {
-      if (user.controls['email'].errors['required']) {
-        this.erro.msg = "email é requerido";
+    if (!user.controls['Email'].valid) {
+      if (user.controls['Email'].errors['required']) {
+        this.erro.msg = "Email é requerido";
         return false;
       }
-      else if (user.controls['email'].errors['email']) {
-        this.erro.msg = "formatação de email incompátivel";
+      else if (user.controls['Email'].errors['email']) {
+        this.erro.msg = "formatação de Email incompátivel";
         return false;
       }
     }
-    if (!user.controls['password'].valid) {
-      if (user.controls['password'].errors['required']) {
+    if (!user.controls['Senha'].valid) {
+      if (user.controls['Senha'].errors['required']) {
         this.erro.msg = "senha é requerido";
         return false;
       }
-      else if (user.controls['password'].errors['minlength']) {
+      else if (user.controls['Senha'].errors['minlength']) {
         this.erro.msg = "tamanho minino de senha são 3 letras";
-        console.log(user.controls['password'].value, 'askjhdjakshdkasjhdkl')
+        console.log(user.controls['Senha'].value, 'askjhdjakshdkasjhdkl')
         return false;
       }
-      else if (user.controls['password'].errors['maxlength']) {
+      else if (user.controls['Senha'].errors['maxlength']) {
         this.erro.msg = "tamanho maximo de senha é de 12 letras";
 
         return false;
@@ -109,9 +112,9 @@ export class CriarContaComponent implements OnInit {
       return false;
     }
    
-    else if (!(user.controls['password'].value == user.controls['rePassword'].value)) {
-      console.log('senha ' + user.controls['password'].value)
-      console.log('REEEsenha ' + user.controls['rePassword'].value)
+    else if (!(user.controls['Senha'].value == user.controls['reSenha'].value)) {
+      console.log('senha ' + user.controls['Senha'].value)
+      console.log('REEEsenha ' + user.controls['reSenha'].value)
       this.erro.msg = "confirmação de senha não esta compativel com senha"
       return false;
     }
@@ -128,11 +131,13 @@ export class CriarContaComponent implements OnInit {
     console.log(this.erro)
 
     this.iuser = this.user.value;
-    this.loginService.register(this.iuser).subscribe((signin) => {
+    console.log(this.iuser , 'aaaaa')
+    this.cadastrarUsuarioService.criarConta(this.iuser).subscribe((signin :Retorno) => {
       if (signin) {
+        console.log(signin.Codigo + " " + signin.Mensagem + " " + signin.Data)
         this.router.navigate(['/lessons'])
       }
-      else this.user.reset()
+      else this.user.reset() 
     },
       (error: any) => {
         console.log(error.error)
