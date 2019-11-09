@@ -3,8 +3,10 @@
 namespace JogoApi.DTO
 {
     [JsonObject(Title = "Usuario")]
-    public class UsuarioDTO
+    public class Usuario
     {
+        private bool ativo;
+
         [JsonProperty(PropertyName = "CodigoUsuario")]
         public int CodigoUsuario { get; set; }
 
@@ -14,22 +16,16 @@ namespace JogoApi.DTO
         [JsonProperty(PropertyName = "Sobrenome")]
         public string Sobrenome { get; set; }
 
+        [JsonProperty(PropertyName = "Email")]
+        public string Email { get; set; }
+
         [JsonProperty(PropertyName = "Username")]
         public string Username { get; set; }
 
         [JsonProperty(PropertyName = "Senha")]
         public string Senha { get; set; }
 
-        [JsonProperty(PropertyName = "DataNascimento")]
-        public string DataNascimento { get; set; }
-
-        [JsonProperty(PropertyName = "Email")]
-        public string Email { get; set; }
-
-        [JsonProperty(PropertyName = "Telefone")]
-        public string Telefone { get; set; }
-
         [JsonProperty(PropertyName = "Ativo")]
-        public bool Ativo { get; set; }
+        public bool? Ativo { get; set; }        
     }
 }

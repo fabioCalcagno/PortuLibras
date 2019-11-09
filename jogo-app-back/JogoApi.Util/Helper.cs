@@ -6,7 +6,14 @@ namespace JogoApi.Dados.Service
 {
     public static class Helper
     {
-        public static string CriarQueryEdicao(UsuarioDTO usuario)
+        public static string GeraNovaSenha()
+        {
+            Random random = new Random();
+            return random.Next(10000000, 99999999).ToString();
+        }
+
+
+        public static string CriarQueryEdicao(Usuario usuario)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -14,8 +21,6 @@ namespace JogoApi.Dados.Service
             builder.Append(usuario.Nome);
             builder.Append("', [SOBRENOME] = '");
             builder.Append(usuario.Sobrenome);
-            builder.Append(" ', [DT_NASC] = '");
-            builder.Append(usuario.DataNascimento);
             builder.Append(" ', [EMAIL] = '");
             builder.Append(usuario.Email);
             builder.Append(" ', [LOGIN] = '");
@@ -52,6 +57,12 @@ namespace JogoApi.Dados.Service
             return builder.ToString();
         }
 
+        public static string FormataDataValida(string dataValida)
+        {
+            var formatandoData = Convert.ToDateTime(dataValida);
+            return formatandoData.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
         public static string BuscaMelhoresJogos(int quantidade)
         {
             StringBuilder builder = new StringBuilder();
@@ -82,19 +93,19 @@ namespace JogoApi.Dados.Service
             return builder.ToString();
         }
 
-        public static string CriarQueryEdicaoTelefone(UsuarioDTO usuario)
+        public static string CriarQueryEdicaoTelefone(Usuario usuario)
         {
             StringBuilder builder = new StringBuilder();
 
             builder.Append("USE [Libras] UPDATE[dbo].[TELEFONE] SET [TELEFONE] = ");
-            builder.Append(usuario.Telefone);
+            //builder.Append(usuario.Telefone);
             builder.Append(" WHERE ID_USUARIO = ");
             builder.Append (usuario.CodigoUsuario);
 
             return builder.ToString();
         }
 
-        public static string CriarQueryUsuario(UsuarioDTO usuario)
+        public static string CriarQueryUsuario(Usuario usuario)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -102,8 +113,8 @@ namespace JogoApi.Dados.Service
             builder.Append(usuario.Nome);
             builder.Append("', '");
             builder.Append(usuario.Sobrenome);
-            builder.Append("', '");
-            builder.Append(usuario.DataNascimento);
+            //builder.Append("', '");
+            //builder.Append(usuario.DataNascimento);
             builder.Append("', '");
             builder.Append(usuario.Email);
             builder.Append("', '");
@@ -112,7 +123,7 @@ namespace JogoApi.Dados.Service
             builder.Append(usuario.Senha);
             builder.Append("') SELECT @UsuarioID = scope_identity() INSERT INTO [dbo].[TELEFONE] ([TELEFONE], [ID_USUARIO]) VALUES ('");
 
-            builder.Append(usuario.Telefone);
+//            builder.Append(usuario.Telefone);
             builder.Append("', @UsuarioID );");
 
             return builder.ToString();
@@ -130,7 +141,7 @@ namespace JogoApi.Dados.Service
             return Convert.ToDateTime(date).ToString("yyyy-MM-dd");
         }
 
-        public static string CriarQueryBuscaUsuario(UsuarioDTO usuario)
+        public static string CriarQueryBuscaUsuario(Usuario usuario)
         {
             string query = @"USE [Libras] SELECT u.[ID_USUARIO], u.[NOME], u.[SOBRENOME], u.[DT_NASC], u.[EMAIL], u.[LOGIN], u.[SENHA], t.TELEFONE FROM [dbo].[USUARIO] as u LEFT JOIN [dbo].[TELEFONE] as t ON u.ID_USUARIO = t.ID_USUARIO ";
 
@@ -165,18 +176,6 @@ namespace JogoApi.Dados.Service
                 }
             }
 
-            if (!String.IsNullOrEmpty(usuario.DataNascimento))
-            {
-                if (where.Length == 5)
-                {
-                    where += (" u.DT_NASC = '" + usuario.DataNascimento + "'");
-                }
-                else
-                {
-                    where += (" AND u.DT_NASC = '" + usuario.DataNascimento + "'");
-                }
-            }
-
             if (!String.IsNullOrEmpty(usuario.Email))
             {
                 if (where.Length == 5)
@@ -198,18 +197,6 @@ namespace JogoApi.Dados.Service
                 else
                 {
                     where += (" AND u.LOGIN = '" + usuario.Username + "'");
-                }
-            }
-
-            if (!String.IsNullOrEmpty(usuario.Telefone))
-            {
-                if (where.Length == 5)
-                {
-                    where += (" t.TELEFONE = '" + usuario.Telefone + "'");
-                }
-                else
-                {
-                    where += (" AND t.TELEFONE = '" + usuario.Telefone + "'");
                 }
             }
 

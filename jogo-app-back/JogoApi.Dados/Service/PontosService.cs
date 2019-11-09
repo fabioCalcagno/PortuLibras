@@ -42,11 +42,6 @@ namespace JogoApi.Dados.Service
         {
             var lstRetorno = objDao.BuscaPontos(query);
 
-            foreach (var retorno in lstRetorno)
-            {
-                retorno.UsuarioDTO.DataNascimento = Helper.AjustaDataNascimento(retorno.UsuarioDTO.DataNascimento);
-            }
-
             if (lstRetorno.Count != 0)
             {
                 return new Retorno() { Codigo = 200, Mensagem = "Busca com sucesso", Data = JsonConvert.SerializeObject(lstRetorno).ToString() };
