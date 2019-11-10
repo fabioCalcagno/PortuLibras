@@ -37,7 +37,7 @@ namespace JogoApi.Dados.Service
             };
 
             //busca usuario
-            var usuarioEncontrado = BuscaUsuario(usuario); 
+            var usuarioEncontrado = BuscaUsuario(usuario);
 
             //validar se email existe
             if (usuarioEncontrado == null)
@@ -52,6 +52,8 @@ namespace JogoApi.Dados.Service
 
             //busca token no banco
             tokenEmail = BuscarTokenEmail(tokenEmail);
+
+            //if(tokenEmail)
 
             //gera novo token
             string token = HelperEmail.GeraCodigo();
@@ -82,11 +84,13 @@ namespace JogoApi.Dados.Service
                 return MontaEmailSenha(tokenEmail, usuarioEncontrado.Email);
             }
 
-            //gera token de reset de senha
-            tokenEmail.Token = token;
-
-            //gera data de expiracao adicionando 2 horas da atual
-            tokenEmail.DataValida = DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm:ss");
+            tokenEmail = new TokenEmail()
+            {
+                CodigoUsuario = usuarioEncontrado.CodigoUsuario,
+                Token = token,
+                //gera data de expiracao adicionando 2 horas da atual
+                DataValida = DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm:ss")
+            };
 
             //grava o token no banco
             int tokenInserido = repositoryTokenEmail.GravarTokenEmail(tokenEmail);
