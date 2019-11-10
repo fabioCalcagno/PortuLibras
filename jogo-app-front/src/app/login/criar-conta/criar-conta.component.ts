@@ -133,7 +133,7 @@ export class CriarContaComponent implements OnInit {
     this.iuser = this.user.value;
     console.log(this.iuser , 'aaaaa')
     this.cadastrarUsuarioService.criarConta(this.iuser).subscribe((signin :Retorno) => {
-      if (signin) {
+      if (signin.Codigo == 200) {
         console.log(signin.Codigo + " " + signin.Mensagem + " " + signin.Data)
         this.router.navigate(['/lessons'])
       }

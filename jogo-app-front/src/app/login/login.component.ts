@@ -64,7 +64,8 @@ export class LoginComponent implements OnInit {
     this.iuser = this.user.value;
     this.erro.status = false;
     console.log(this.iuser , 'from form' )
-   this.loginService.register(this.user).subscribe((login : Retorno) => {
+   this.loginService.register(this.iuser).subscribe((login : Retorno) => {
+     
       if(login.Codigo == 200) {
         console.log( 'ok deu certo' + login.Codigo +  'ou login ' + login );
        this.router.navigate(['/menu']); }
