@@ -46,6 +46,7 @@ namespace JogoApi.Util
             builder.Append("<br/><br/>Bem vindo ao <b>PortuLibras</b>.<br/><br/>");
             builder.Append("Por favor, para prosseguir confirme sua conta acessando o link abaixo.<br/><br/><b>");
             builder.Append(link + usuario.Email.ToLower());
+            builder.Append("<br/><br/>");
             builder.Append("Esta é uma mensagem automática, caso você não tenha feito essa solicitação ou se precisar de ajuda, entre em contato com a nossa equipe: <b><br/><br/>");
             builder.Append(portuLibras);
             builder.Append("<br/><br/></b>Agradecemos o contato.");

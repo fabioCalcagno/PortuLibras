@@ -5,8 +5,6 @@ namespace JogoApi.DTO
     [JsonObject(Title = "Usuario")]
     public class Usuario
     {
-        private bool ativo;
-
         [JsonProperty(PropertyName = "CodigoUsuario")]
         public int CodigoUsuario { get; set; }
 

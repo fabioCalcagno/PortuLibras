@@ -73,7 +73,7 @@ namespace JogoApi.Dados.DAO.Repository
                         Email = reader["EMAIL"].ToString(),
                         Username = reader["USERNAME"].ToString(),
                         Senha = reader["SENHA"].ToString(),
-                        Ativo = (reader["ATIVO"].ToString() == "1")
+                        Ativo = reader.GetBoolean(reader.GetOrdinal("ATIVO"))
                     });
                 }
 

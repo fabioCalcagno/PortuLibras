@@ -10,14 +10,12 @@ namespace JogoApi.Dados.Service
 {
     public class UsuarioService : IUsuarioService
     {
-        //private readonly ITransacaoDao objDao;
         private readonly ICriptografia criptografia;
         private readonly IEmailService emailService;
         private readonly IRepositoryUsuario repository;
 
-        public UsuarioService(ICriptografia criptografia, IEmailService emailService, IRepositoryUsuario repository) //ITransacaoDao objDao
+        public UsuarioService(ICriptografia criptografia, IEmailService emailService, IRepositoryUsuario repository)
         {
-            //this.objDao = objDao;
             this.criptografia = criptografia;
             this.emailService = emailService;
             this.repository = repository;
@@ -233,49 +231,5 @@ namespace JogoApi.Dados.Service
                 // Token = "FALTA"
             };
         }
-
-
-
-
-        //public Usuario BuscaUsuarioCodigo(int codigo)
-        //{
-        //    var query = Helper.CriarQueryBuscaUsuario(new Usuario() { CodigoUsuario = codigo });
-        //    var retorno = objDao.BuscaUsuario(query);
-
-        //    return retorno.First(x => x.CodigoUsuario == codigo);
-        //}
-
-        //public Usuario BuscaUsuario(Usuario usuario)
-        //{
-        //    var lstUsuario = ListarUsuario(usuario);
-
-        //    return lstUsuario.FirstOrDefault(encontrado => encontrado.Senha == usuario.Senha && encontrado.Username == usuario.Username);
-        //}
-
-        //public Retorno RemoverUsuario(int codigo)
-        //{
-        //    var query = Helper.CriarQueryDelete(codigo);
-        //    objDao.RemoveUsuario(query);
-
-        //    return new Retorno() { Codigo = 200, Mensagem = "Usuário removido com sucesso" };
-        //}
-
-        //public Retorno ProcuraUsuario(Usuario usuario)
-        //{
-        //    var lstUsuario = ListarUsuario(usuario);
-
-        //    if (lstUsuario.Count == 1)
-        //    {
-        //        return new Retorno() { Codigo = 200, Mensagem = "Usário econtrado", Data = JsonConvert.SerializeObject(lstUsuario).ToString() };
-        //    }
-
-        //    if (lstUsuario.Count > 1)
-        //    {
-        //        return new Retorno() { Codigo = 401, Mensagem = "Usuários duplicado", Data = JsonConvert.SerializeObject(lstUsuario).ToString() };
-        //    }
-
-        //    return new Retorno() { Codigo = 401, Mensagem = "Usuário não existe" };
-        //}
-
     }
 }

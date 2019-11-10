@@ -9,11 +9,7 @@ namespace JogoApi.Dados.Interface
         Usuario BuscarUsuario(Usuario usuario);
         Retorno EditaUsuario(Usuario usuario);
         List<Usuario> ListarUsuario(Usuario usuario);
-        //Usuario BuscaUsuario(Usuario usuario);
-        //Retorno RemoverUsuario(int codigo);
         Retorno Acessar(Usuario usuario);
-        //Retorno ProcuraUsuario(Usuario usuario);
-        //Usuario BuscaUsuarioCodigo(int codigo);
         Retorno ConfirmaConta(string email);
     }
 }
