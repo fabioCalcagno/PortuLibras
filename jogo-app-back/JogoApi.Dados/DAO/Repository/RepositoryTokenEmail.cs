@@ -18,7 +18,7 @@ namespace JogoApi.Dados.DAO.Repository
             this.conexao = conexao;
         }
 
-        public int GravarTokenEmail(TokenEmail tokenEmail)
+        public int GravarTokenEmail(TokenEmailDTO tokenEmail)
         {
             var connection = conexao.CriaConexao();
             conexao.AbrirConexao(connection);
@@ -102,10 +102,10 @@ namespace JogoApi.Dados.DAO.Repository
             }
         }
 
-        public List<TokenEmail> BuscarToken(TokenEmail tokenEmail)
+        public List<TokenEmailDTO> BuscarToken(TokenEmailDTO tokenEmail)
         {
             DataSet dataSet = new DataSet();
-            List<TokenEmail> lstTokenEmail = new List<TokenEmail>();
+            List<TokenEmailDTO> lstTokenEmail = new List<TokenEmailDTO>();
 
             var connection = conexao.CriaConexao();
             conexao.AbrirConexao(connection);
@@ -134,7 +134,7 @@ namespace JogoApi.Dados.DAO.Repository
 
                 while (reader.Read())
                 {
-                    lstTokenEmail.Add(new TokenEmail()
+                    lstTokenEmail.Add(new TokenEmailDTO()
                     {
                         CodigoToken = (int)reader["ID_TOKEN"],
                         Token = reader["TOKEN"].ToString(),
@@ -160,7 +160,7 @@ namespace JogoApi.Dados.DAO.Repository
             return lstTokenEmail;
         }
 
-        public int AlterarToken(TokenEmail tokenEmail)
+        public int AlterarToken(TokenEmailDTO tokenEmail)
         {
             var connection = conexao.CriaConexao();
             conexao.AbrirConexao(connection);

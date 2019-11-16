@@ -3,7 +3,7 @@
 namespace JogoApi.DTO
 {
     [JsonObject(Title = "Usuario")]
-    public class Usuario
+    public class UsuarioDTO
     {
         [JsonProperty(PropertyName = "CodigoUsuario")]
         public int CodigoUsuario { get; set; }

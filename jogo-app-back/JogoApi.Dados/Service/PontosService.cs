@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using JogoApi.Dados.Interface;
+using JogoApi.Dados.Interface.Repository;
 using JogoApi.DTO;
 using Newtonsoft.Json;
 
@@ -7,56 +9,46 @@ namespace JogoApi.Dados.Service
 {
     public class PontosService : IPontosService
     {
-        private readonly ITransacaoDao objDao;
+        private readonly IRepositoryJogo repoJogo;
 
-        public PontosService(ITransacaoDao objDao)
+        public PontosService(IRepositoryJogo repoJogo)
         {
-            this.objDao = objDao;
+            this.repoJogo = repoJogo;
         }
 
-        public Retorno RegistraPontos(PontosDTO pontos)
+        public Retorno BuscaJogoUsuario(UsuarioDTO usuario)
         {
-            string query = Helper.QueryRegistroPontos(pontos);
-            var retorno = objDao.RegistrarCadastro(query);
+            int posicao = 1;
 
-            pontos.CodigoJogo = retorno;
+            var lstJogos = BuscaMelhoresPontos(usuario.CodigoUsuario);
 
-            return new Retorno() { Codigo = 200, Mensagem = "Pontos registrados", Data = JsonConvert.SerializeObject(pontos).ToString() };
-        }
+            var lstMelhores = new List<MelhoresPontos>();
 
-        public Retorno BuscaJogoUsuario(int codigoUsuario)
-        {
-            string query = Helper.BuscaJogoUsuario(codigoUsuario);
-
-            return BuscaPontos(query);
-        }
-
-        public Retorno BuscaJogo(int codigoJogo)
-        {
-            string query = Helper.BuscaJogo(codigoJogo);
-
-            return BuscaPontos(query);
-        }
-
-        private Retorno BuscaPontos(string query)
-        {
-            var lstRetorno = objDao.BuscaPontos(query);
-
-            if (lstRetorno.Count != 0)
+            foreach(var jogo in lstJogos)
             {
-                return new Retorno() { Codigo = 200, Mensagem = "Busca com sucesso", Data = JsonConvert.SerializeObject(lstRetorno).ToString() };
+                var melhores = new MelhoresPontos
+                {
+                    Posicao = posicao,
+                    Score = jogo.Score
+                };
+
+                lstMelhores.Add(melhores);
+
+                posicao++;
             }
-            else
+
+            return new Retorno()
             {
-                return new Retorno() { Codigo = 409, Mensagem = "Busca sem registros encontrados" };
-            }
+                Codigo = 200,
+                Mensagem = "Melhores jogos " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usuario.Username.ToLower()),
+                Data = JsonConvert.SerializeObject(lstJogos).ToString(),
+                Token = "Falta"
+            };
         }
 
-        public Retorno BuscaMelhores(int quantidade)
+        private List<JogoDTO> BuscaMelhoresPontos(int codigoUsuario)
         {
-            string query = Helper.BuscaMelhoresJogos(quantidade);
-
-            return BuscaPontos(query);
+            return repoJogo.BuscarMelhoresPontos(codigoUsuario);
         }
     }
 }

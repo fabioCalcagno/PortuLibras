@@ -19,11 +19,11 @@ namespace JogoApi.Dados.DAO
 
         public SqlConnection CriaConexao()
         {
-            string connectionString = configuration["myConnection"];
+            string connectionString = configuration["Connection"];
 
             if (connectionString == null)
             {
-                connectionString = configuration["myConnection"];
+                connectionString = configuration["Connection"];
             }
 
             return new SqlConnection(connectionString);

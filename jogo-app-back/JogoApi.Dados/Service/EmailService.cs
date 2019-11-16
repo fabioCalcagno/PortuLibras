@@ -3,7 +3,6 @@ using JogoApi.Dados.Interface.Repository;
 using JogoApi.DTO;
 using JogoApi.Util;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net;
@@ -14,16 +13,12 @@ namespace JogoApi.Dados.Service
     public class EmailService : IEmailService
     {
         private readonly IConfiguration configuration;
-        private readonly ITransacaoDao objDao;
-        private readonly ICriptografia criptografia;
         private readonly IRepositoryUsuario repositoryUsuario;
         private readonly IRepositoryTokenEmail repositoryTokenEmail;
 
-        public EmailService(IConfiguration configuration, ITransacaoDao objDao, ICriptografia criptografia, IRepositoryUsuario repositoryUsuario, IRepositoryTokenEmail repositoryTokenEmail)
+        public EmailService(IConfiguration configuration, IRepositoryUsuario repositoryUsuario, IRepositoryTokenEmail repositoryTokenEmail)
         {
-            this.criptografia = criptografia;
             this.configuration = configuration;
-            this.objDao = objDao;
             this.repositoryUsuario = repositoryUsuario;
             this.repositoryTokenEmail = repositoryTokenEmail;
         }
@@ -31,7 +26,7 @@ namespace JogoApi.Dados.Service
         public Retorno EnviaResetSenha(string email)
         {
             //buscar usuario por email
-            var usuario = new Usuario()
+            var usuario = new UsuarioDTO()
             {
                 Email = email
             };
@@ -45,7 +40,7 @@ namespace JogoApi.Dados.Service
                 return new Retorno() { Codigo = 404, Mensagem = "Email não encontrado." };
             }
 
-            var tokenEmail = new TokenEmail()
+            var tokenEmail = new TokenEmailDTO()
             {
                 CodigoUsuario = usuarioEncontrado.CodigoUsuario,
             };
@@ -78,13 +73,13 @@ namespace JogoApi.Dados.Service
                 }
 
                 //busca novo token alterado
-                tokenEmail = BuscarTokenEmail(new TokenEmail() { CodigoUsuario = tokenEmail.CodigoUsuario });
+                tokenEmail = BuscarTokenEmail(new TokenEmailDTO() { CodigoUsuario = tokenEmail.CodigoUsuario });
 
                 //envia email com novo token e retorna mensagem
                 return MontaEmailSenha(tokenEmail, usuarioEncontrado.Email);
             }
 
-            tokenEmail = new TokenEmail()
+            tokenEmail = new TokenEmailDTO()
             {
                 CodigoUsuario = usuarioEncontrado.CodigoUsuario,
                 Token = token,
@@ -111,26 +106,26 @@ namespace JogoApi.Dados.Service
             return retorno;
         }
 
-        private Usuario BuscaUsuario(Usuario usuario)
+        private UsuarioDTO BuscaUsuario(UsuarioDTO usuario)
         {
             var lstUsuario = repositoryUsuario.ListarUsuario(usuario);
             return lstUsuario.FirstOrDefault(encontrado => encontrado.Email == usuario.Email.ToUpper());
         }
 
-        private bool VerificaTokenExiste(TokenEmail tokenEmail)
+        private bool VerificaTokenExiste(TokenEmailDTO tokenEmail)
         {
             if (tokenEmail == null) return false; 
             return true;
         }
 
-        private TokenEmail BuscarTokenEmail(TokenEmail tokenEmail)
+        private TokenEmailDTO BuscarTokenEmail(TokenEmailDTO tokenEmail)
         {
             var lstTokenEmail = repositoryTokenEmail.BuscarToken(tokenEmail);
 
             return lstTokenEmail.FirstOrDefault(encontrado => encontrado.CodigoUsuario == tokenEmail.CodigoUsuario);
         }
 
-        private Retorno MontaEmailSenha(TokenEmail tokenEmail, string email)
+        private Retorno MontaEmailSenha(TokenEmailDTO tokenEmail, string email)
         {
             //endereco de email do PoruLibras
             string endereco = configuration["EnderecoEmail"];
@@ -178,10 +173,10 @@ namespace JogoApi.Dados.Service
             }
         }
 
-        public Retorno ValidaTokenEmail(string email, string token)
+        public Retorno ValidaTokenEmail(ResetSenha resetSenha)
         {
-            //busca usuario por email
-            var usuario = BuscaUsuario(new Usuario() { Email = email });
+            //busca usuario por email e username
+            var usuario = BuscaUsuario(new UsuarioDTO() { Email = resetSenha.Email });
 
             //verifica se email existe
             if (usuario == null)
@@ -190,7 +185,7 @@ namespace JogoApi.Dados.Service
             }
 
             //busca token do usuario
-            var tokenEmail = BuscarTokenEmail(new TokenEmail() { CodigoUsuario = usuario.CodigoUsuario });
+            var tokenEmail = BuscarTokenEmail(new TokenEmailDTO() { CodigoUsuario = usuario.CodigoUsuario });
 
             //verifica existencia do token
             if (tokenEmail == null)
@@ -199,7 +194,7 @@ namespace JogoApi.Dados.Service
             }
 
             //verifica se token de reset de senha está correto
-            if (tokenEmail.Token != token)
+            if (tokenEmail.Token != resetSenha.CodigoReset)
             {
                 return new Retorno()
                 {
@@ -218,32 +213,15 @@ namespace JogoApi.Dados.Service
                 };
             }
 
-            //gera nova senha randomica
-            string novaSenha = Helper.GeraNovaSenha();
-
-            //guarda senha para enviar email
-            usuario.Senha = novaSenha;
-
-            //criptografa a senha
-            usuario.Senha = criptografia.Criptografar(usuario.Senha);
-
-            //grava senha no banco
-            repositoryUsuario.AlterarUsuario(usuario);
-
-            //envia senha por email
-            return EnviaEmailComSenha(usuario, novaSenha);
+            return new Retorno()
+            {
+                Codigo = 200,
+                Mensagem = "Código de reset de senha correto",
+                Token = "FALTA"
+            };
         }
 
-        private Retorno EnviaEmailComSenha(Usuario usuario, string novaSenha)
-        {
-            string body = HelperEmail.BodySenhaEnviada(configuration["EnderecoEmail"], usuario, novaSenha);
-
-            string assunto = HelperEmail.AssuntoNovaSenha();
-
-            return EnviaEmail(usuario.Email, body, assunto);
-        }
-
-        private bool VerificaDataValida(TokenEmail tokenEmail)
+        private bool VerificaDataValida(TokenEmailDTO tokenEmail)
         {
             if (Convert.ToDateTime(tokenEmail.DataValida) <= DateTime.Today)
             {
@@ -252,7 +230,7 @@ namespace JogoApi.Dados.Service
             return true;
         }
 
-        public Retorno EnviaEmailConfirmacao(Usuario usuario)
+        public Retorno EnviaEmailConfirmacao(UsuarioDTO usuario)
         {
             string body = HelperEmail.BodyConfirmacao(configuration["UrlConta"], configuration["EnderecoEmail"], usuario);
 

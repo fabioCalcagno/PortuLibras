@@ -30,10 +30,10 @@ namespace JogoApi.Dados.DAO.Repository
             return "0";
         }
 
-        public List<Usuario> ListarUsuario(Usuario usuario)
+        public List<UsuarioDTO> ListarUsuario(UsuarioDTO usuario)
         {
             DataSet dataSet = new DataSet();
-            List<Usuario> lstUsuario = new List<Usuario>();
+            List<UsuarioDTO> lstUsuario = new List<UsuarioDTO>();
 
             var connection = conexao.CriaConexao();
             conexao.AbrirConexao(connection);
@@ -65,7 +65,7 @@ namespace JogoApi.Dados.DAO.Repository
 
                 while (reader.Read())
                 {
-                    lstUsuario.Add(new Usuario()
+                    lstUsuario.Add(new UsuarioDTO()
                     {
                         CodigoUsuario = (int)reader["ID_USUARIO"],
                         Nome = reader["NOME"].ToString(),
@@ -94,7 +94,7 @@ namespace JogoApi.Dados.DAO.Repository
             return lstUsuario;
         }
 
-        public int CadastrarUsuario(Usuario usuario)
+        public int CadastrarUsuario(UsuarioDTO usuario)
         {
             DataSet dataSet = new DataSet();
 
@@ -141,7 +141,7 @@ namespace JogoApi.Dados.DAO.Repository
             }
         }
 
-        public int AlterarUsuario(Usuario usuario)
+        public int AlterarUsuario(UsuarioDTO usuario)
         {
             DataSet dataSet = new DataSet();
 

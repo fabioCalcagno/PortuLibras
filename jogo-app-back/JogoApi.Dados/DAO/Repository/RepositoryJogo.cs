@@ -1,0 +1,117 @@
+﻿using JogoApi.Dados.Interface;
+using JogoApi.Dados.Interface.Repository;
+using JogoApi.DTO;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace JogoApi.Dados.DAO.Repository
+{
+    public class RepositoryJogo : IRepositoryJogo
+    {
+        private readonly IConexaoSql conexao;
+
+        public RepositoryJogo(IConexaoSql conexao)
+        {
+            this.conexao = conexao;
+        }
+
+        public List<JogoDTO> BuscarMelhoresPontos(int codigoUsuario)
+        {
+            DataSet dataSet = new DataSet();
+            List<JogoDTO> lstJogos = new List<JogoDTO>();
+
+            var connection = conexao.CriaConexao();
+            conexao.AbrirConexao(connection);
+
+            SqlCommand command = new SqlCommand("JOGO_BUSCARMELHORESPONTOS", connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@Id_Usuario", codigoUsuario);
+
+            SqlTransaction transaction = connection.BeginTransaction();
+
+            command.Connection = connection;
+            command.Transaction = transaction;
+
+            try
+            {
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+
+                dataAdapter.Fill(dataSet);
+
+                DataTableReader reader = dataSet.Tables[0].CreateDataReader();
+
+                while (reader.Read())
+                {
+                    lstJogos.Add(new JogoDTO()
+                    {
+                        CodigoJogo = (int)reader["ID_JOGO"],
+                        CodigoUsuario = (int)reader["ID_USUARIO"],
+                        Score = (int)reader["SCORE"]
+                    });
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    transaction.Rollback();
+                    throw new Exception(ex.Message);
+                }
+                catch (Exception ex2)
+                {
+                    throw new Exception(ex2.Message);
+                }
+            }
+            return lstJogos;
+        }
+
+        public int CriarJogo(int codigoUsuario, int? score)
+        {
+            DataSet dataSet = new DataSet();
+
+            var connection = conexao.CriaConexao();
+            conexao.AbrirConexao(connection);
+
+            SqlCommand command = new SqlCommand("JOGO_INSERIR", connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@ID_USUARIO", codigoUsuario);
+            command.Parameters.AddWithValue("@SCORE", (score == null) ? 0 : score);
+
+            SqlTransaction transaction = connection.BeginTransaction();
+
+            command.Connection = connection;
+            command.Transaction = transaction;
+
+            try
+            {
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+
+                string retorno = command.ExecuteScalar().ToString();
+
+                transaction.Commit();
+
+                return Convert.ToInt32(retorno);
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    transaction.Rollback();
+                    throw new Exception(ex.Message);
+                }
+                catch (Exception ex2)
+                {
+                    throw new Exception(ex2.Message);
+                }
+            }
+        }
+    }
+}

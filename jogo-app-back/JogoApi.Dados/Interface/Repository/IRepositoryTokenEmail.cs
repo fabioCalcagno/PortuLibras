@@ -5,9 +5,9 @@ namespace JogoApi.Dados.Interface.Repository
 {
     public interface IRepositoryTokenEmail
     {
-        int GravarTokenEmail(TokenEmail tokenEmail);
+        int GravarTokenEmail(TokenEmailDTO tokenEmail);
         int DeletarTokenEmail(int tokenInserido);
-        List<TokenEmail> BuscarToken(TokenEmail tokenEmail);
-        int AlterarToken(TokenEmail tokenEmail);
+        List<TokenEmailDTO> BuscarToken(TokenEmailDTO tokenEmail);
+        int AlterarToken(TokenEmailDTO tokenEmail);
     }
 }

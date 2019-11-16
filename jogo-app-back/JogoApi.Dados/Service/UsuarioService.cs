@@ -21,7 +21,7 @@ namespace JogoApi.Dados.Service
             this.repository = repository;
         }
 
-        public Retorno CriarUsuario(Usuario usuario)
+        public Retorno CriarUsuario(UsuarioDTO usuario)
         {
             //validacao dos campos
             if (String.IsNullOrEmpty(usuario.Nome.Trim())) return new Retorno() { Mensagem = "Nome não informado", Codigo = 400 };
@@ -44,7 +44,7 @@ namespace JogoApi.Dados.Service
             int novoCodigo = repository.CadastrarUsuario(usuario);
 
             //busca usuario inserido
-            var usuarioInserido = BuscarUsuario(new Usuario() { CodigoUsuario = novoCodigo });
+            var usuarioInserido = BuscarUsuario(new UsuarioDTO() { CodigoUsuario = novoCodigo });
 
             //enviar o email
             var retornoEmail = emailService.EnviaEmailConfirmacao(usuarioInserido);
@@ -66,7 +66,7 @@ namespace JogoApi.Dados.Service
             return new Retorno() { Mensagem = "Cadastro realizado com sucesso, um e-mail foi enviado para confirmação da conta", Codigo = 200, Data = JsonConvert.SerializeObject(usuario).ToString() };
         }
 
-        public Usuario BuscarUsuario(Usuario usuario)
+        public UsuarioDTO BuscarUsuario(UsuarioDTO usuario)
         {
             var lstUsuario = ListarUsuario(usuario);
 
@@ -75,10 +75,10 @@ namespace JogoApi.Dados.Service
             return usuarioPorCodigo;
         }
 
-        private string VerificaExisteUsuario(Usuario usuario)
+        private string VerificaExisteUsuario(UsuarioDTO usuario)
         {
             //Verifica nome e sobrenome
-            var buscaUsuario = new Usuario();
+            var buscaUsuario = new UsuarioDTO();
             buscaUsuario.CodigoUsuario = 0;
             buscaUsuario.Nome = usuario.Nome;
             buscaUsuario.Sobrenome = usuario.Sobrenome;
@@ -88,7 +88,7 @@ namespace JogoApi.Dados.Service
             if (ListarUsuario(buscaUsuario).Count > 0) return "Nome e Sobrenome já existem";
 
             //Verifica email
-            buscaUsuario = new Usuario();
+            buscaUsuario = new UsuarioDTO();
             buscaUsuario.Email = usuario.Email;
             buscaUsuario.CodigoUsuario = 0;
             buscaUsuario.Nome = String.Empty;
@@ -98,7 +98,7 @@ namespace JogoApi.Dados.Service
             if (ListarUsuario(buscaUsuario).Count > 0) return "E-mail já existe";
 
             //Verifica username
-            buscaUsuario = new Usuario();
+            buscaUsuario = new UsuarioDTO();
             buscaUsuario.Username = usuario.Username;
             buscaUsuario.Email = String.Empty;
             buscaUsuario.CodigoUsuario = 0;
@@ -110,14 +110,14 @@ namespace JogoApi.Dados.Service
             return "";
         }
 
-        public List<Usuario> ListarUsuario(Usuario usuario)
+        public List<UsuarioDTO> ListarUsuario(UsuarioDTO usuario)
         {
             return repository.ListarUsuario(usuario);
         }
 
         public Retorno ConfirmaConta(string email)
         {
-            var usuario = new Usuario() { Email = email };
+            var usuario = new UsuarioDTO() { Email = email };
             var lstUsuario = ListarUsuario(usuario);
 
             var usuarioLocalizado = lstUsuario.FirstOrDefault(encontrado => encontrado.Email == usuario.Email.ToUpper());
@@ -159,7 +159,7 @@ namespace JogoApi.Dados.Service
             };
         }
 
-        public Retorno Acessar(Usuario usuario)
+        public Retorno Acessar(UsuarioDTO usuario)
         {
             if (String.IsNullOrEmpty(usuario.Username.Trim()) || String.IsNullOrEmpty(usuario.Senha.Trim()))
             {
@@ -180,8 +180,8 @@ namespace JogoApi.Dados.Service
             {
                 return new Retorno()
                 {
-                    Codigo = 403,
-                    Mensagem = ("Acesso negado")
+                    Codigo = 200,
+                    Mensagem = "Usuário não cadastrado"
                 };
             }
 
@@ -189,20 +189,20 @@ namespace JogoApi.Dados.Service
             {
                 return new Retorno()
                 {
-                    Codigo = 403,
-                    Mensagem = ("Para prosseguir ative sua conta no seu e-mail")
+                    Codigo = 200,
+                    Mensagem = "E-mail não confirmado"
                 };
             }
 
             return new Retorno()
             {
                 Codigo = 200,
-                Mensagem = ("Acesso permitido"),
+                Mensagem = "Bem vindo!",
                 Token = "FALTA"
             };
         }
 
-        public Retorno EditaUsuario(Usuario usuario)
+        public Retorno EditaUsuario(UsuarioDTO usuario)
         {
             //validacao dos campos
             if (String.IsNullOrEmpty(usuario.Nome.Trim())) return new Retorno() { Mensagem = "Nome não informado", Codigo = 400 };

@@ -5,11 +5,11 @@ namespace JogoApi.Dados.Interface
 {
     public interface IUsuarioService
     {
-        Retorno CriarUsuario(Usuario usuario);
-        Usuario BuscarUsuario(Usuario usuario);
-        Retorno EditaUsuario(Usuario usuario);
-        List<Usuario> ListarUsuario(Usuario usuario);
-        Retorno Acessar(Usuario usuario);
+        Retorno CriarUsuario(UsuarioDTO usuario);
+        UsuarioDTO BuscarUsuario(UsuarioDTO usuario);
+        Retorno EditaUsuario(UsuarioDTO usuario);
+        List<UsuarioDTO> ListarUsuario(UsuarioDTO usuario);
+        Retorno Acessar(UsuarioDTO usuario);
         Retorno ConfirmaConta(string email);
     }
 }

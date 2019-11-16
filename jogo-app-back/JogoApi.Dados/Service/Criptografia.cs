@@ -1,4 +1,5 @@
 ﻿using JogoApi.Dados.Interface;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -16,10 +17,15 @@ namespace JogoApi.Dados.Service
 
     public class Criptografia : ICriptografia
     {
+        private readonly IConfiguration configuration;
+
+        public Criptografia(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         private string _key = string.Empty;
-
         private CryptProvider _cryptProvider;
-
         private SymmetricAlgorithm _algorithm;
 
         private void SetIV()
@@ -154,7 +160,7 @@ namespace JogoApi.Dados.Service
 
         public string Descriptografar(string senhaCriptografada)
         {
-            string key = "Criptografia";
+            string key = configuration["Criptografia"];
 
             Criptografia crip = new Criptografia(CryptProvider.DES);
 
@@ -165,7 +171,7 @@ namespace JogoApi.Dados.Service
 
         public string Criptografar(string senhaNormal)
         {
-            string key = "Criptografia";
+            string key = configuration["Criptografia"];
 
             Criptografia crip = new Criptografia(CryptProvider.DES);
 

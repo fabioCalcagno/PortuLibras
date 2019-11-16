@@ -22,54 +22,12 @@ namespace JogoApi.Controllers
         }
 
         [HttpPost]
-        [ActionName("RegistrarPontos")]
-        public IActionResult BuscarPalavras([FromBody]PontosDTO pontos)
-        {
-            try
-            {
-                return Content(JsonConvert.SerializeObject(service.RegistraPontos(pontos)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-            catch (Exception ex)
-            {
-                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-        }
-
-        [HttpGet]
         [ActionName("ListaJogos")]
-        public IActionResult ListaJogos(int codigoUsuario)
+        public IActionResult ListaJogos([FromBody]UsuarioDTO usuario)
         {
             try
             {
-                return Content(JsonConvert.SerializeObject(service.BuscaJogoUsuario(codigoUsuario)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-            catch (Exception ex)
-            {
-                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-        }
-
-        [HttpGet]
-        [ActionName("BuscaJogo")]
-        public IActionResult BuscaJogo(int codigoJogo)
-        {
-            try
-            {
-                return Content(JsonConvert.SerializeObject(service.BuscaJogo(codigoJogo)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-            catch (Exception ex)
-            {
-                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-        }
-
-        [HttpGet]
-        [ActionName("BuscaMelhores")]
-        public IActionResult BuscaMelhores(int quantidade)
-        {
-            try
-            {
-                return Content(JsonConvert.SerializeObject(service.BuscaMelhores(quantidade)), new MediaTypeHeaderValue("application/json").ToString());
+                return Content(JsonConvert.SerializeObject(service.BuscaJogoUsuario(usuario)), new MediaTypeHeaderValue("application/json").ToString());
             }
             catch (Exception ex)
             {

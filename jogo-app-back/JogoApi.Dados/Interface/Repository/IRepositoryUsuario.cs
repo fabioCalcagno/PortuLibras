@@ -5,9 +5,9 @@ namespace JogoApi.Dados.Interface.Repository
 {
     public interface IRepositoryUsuario
     {
-        List<Usuario> ListarUsuario(Usuario usuario);
-        int CadastrarUsuario(Usuario usuario);
-        int AlterarUsuario(Usuario usuario);
+        List<UsuarioDTO> ListarUsuario(UsuarioDTO usuario);
+        int CadastrarUsuario(UsuarioDTO usuario);
+        int AlterarUsuario(UsuarioDTO usuario);
         int ExcluirUsuario(int codigoUsuario);
     }
 }

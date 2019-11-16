@@ -23,7 +23,7 @@ namespace JogoApi.Controllers
 
         [HttpPost]
         [ActionName("CadastrarUsuario")]
-        public IActionResult CadastrarUsuario([FromBody]Usuario usuario)
+        public IActionResult CadastrarUsuario([FromBody]UsuarioDTO usuario)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace JogoApi.Controllers
 
         [HttpPost]
         [ActionName("Acessar")]
-        public IActionResult Acessar([FromBody]Usuario usuario)
+        public IActionResult Acessar([FromBody]UsuarioDTO usuario)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace JogoApi.Controllers
 
         [HttpPost]
         [ActionName("EditarUsuario")]
-        public IActionResult EditarUsuario([FromBody]Usuario usuario)
+        public IActionResult EditarUsuario([FromBody]UsuarioDTO usuario)
         {
             try
             {

@@ -37,15 +37,18 @@ namespace JogoApi
                     .AllowCredentials()
                     );
             });
-            services.AddTransient<IConnectionRepository, ConnectionRepository>();
-            services.AddTransient<ITransacaoDao, TransacaoDao>();
-            services.AddTransient<IPontosService, PontosService>();
-            services.AddTransient<IUsuarioService, UsuarioService>();
+            services.AddTransient<IConexaoSql, ConexaoSql>();
             services.AddTransient<ICriptografia, Criptografia>();
             services.AddTransient<IEmailService, EmailService>();
-            services.AddTransient<IRepositoryUsuario, RepositoryUsuario>();
+            services.AddTransient<IJogoService, JogoService>();
+            services.AddTransient<IPontosService, PontosService>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
+            services.AddTransient<IRepositoryJogo, RepositoryJogo>();
+            services.AddTransient<IRepositoryPalavra, RepositoryPalavra>();
+            services.AddTransient<IRepositoryPalavraRodada, RepositoryPalavraRodada>();
             services.AddTransient<IRepositoryTokenEmail, RepositoryTokenEmail>();
-            services.AddTransient<IConexaoSql, ConexaoSql>();
+            services.AddTransient<IRepositoryUsuario, RepositoryUsuario>();
+            services.AddTransient<IRepositoryRodada, RepositoryRodada>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

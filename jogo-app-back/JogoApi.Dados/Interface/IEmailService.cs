@@ -5,8 +5,8 @@ namespace JogoApi.Dados.Interface
     public interface IEmailService
     {
         Retorno EnviaResetSenha(string email);
-        Retorno ValidaTokenEmail(string email, string tokenEmail);
+        Retorno ValidaTokenEmail(ResetSenha resetSenha);
         Retorno EnviaEmail(string email, string body, string assunto);
-        Retorno EnviaEmailConfirmacao(Usuario usuario);
+        Retorno EnviaEmailConfirmacao(UsuarioDTO usuario);
     }
 }

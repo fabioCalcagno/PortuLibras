@@ -1,4 +1,5 @@
 ﻿using JogoApi.Dados.Interface;
+using JogoApi.DTO;
 using JogoApi.Util;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -34,13 +35,13 @@ namespace JogoApi.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("ValidaTokenEmail")]
-        public IActionResult ValidaTokenEmail(string email, string tokenEmail)
+        public IActionResult ValidaTokenEmail([FromBody]ResetSenha resetSenha)
         {
             try
             {
-                return Content(JsonConvert.SerializeObject(service.ValidaTokenEmail(email, tokenEmail)), new MediaTypeHeaderValue("application/json").ToString());
+                return Content(JsonConvert.SerializeObject(service.ValidaTokenEmail(resetSenha)), new MediaTypeHeaderValue("application/json").ToString());
             }
             catch (Exception ex)
             {
