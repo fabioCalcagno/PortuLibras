@@ -15,7 +15,8 @@ paleta{
 } 
 
 body{
-    font-family: 'Skranji-Regular'; 
+    font-family: 'Skranji-Regular';
+    letter-spacing: .1rem; 
 }
 
 

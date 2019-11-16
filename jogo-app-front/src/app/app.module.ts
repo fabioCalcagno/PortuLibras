@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScoreComponent } from './score/score.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
+import { ModalComponent } from './modal/modal.component';
+import { StatusBarComponent } from './status-bar/status-bar.component';
+import { CreditosComponent } from './creditos/creditos.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { HeaderComponent } from './header/header.component';
     ScoreComponent,
     MenuComponent,
     HeaderComponent,
+    ModalComponent,
+    StatusBarComponent,
+    CreditosComponent,
     
     
   ],

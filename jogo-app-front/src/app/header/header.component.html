@@ -10,9 +10,9 @@
 </head>
 <body>
         <div class="header">
-            <div class="header-divs" id="opcaoTela" [routerLink]="['/menu']" > {{currentScreen}} </div>
+            <div class="header-divs" id="opcaoTela" [routerLink]="['/menu']"  > {{currentScreen}} </div>
             <div class="header-divs" id="main-header-div"></div>
-            <div class="header-divs" id="username" [routerLink]="['/menu/options']"  > {{username}} </div>
+            <div class="header-divs" id="username" (click)="this.headerService.mostraOpcoes(true)"  > {{username}} </div>
         </div>  
 
         <router-outlet></router-outlet>

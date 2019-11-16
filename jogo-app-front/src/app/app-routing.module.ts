@@ -8,13 +8,15 @@ import { RecuperarSenhaComponent } from './login/recuperar-senha/recuperar-senha
 import { ScoreComponent } from "./score/score.component"
 import { MenuComponent } from './menu/menu.component'
 import { HeaderComponent } from './header/header.component';
+import { ModalComponent } from './modal/modal.component';
+import{ CreditosComponent } from './creditos/creditos.component'
 
 
 const routes: Routes = [
-  
+ 
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'lessons',
@@ -39,6 +41,10 @@ const routes: Routes = [
     {
       path: 'criarconta',
       component: CriarContaComponent
+    },
+    {
+      path: 'creditos',
+      component: CreditosComponent
     },
     ]
   }

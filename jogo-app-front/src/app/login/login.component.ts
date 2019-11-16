@@ -3,9 +3,9 @@ import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@a
 import { IUser } from '../models/User';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
-import { HttpResponse } from '@angular/common/http'
-import { Observable } from 'rxjs';
+
 import { Retorno } from '../models/Retorno';
+
 
 
 @Component({
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
+    
   ) { }
   private erro = {
     status: false,
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
 
  
   ngOnInit() {
+    
     this.erro.status = false;
     this.erro.msg= ''
     this.user = this.formBuilder.group({

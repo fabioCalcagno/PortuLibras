@@ -10,18 +10,18 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" *ngIf="this.menuService.mostraMenu" >
         <div class="menu-container">
             <div class="title">PortuLibras</div>
             <div class="menu-options" id="jogarJogo" [routerLink]="['/lessons']" >
                 Jogar Jogo
             </div>
             <div class="menu-options" id="placar"   [routerLink]="['/menu/pontuacao']"> Placar </div>
-            <div class="menu-options" id="creditos" [routerLink]="['']"> Créditos </div>
+            <div class="menu-options" id="creditos" [routerLink]="['/menu/creditos']"> Créditos </div>
             <div class="menu-options" id="sairJogo" [routerLink]="['']"> Sair Jogo</div>
         </div>
     </div>
 
-    
+    <app-modal></app-modal>
 
 </body>

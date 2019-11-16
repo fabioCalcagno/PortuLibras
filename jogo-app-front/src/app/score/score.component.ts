@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import{ HeaderService } from '../header/services/header.service';
 import { HeaderComponent } from '../header/header.component';
-import { ScoreService } from '../score/services/apiService/score.service';
+import { ScoreService } from './services/apiService/score.service';
 import { IScore } from '../models/Score';
 import { Retorno } from '../models/Retorno';
 

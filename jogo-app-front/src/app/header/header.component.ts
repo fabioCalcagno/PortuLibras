@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { IUser } from '../models/User';
 import { HeaderService } from './services/header.service';
+import { ModalService } from '../modal/Services/modal.service';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   stringHelper;
 
   constructor( private headerService: HeaderService,
+               private modalService: ModalService
 
   ){ }
   private user: IUser;
@@ -27,11 +29,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
    
-
+    
      this.username = 'samuel';
     
     
   }
+
+  
+
+
 
   
  

@@ -1,0 +1,150 @@
+
+@font-face {
+    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
+    font-family: 'Skranji-Regular';    
+    font-weight: normal;
+} 
+
+body{
+    font-family: 'Skranji-Regular'; 
+    letter-spacing: .1rem;
+}
+
+
+paleta{
+    color:#22e245;
+    color:#054393;
+    color:#35a7ff;
+    color:#ef5151;
+    color:#fa7268;
+    color:#403232;
+}
+
+
+
+
+.alert-title{
+   
+    color:white;
+    
+}
+
+#not{
+    color: white;
+   
+}
+
+.alert-wrapper-not{
+    position: absolute;
+    margin-top: 10%;
+    width: 30%;
+    height: fit-content;
+    padding-bottom: 2%;
+    z-index: 3;
+    margin-left: 25%;
+    background-color: #403232;
+    text-align: center;
+    font-size: 80%;
+    color: white;
+    box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.75);
+   
+}
+
+.yesOrNo{
+    display: inline-block;
+    font-size: 200%;
+    color: white;
+    padding-bottom: -5%;
+  
+    
+    
+    
+}
+
+.ok{
+    display: inline-block;
+    font-size: 200%;
+    color: white;
+    margin-bottom: 5%;
+    align-items: center;
+    background-color: #22e245;
+    width: 30%;
+}
+
+#yes{
+    margin-right: 30%;
+    background-color: #22e245;
+    width: 30%;
+}
+
+#no{
+    background-color: #ef5151;
+    width: 30%;
+}
+
+
+
+.container{
+    height:100%;
+    width:100%;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: absolute;
+    z-index: -99;
+    background-color: #ef5151;
+    
+}
+
+
+
+
+
+
+.menu-container{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+    padding-top: 5%;
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 60%;
+    box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.55);
+} 
+
+.menu-options{
+    width: 80%;
+    margin-top: 1%;
+    margin-left: 10%;
+    height: 18%;
+    color: white;
+    font-size: 300%;
+    background-position: left;
+    background-size: 12%;
+    background-repeat: no-repeat;
+    text-align: center;
+    
+}
+
+.menu-options:hover{
+   cursor: pointer;
+}
+
+
+
+#voltar{
+    background-color: #22e245 ;
+    background-image: url('../../assets/imagens/back-arrow.png');
+}
+
+#placar{
+    background-color: #35a7ff;
+    background-image: url('../../assets/imagens/star.png');
+}
+#editar{
+    background-color: #ef5151 ;
+    background-image: url('../../assets/imagens/pencil-edit-button.png');
+}
+#sairJogo{
+    background-color: #C4C4C4 ;
+    background-image: url('../../assets/imagens/sair.png');
+}
