@@ -1,10 +1,13 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { VideoSanitizerService } from '../lessons/services/video-sanitizer/video-sanitizer.service'
+import { VideoService } from '../lessons/services/video-sanitizer/video-sanitizer.service'
 
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { tap, timeInterval } from 'rxjs/operators'
-import { ModalService } from '../modal/Services/modal.service'
+import { ModalService } from '../modal/Services/modal.service';
+import { IUser } from '../models/User';
+import { RetornoRodada } from '../models/RetornoRodada';
+import { Retorno } from '../models/Retorno';
 
 
 @Component({
@@ -22,21 +25,23 @@ export class LessonsComponent implements OnInit, OnDestroy {
 
 
   constructor(private renderer: Renderer2, 
-              private videoSanitizer: VideoSanitizerService,
+              private VideoService: VideoService,
+             
               private modalService: ModalService ) { }
 
-  a: string = 'Trabalhar';
-  b: string = 'Brincar';
-  c: string = 'Coçar';
-  d: string = 'Respirar';
-  e: string = 'Rir';
+  a  = 'Trabalhar'; 
+  b  = 'Brincar';
+  c  = 'Coçar';
+  d  = 'Respirar';
+ 
 
   score: number = 0;
   temCerteza: boolean = false;
-  answeredQuestion: string;
+  answeredQuestion: 'teste';
   counter = 45;
   private timeOut: any = false;
   private acertou = false;
+  private user : IUser;
 
 
 
@@ -86,6 +91,27 @@ export class LessonsComponent implements OnInit, OnDestroy {
   subscription$: Subscription;
 
   ngOnInit() {
+
+    this.user = {
+      Nome: 'a',
+      CodigoUsuario: 4,
+      Sobrenome: 'a',
+      Username: 'a',
+      Senha: 'a',
+      Email: 'a',
+    }
+
+    this.VideoService.jogarJogo(this.user).subscribe((jogadas:Retorno) =>{
+      
+      console.log(jogadas.Data)
+     let a  = JSON.parse(jogadas.Data) as RetornoRodada;
+     this.a = a.PalavraCorreta
+    console.log(a.Diretorio)
+       
+     })
+      
+       
+    
    
     this.subscription$ = this.progressBar
       .pipe(tap(value => {
@@ -117,8 +143,8 @@ export class LessonsComponent implements OnInit, OnDestroy {
    
     if (item == 'Trabalhar') {
     
-      this.unsinitizedVideo = "../../assets/imagens/Trabalhar.mp4"
-      this.video = this.videoSanitizer.videoSanitizer(this.unsinitizedVideo);
+      this.unsinitizedVideo = "../../assets/videos/6.mp4"
+      this.video = this.VideoService.videoSanitizer(this.unsinitizedVideo);
      
       this.acertou = true;
       this.subscription$ =

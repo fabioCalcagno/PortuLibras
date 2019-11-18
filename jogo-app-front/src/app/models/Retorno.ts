@@ -1,5 +1,6 @@
 export  interface Retorno {
-            Codigo: number;
-            Mensagem: string;
-            Data: any;
+            Codigo: number,
+            Mensagem: string,
+            Data: any,
+           
 }
