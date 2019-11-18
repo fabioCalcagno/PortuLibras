@@ -20,10 +20,12 @@ export class LoginService {
 
   register(user){
     console.log(user, 'user requisicao')
-     return this.http.post(this.url, [user.Username, user.Senha], {headers: this.headers})
+     return this.http.post(this.url, user , {headers: this.headers})
    
     }
 
+
+    
 
 
 
