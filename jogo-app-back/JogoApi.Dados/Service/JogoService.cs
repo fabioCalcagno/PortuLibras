@@ -2,7 +2,6 @@
 using JogoApi.Dados.Interface.Repository;
 using JogoApi.DTO;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 
 namespace JogoApi.Dados.Service
@@ -35,7 +34,7 @@ namespace JogoApi.Dados.Service
             MontaPalavraRodada(jogo.CodigoJogo);
 
             //Gera nova rodada
-            var novaRodada = NovaRodada(jogo.CodigoJogo, numeroRodada);
+            RetornoRodada novaRodada = NovaRodada(jogo.CodigoJogo, numeroRodada);
 
             //retornar rodada
             return new Retorno()
@@ -142,17 +141,41 @@ namespace JogoApi.Dados.Service
         private RetornoRodada NovaRodada(int codigoJogo, int numeroRodada)
         {
             NovaRodada rodada = BuscarNovaRodada(codigoJogo, numeroRodada);
+            
+            List<JogoPalavras> lstPalavras = new List<JogoPalavras>();
+
+            var palavras = new JogoPalavras
+            {
+                Palavra = rodada.Palavra,
+                CodigoAcerto = 1
+            };
+
+            lstPalavras.Add(palavras);
 
             var lstPalavraErrada = BuscaPalavrasErradas(rodada.CodigoPalavra);
+
+
+            foreach (var palavraErrada in lstPalavraErrada)
+            {
+                palavras = new JogoPalavras
+                {
+                    CodigoAcerto = 0,
+                    Palavra = palavraErrada.Palavra
+                };
+
+                lstPalavras.Add(palavras);
+            }
+
+            //Randomiza a ordem das palavras
+            lstPalavras.Shuffle();
 
             //Monta objeto para retornar
             return new RetornoRodada()
             {
                 CodigoJogo = codigoJogo,
                 NumeroRodada = numeroRodada,
-                PalavraCorreta = rodada.Palavra,
                 Diretorio = rodada.Diretorio,
-                PalavrasErradas = lstPalavraErrada
+                Palavras = lstPalavras
             };
 
         }
