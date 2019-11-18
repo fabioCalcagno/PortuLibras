@@ -76,6 +76,10 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
             return lstPalavraSinal;
         }
 
@@ -128,6 +132,11 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
+
             return lstPalavraErrada;
         }
     }

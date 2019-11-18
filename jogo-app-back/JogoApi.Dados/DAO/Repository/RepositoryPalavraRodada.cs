@@ -53,6 +53,11 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
         }
 
         public NovaRodada NovaRodada(int codigoJogo, int numeroRodada)
@@ -113,6 +118,12 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
+
             return novaRodada;
         }
     }

@@ -2,6 +2,7 @@
 using JogoApi.Dados.Interface.Repository;
 using JogoApi.DTO;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace JogoApi.Dados.Service
@@ -23,9 +24,6 @@ namespace JogoApi.Dados.Service
 
         public Retorno NovoJogo(UsuarioDTO usuario)
         {
-            //primeira rodada
-            int numeroRodada = 1;
-
             //cria novo jogo
             var jogo = new JogoDTO();
             jogo.CodigoJogo = CriaNovoJogo(usuario.CodigoUsuario, null);
@@ -33,17 +31,37 @@ namespace JogoApi.Dados.Service
             //Monta rodada com as palavras corretas
             MontaPalavraRodada(jogo.CodigoJogo);
 
+            //Gera partida
+            var listaJogo = NovaPartida(jogo.CodigoJogo);
+
             //Gera nova rodada
-            RetornoRodada novaRodada = NovaRodada(jogo.CodigoJogo, numeroRodada);
+            //RetornoRodada novaRodada = NovaRodada(jogo.CodigoJogo, numeroRodada);
 
             //retornar rodada
             return new Retorno()
             {
                 Codigo = 200,
-                Data = JsonConvert.SerializeObject(novaRodada).ToString(),
-                Mensagem = "Rodada " + novaRodada.NumeroRodada,
+                Data = JsonConvert.SerializeObject(listaJogo).ToString(),
+                Mensagem = "Partida gerada com sucesso!",
                 Token = "FALTA"
             };
+        }
+
+        private ListaJogo NovaPartida(int codigoJogo)
+        {
+            var lstRetornoRodada = new List<RetornoRodada>();
+            for (int numeroRodada = 1; numeroRodada < 16; numeroRodada++)
+            {
+                //Gera nova rodada
+                RetornoRodada novaRodada = NovaRodada(codigoJogo, numeroRodada);
+                lstRetornoRodada.Add(novaRodada);
+            }
+
+            ListaJogo listaJogo = new ListaJogo();
+
+            listaJogo.lstRetornoRodadas = lstRetornoRodada;
+
+            return listaJogo;
         }
 
         private void MontaPalavraRodada(int codigoJogo)
@@ -127,7 +145,7 @@ namespace JogoApi.Dados.Service
         {
             //Gera nova rodada
             RetornoRodada retornoRodada = NovaRodada(novaRodada.CodigoJogo, novaRodada.NumeroRodada);
-            
+
             //retornar rodada
             return new Retorno()
             {
@@ -141,7 +159,7 @@ namespace JogoApi.Dados.Service
         private RetornoRodada NovaRodada(int codigoJogo, int numeroRodada)
         {
             NovaRodada rodada = BuscarNovaRodada(codigoJogo, numeroRodada);
-            
+
             List<JogoPalavras> lstPalavras = new List<JogoPalavras>();
 
             var palavras = new JogoPalavras

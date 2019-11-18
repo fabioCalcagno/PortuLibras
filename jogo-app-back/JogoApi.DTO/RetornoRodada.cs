@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace JogoApi.DTO
 {
-    [JsonObject(Title = "NovaRodada")]
+    [JsonObject(Title = "Rodada")]
     public class RetornoRodada
     {
         [JsonProperty(PropertyName = "CodigoJogo")]

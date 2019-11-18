@@ -56,6 +56,11 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
         }
     }
 }

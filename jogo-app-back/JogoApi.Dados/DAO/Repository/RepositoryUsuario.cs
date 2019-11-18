@@ -91,6 +91,11 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
+
             return lstUsuario;
         }
 
@@ -138,6 +143,10 @@ namespace JogoApi.Dados.DAO.Repository
                 {
                     throw new Exception(ex2.Message);
                 }
+            }
+            finally
+            {
+                conexao.FecharConexao(connection);
             }
         }
 
@@ -187,6 +196,10 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
         }
 
         public int ExcluirUsuario(int codigoUsuario)
@@ -228,6 +241,10 @@ namespace JogoApi.Dados.DAO.Repository
                 {
                     throw new Exception(ex2.Message);
                 }
+            }
+            finally
+            {
+                conexao.FecharConexao(connection);
             }
         }
     }

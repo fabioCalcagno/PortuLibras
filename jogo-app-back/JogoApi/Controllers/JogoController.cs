@@ -35,20 +35,20 @@ namespace JogoApi.Controllers
         }
 
 
-        //id do jogo
-        //numero da rodada
-        [HttpPost]
-        [ActionName("NovaRodada")]
-        public IActionResult NovaRodada([FromBody]NovaRodada novaRodada)
-        {
-            try
-            {
-                return Content(JsonConvert.SerializeObject(service.GerarNovaRodada(novaRodada)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-            catch (Exception ex)
-            {
-                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-        }
+        ////id do jogo
+        ////numero da rodada
+        //[HttpPost]
+        //[ActionName("NovaRodada")]
+        //public IActionResult NovaRodada([FromBody]NovaRodada novaRodada)
+        //{
+        //    try
+        //    {
+        //        return Content(JsonConvert.SerializeObject(service.GerarNovaRodada(novaRodada)), new MediaTypeHeaderValue("application/json").ToString());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
+        //    }
+        //}
     }
 }

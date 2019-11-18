@@ -58,6 +58,11 @@ namespace JogoApi.Dados.DAO.Repository
                     throw new Exception(ex2.Message);
                 }
             }
+
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
         }
 
         public int DeletarTokenEmail(int tokenInserido)
