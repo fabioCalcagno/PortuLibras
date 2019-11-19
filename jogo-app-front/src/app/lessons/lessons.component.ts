@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { VideoService } from '../lessons/services/video-sanitizer/video-sanitizer.service'
+import { VideoService } from './services/Video-Service/video.service'
 
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
 import { tap, timeInterval } from 'rxjs/operators'
@@ -8,6 +8,8 @@ import { ModalService } from '../modal/Services/modal.service';
 import { IUser } from '../models/User';
 import { RetornoRodada } from '../models/RetornoRodada';
 import { Retorno } from '../models/Retorno';
+import { ArrayRetornoRodada } from '../models/ArrayRetornoRodada';
+import { Palavra } from '../models/Palavra';
 
 
 @Component({
@@ -24,71 +26,73 @@ export class LessonsComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private renderer: Renderer2, 
-              private VideoService: VideoService,
-             
-              private modalService: ModalService ) { }
+  constructor(private renderer: Renderer2,
+    private VideoService: VideoService,
+    private modalService: ModalService) { }
 
-  a  = 'Trabalhar'; 
-  b  = 'Brincar';
-  c  = 'Coçar';
-  d  = 'Respirar';
- 
 
   score: number = 0;
   temCerteza: boolean = false;
   answeredQuestion: 'teste';
   counter = 45;
+  inicioJogo: boolean = false;
   private timeOut: any = false;
   private acertou = false;
-  private user : IUser;
+  private user: IUser;
+  subscription$: Subscription;
+  jogadas = [];
+  jogada: RetornoRodada;
+  arrayPalavras = [];
+  a: Palavra;
+  b: Palavra;
+  c: Palavra;
+  d: Palavra;
 
-
-
-  private video: any = "../../assets/imagens/cortado.mp4";
+  private video: any;
   private unsinitizedVideo;
-   
+
 
 
 
 
   progressBar = new Observable((subscriber) => {
     var width = 100;
-    var widthHelper 
+    var widthHelper
     var temporizador = 50;
-    var helper:boolean = false;
-    var id = setInterval(frame , temporizador); 
+    var helper: boolean = false;
+    var id = setInterval(frame, temporizador);
 
     if (this.acertou === true) {
       helper = this.acertou;
       console.log(helper)
-     this.subscription$.unsubscribe()
+      this.subscription$.unsubscribe()
     }
-   async function frame() {
-    
-    /*  if(helper===true){
-      widthHelper = await  width;
-      subscriber.next(widthHelper)
-     } */
-      
+    async function frame() {
+
+      /*  if(helper===true){
+        widthHelper = await  width;
+        subscriber.next(widthHelper)
+       } */
+
       if (width <= 1) {
         subscriber.next(true)
         subscriber.complete()
         return clearInterval(id);
       }
       else {
-        temporizador = temporizador --;
-       
+        temporizador = temporizador--;
+
         width--;
         this.myBar.style.width = width + '%';
       }
-      
+
     }
 
   })
 
 
-  subscription$: Subscription;
+
+
 
   ngOnInit() {
 
@@ -101,33 +105,35 @@ export class LessonsComponent implements OnInit, OnDestroy {
       Email: 'a',
     }
 
-    this.VideoService.jogarJogo(this.user).subscribe((jogadas:Retorno) =>{
-      
-      console.log(jogadas.Data)
-     let a  = JSON.parse(jogadas.Data) as RetornoRodada;
-     this.a = a.PalavraCorreta
-    console.log(a.Diretorio)
-       
-     })
-      
-       
-    
-   
+    this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
+      let a = JSON.parse(jogadas.Data) as ArrayRetornoRodada;
+      a.Partida.forEach(element => {
+        this.jogadas.push(element)
+
+      });
+
+      this.jogada = this.jogadas[0] as RetornoRodada;
+      this.arrayPalavras = this.jogada.Palavras;
+      this.carregaPalavra(this.arrayPalavras)
+      this.video = this.jogada.Diretorio
+    })
     this.subscription$ = this.progressBar
       .pipe(tap(value => {
         console.log(value, 'valor do pipe')
       }))
       .subscribe(subscrib => {
         this.timeOut = subscrib;
-        if(this.timeOut){
+        if (this.timeOut) {
           this.modalService.tempoAcabar()
         }
         console.log(this.timeOut, 'onInit')
-        
+
       })
 
 
   }
+
+
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe()
@@ -136,17 +142,36 @@ export class LessonsComponent implements OnInit, OnDestroy {
 
 
 
+  setaVideo(diretorio: string) {
+    this.unsinitizedVideo = diretorio;
+    this.video = this.VideoService.videoSanitizer(this.unsinitizedVideo);
+  }
 
 
+
+
+  carregaPalavra(arrayPalavras: Array<Palavra>) {
+    this.a = arrayPalavras[0];
+    this.b = arrayPalavras[1];
+    this.c = arrayPalavras[2];
+    this.d = arrayPalavras[3];
+
+  }
+
+  i:number =1;
 
   onSubmit(item) {
-   
-    if (item == 'Trabalhar') {
-    
-      this.unsinitizedVideo = "../../assets/videos/6.mp4"
-      this.video = this.VideoService.videoSanitizer(this.unsinitizedVideo);
-     
-      this.acertou = true;
+
+    console.log(item.CodigoAcerto, 'heiheouletsgo')
+
+    if (item.CodigoAcerto === 1) {
+     this.i ++
+      this.jogada = this.jogadas[this.i] as RetornoRodada;
+      this.arrayPalavras = this.jogada.Palavras;
+      this.carregaPalavra(this.arrayPalavras)
+      this.setaVideo(this.jogadas[this.i].Diretorio)
+
+      
       this.subscription$ =
         this.progressBar.pipe(tap(value => {
           console.log(value, 'pipe submit')
@@ -154,7 +179,7 @@ export class LessonsComponent implements OnInit, OnDestroy {
         }))
           .subscribe(subscrib => {
             this.timeOut = subscrib
-            if(this.timeOut){
+            if (this.timeOut) {
               this.modalService.tempoAcabar()
             }
             console.log(this.timeOut, 'submit')
@@ -164,7 +189,7 @@ export class LessonsComponent implements OnInit, OnDestroy {
       if (this.score > 0) {
         this.score = this.score + 10;
       } else this.score = 10;
-    
+
 
     } else {
       if (this.score == 0) {
@@ -173,7 +198,7 @@ export class LessonsComponent implements OnInit, OnDestroy {
       else {
         this.score = this.score - 1;
       }
-     
+
     }
   }
 

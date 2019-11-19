@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
-import { StatusBarService } from '../status-bar/services/progress-bar-Service/status-bar.service';
+import { StatusBarService } from './services/progress-bar-Service/status-bar.service';
 import { ModalService } from '../modal/Services/modal.service';
 
 @Component({

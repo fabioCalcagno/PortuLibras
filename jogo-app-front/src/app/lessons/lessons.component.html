@@ -31,10 +31,10 @@
     <div class="questions-container">
       <div class="questions-title  "> Qual Palavra?</div>
       <div class="blocks-wraper">
-        <div #answer1 class="questions-div" (click)="onSubmit(a)"> {{a}} </div>
-        <div class="questions-div " (click)="onSubmit(b)"> {{b}} </div>
-        <div class="questions-div " (click)="onSubmit(c)"> {{c}} </div>
-        <div class="questions-div " (click)="onSubmit(d)"> {{d}} </div>
+        <div #answer1 class="questions-div" (click)="onSubmit(this.a)">{{this.a.Palavra}} </div>
+        <div class="questions-div " (click)="onSubmit(this.b)">{{this.b.Palavra}} </div>
+        <div class="questions-div " (click)="onSubmit(this.c)">{{this.c.Palavra}} </div>
+        <div class="questions-div " (click)="onSubmit(this.d)">{{this.d.Palavra}} </div>
       </div>
     </div>
 
@@ -42,11 +42,7 @@
       <video class="img-wraper" [src]="video" autoplay loop></video>
     </div>
 
-    <div #alertWrapper class="alert-wrapper">
-      <div class="alert-modal">
-        <h1 #alertTitle class="alert-title"> {{answeredQuestion}} </h1>
-      </div>
-    </div>
+  
 
   </div>
 

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VideoService } from './video-sanitizer.service';
+import { VideoService } from './video.service';
 
 describe('VideoService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
