@@ -33,8 +33,8 @@
                 <h1 class="alert-title" id="not"> {{this.modalService.alertTitle}} </h1>
                 <div class="alert-options">
                     <div *ngIf="this.modalService.yesOrNoButtons">
-                        <div class="yesOrNo" (click)="this.modalService.closeTimeModal()" id="yes">{{this.modalService.sim}}</div>
-                        <div class="yesOrNo" (click)="remove()" id="no">{{this.modalService.nao}}</div>
+                        <div class="yesOrNo" (click)="this.modalService.jogarNovamente()" id="yes">{{this.modalService.sim}}</div>
+                        <div class="yesOrNo" (click)="this.modalService.closeModal()" id="no">{{this.modalService.nao}}</div>
                     </div>
                     <div *ngIf="this.modalService.okButton">
                         <div class="ok" (click)="this.modalService.closeModal()" >ok</div>

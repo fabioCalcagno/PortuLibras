@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IUser } from '../../../models/User'
+import { IUser } from '../../../models/User';
  
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,7 @@ export class VideoService {
 
    jogarJogo(user:IUser){
      console.log('user req' , user)
+     
      return this.http.post(this.url, user, {headers: this.headers})
    }
 }

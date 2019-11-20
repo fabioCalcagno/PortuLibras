@@ -22,20 +22,12 @@ export class LessonsComponent implements OnInit, OnDestroy {
 
   @ViewChild('myBar', { read: ElementRef, static: false }) private myBar: ElementRef<HTMLElement>
 
-
-
-
-
-  constructor(private renderer: Renderer2,
-    private VideoService: VideoService,
-    private modalService: ModalService) { }
+                              constructor(private renderer: Renderer2,
+                                private VideoService: VideoService,
+                                private modalService: ModalService) { }
 
 
   score: number = 0;
-  temCerteza: boolean = false;
-  answeredQuestion: 'teste';
-  counter = 45;
-  inicioJogo: boolean = false;
   private timeOut: any = false;
   private acertou = false;
   private user: IUser;
@@ -54,11 +46,9 @@ export class LessonsComponent implements OnInit, OnDestroy {
 
 
 
-
   progressBar = new Observable((subscriber) => {
     var width = 100;
-    var widthHelper
-    var temporizador = 50;
+    var temporizador = 1000;
     var helper: boolean = false;
     var id = setInterval(frame, temporizador);
 
@@ -68,26 +58,16 @@ export class LessonsComponent implements OnInit, OnDestroy {
       this.subscription$.unsubscribe()
     }
     async function frame() {
-
-      /*  if(helper===true){
-        widthHelper = await  width;
-        subscriber.next(widthHelper)
-       } */
-
       if (width <= 1) {
         subscriber.next(true)
         subscriber.complete()
         return clearInterval(id);
       }
       else {
-        temporizador = temporizador--;
-
         width--;
         this.myBar.style.width = width + '%';
       }
-
     }
-
   })
 
 
@@ -95,6 +75,7 @@ export class LessonsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+  
 
     this.user = {
       Nome: 'a',
@@ -106,18 +87,8 @@ export class LessonsComponent implements OnInit, OnDestroy {
     }
 
     this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
-      let a = JSON.parse(jogadas.Data) as ArrayRetornoRodada;
-      a.Partida.forEach(element => {
-        this.jogadas.push(element)
-
-      });
-
-      this.jogada = this.jogadas[0] as RetornoRodada;
-      this.arrayPalavras = this.jogada.Palavras;
-      this.carregaPalavra(this.arrayPalavras)
-      this.video = this.jogada.Diretorio
-    })
-    this.subscription$ = this.progressBar
+      if(jogadas){
+        this.subscription$ = this.progressBar
       .pipe(tap(value => {
         console.log(value, 'valor do pipe')
       }))
@@ -129,6 +100,19 @@ export class LessonsComponent implements OnInit, OnDestroy {
         console.log(this.timeOut, 'onInit')
 
       })
+      }
+      let a = JSON.parse(jogadas.Data) as ArrayRetornoRodada;
+      a.Partida.forEach(element => {
+        this.jogadas.push(element)
+
+      });
+
+      this.jogada = this.jogadas[0] as RetornoRodada;
+      this.arrayPalavras = this.jogada.Palavras;
+      this.carregaPalavra(this.arrayPalavras)
+      this.video = this.jogada.Diretorio
+    })
+    
 
 
   }
@@ -165,14 +149,19 @@ export class LessonsComponent implements OnInit, OnDestroy {
     console.log(item.CodigoAcerto, 'heiheouletsgo')
 
     if (item.CodigoAcerto === 1) {
-     this.i ++
+     
       this.jogada = this.jogadas[this.i] as RetornoRodada;
       this.arrayPalavras = this.jogada.Palavras;
       this.carregaPalavra(this.arrayPalavras)
       this.setaVideo(this.jogadas[this.i].Diretorio)
+      this.i ++
 
+      if(this.i==14){
+        this.modalService.jogoAcabar()
+        this.subscription$.unsubscribe()
+      }
       
-      this.subscription$ =
+      /* this.subscription$ =
         this.progressBar.pipe(tap(value => {
           console.log(value, 'pipe submit')
 
@@ -184,7 +173,7 @@ export class LessonsComponent implements OnInit, OnDestroy {
             }
             console.log(this.timeOut, 'submit')
           })
-
+ */
 
       if (this.score > 0) {
         this.score = this.score + 10;

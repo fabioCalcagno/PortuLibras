@@ -1,4 +1,4 @@
 export interface Palavra {
-        Palavra: string,
+        Palavra: string;
         CodigoAcerto:number
 }

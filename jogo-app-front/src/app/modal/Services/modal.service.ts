@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { StatusBarService } from '../../status-bar/services/progress-bar-Service/status-bar.service'
+import { LessonsComponent } from '../../lessons/lessons.component'
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +17,9 @@ export class ModalService {
    nao:string = 'Não';
    mostraOpcoes = false;
    showModalTime: boolean = false;
+   statusBarService:StatusBarService;
+   lessonsComponent:LessonsComponent
+
    
 
 
@@ -28,9 +32,9 @@ export class ModalService {
     this.okButton = false;
    }
    
-   closeTimeModal(tempoAcabar){
+   jogarNovamente(){
      this.closeModal();
-     return tempoAcabar = true;
+
    }
 
    mostraOpcoesUsuario(mostra:boolean){
@@ -44,7 +48,13 @@ export class ModalService {
     this.alertTitle = "Tempo acabar, você ter X pontos, continuar?";
     this.yesOrNoButtons = true; 
     this.okButton = false;
-  
+   }
+
+   jogoAcabar(){
+    this.showModalTime = true;
+    this.alertTitle = "Jogo acabar, você ter X pontos, mais uma?";
+    this.yesOrNoButtons = true; 
+    this.okButton = false;
    }
   
    

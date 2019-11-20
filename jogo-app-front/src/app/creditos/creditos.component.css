@@ -26,10 +26,7 @@ body{
     background-color: #ef5151;
     position: absolute;
     margin: 0px;
-    margin-top: 5%;
-    scroll-behavior: auto;
-   
-    
+    margin-top: 5%; 
 }
 
 
@@ -50,6 +47,8 @@ margin-bottom: 2%;
     margin-right: 15%;
     background-color: #fa7268;
     height: 50%;
+    padding-top: 10px;
+   
     
 } 
 
@@ -132,7 +131,7 @@ margin-bottom: 2%;
     background-image: url("../../assets/imagens/fatec-logo.png");
     width: 100%;
     height: 100%;
-    margin-top: -5%;
+    margin-top: -8%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40%;
