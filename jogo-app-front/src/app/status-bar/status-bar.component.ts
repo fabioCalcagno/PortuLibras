@@ -13,41 +13,29 @@ export class StatusBarComponent implements OnInit {
 
   @ViewChild('myBar', { read: ElementRef, static: false }) private myBar: ElementRef<HTMLElement>
 
-  subscription$:Subscription;
-  timeOut:any;
+  subscription$: Subscription;
+  timeOut: any;
 
-  constructor(private statusBarService:StatusBarService, private modalService:ModalService){
-
+  constructor(private statusBarService: StatusBarService, private modalService: ModalService) {
   }
 
-
   ngOnInit() {
-  
+
     this.subscription$ = this.statusBarService.progressBar$.subscribe((observe) => {
       this.timeOut = observe;
-      console.log( 'em execução ' ,observe)
+      console.log('em execução ', observe)
       this.timeOut = observe;
-      if(this.timeOut ===true ){
+      if (this.timeOut === true) {
         this.modalService.tempoAcabar()
-       this.subscription$.unsubscribe();
+        this.subscription$.unsubscribe();
       }
       console.log(observe)
     })
-
-    
-
   }
-
-
-  
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
-    
-  } 
 
-
-
-
+  }
 
 }

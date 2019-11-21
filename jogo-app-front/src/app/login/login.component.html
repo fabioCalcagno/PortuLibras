@@ -1,35 +1,21 @@
-<!DOCTYPE html>
-
-
-<head>
-    <title>Login</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-</head>
-
-<body>
-
-    <div class="container">
-        <h1 class="title">PortuLibras</h1>
-        <form [formGroup]="user" (ngSubmit)="onSubmit()">
-            <div class="login-container">
-                <div class="login">
-                    <input class="input" formControlName="Username" type="email" placeholder="E-mail:" autofocus> 
-                      </div>
-                <div class="login">
-                    <input class="input" formControlName="Senha" type="password" placeholder="Senha:"> </div>
-                <button type="submit" class="entrar">
-                    <img style="margin-left: 5%" src="../../assets/imagens/login.png" alt="">
-                    <h2>Entrar Conta</h2>
-                </button>
-                <div class="login-options">
-                    <div class="options" [routerLink]="['/menu/redefinir']">Esqueci a senha</div>
-                    <div class="options" id="criar-conta" [routerLink]="['/menu/criarconta']">Criar conta</div>
-                </div>
+<div class="container-login">
+    <h1 class="title">PortuLibras</h1>
+    <form [formGroup]="user" (ngSubmit)="onSubmit()">
+        <div class="login-container">
+            <div class="login">
+                <input class="input" formControlName="Username" type="email" placeholder="E-mail:" autofocus>
             </div>
-        </form>
+            <div class="login">
+                <input class="input" formControlName="Senha" type="password" placeholder="Senha:"> </div>
+            <button type="submit" class="entrar">
+                <img style="margin-left: 5%" src="../../assets/imagens/login.png" alt="">
+                <h2>Entrar Conta</h2>
+            </button>
+            <div class="login-options">
+                <div class="options" [routerLink]="['/menu/redefinir']">Esqueci a senha</div>
+                <div class="options" id="criar-conta" [routerLink]="['/menu/criarconta']">Criar conta</div>
+            </div>
+        </div>
+    </form>
 
-    </div>
-</body>
+</div>

@@ -1,27 +1,10 @@
-
-<!DOCTYPE html>
-
-
-<head>
-    <title>Lessons</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-</head>
-
-<body>
-    
-    <div class="container" >
-       <div class="flexcroll"> 
-        <div class="score-container  " >
-           <div class="input"  *ngFor="let score of score" > 
-               <div class="img-coins" ></div> 
-               <div class="score-points" >{{score}} </div>
+<div class="container-score">
+    <div class="flexcroll">
+        <div class="score-container  ">
+            <div class="input" *ngFor="let score of score">
+                <div class="img-coins"></div>
+                <div class="score-points">{{score}} </div>
             </div>
         </div>
     </div>
-    </div>
-
-
-</body>
+</div>

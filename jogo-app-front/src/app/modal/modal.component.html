@@ -4,7 +4,8 @@
 <head>
     <title>Lessons</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
@@ -18,42 +19,44 @@
             <h1 class="alert-title" id="not"> {{this.modalService.alertTitle}} </h1>
             <div class="alert-options">
                 <div *ngIf="this.modalService.yesOrNoButtons">
-                    <div class="yesOrNo"  id="yes">{{this.modalService.sim}}</div>
+                    <div class="yesOrNo" id="yes">{{this.modalService.sim}}</div>
                     <div class="yesOrNo" (click)="remove()" id="no">{{this.modalService.nao}}</div>
                 </div>
                 <div *ngIf="this.modalService.okButton">
-                    <div class="ok" (click)="this.modalService.closeModal()" >ok</div>
+                    <div class="ok" (click)="this.modalService.closeModal()">ok</div>
                 </div>
             </div>
         </div>
     </div>
 
     <div *ngIf="this.modalService.showModalTime" class="alert-wrapper-not">
-            <div class="alert-modal">
-                <h1 class="alert-title" id="not"> {{this.modalService.alertTitle}} </h1>
-                <div class="alert-options">
-                    <div *ngIf="this.modalService.yesOrNoButtons">
-                        <div class="yesOrNo" (click)="this.modalService.jogarNovamente()" id="yes">{{this.modalService.sim}}</div>
-                        <div class="yesOrNo" (click)="this.modalService.closeModal()" id="no">{{this.modalService.nao}}</div>
+        <div class="alert-modal">
+            <h1 class="alert-title" id="not"> {{this.modalService.alertTitle}} </h1>
+            <div class="alert-options">
+                <div *ngIf="this.modalService.yesOrNoButtons">
+                    <div class="yesOrNo" (click)="this.modalService.jogarNovamente()" id="yes">{{this.modalService.sim}}
                     </div>
-                    <div *ngIf="this.modalService.okButton">
-                        <div class="ok" (click)="this.modalService.closeModal()" >ok</div>
+                    <div class="yesOrNo" (click)="this.modalService.closeModal()" id="no">{{this.modalService.nao}}
                     </div>
+                </div>
+                <div *ngIf="this.modalService.okButton">
+                    <div class="ok" (click)="this.modalService.closeModal()">ok</div>
                 </div>
             </div>
         </div>
+    </div>
 
-    
-    <div class="container" *ngIf="this.modalService.mostraOpcoes" >
-            <div class="menu-container">
-                <div class="menu-options" id="placar" [routerLink]="['/menu/pontuacao']" >
-                    Ver Placar
-                </div>
-                <div class="menu-options" id="voltar" (click)="this.modalService.closeModal()"  > Voltar Tela </div>
-                <div class="menu-options" id="editar" [routerLink]="['']"> Editar Conta </div>
-                <div class="menu-options" id="sairJogo" [routerLink]="['']"> Sair Conta</div>
+
+    <div class="container" *ngIf="this.modalService.mostraOpcoes">
+        <div class="menu-container">
+            <div class="menu-options" id="placar" [routerLink]="['/menu/pontuacao']">
+                Ver Placar
             </div>
+            <div class="menu-options" id="voltar" (click)="this.modalService.closeModal()"> Voltar Tela </div>
+            <div class="menu-options" id="editar" [routerLink]="['']"> Editar Conta </div>
+            <div class="menu-options" id="sairJogo" [routerLink]="['']"> Sair Conta</div>
         </div>
+    </div>
 
 </body>
 

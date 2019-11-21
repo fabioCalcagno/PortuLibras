@@ -14,7 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { ModalComponent } from './modal/modal.component';
 import { StatusBarComponent } from './status-bar/status-bar.component';
 import { CreditosComponent } from './creditos/creditos.component';
-
+import {ProgressBarModule} from 'angular-progress-bar';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ import { CreditosComponent } from './creditos/creditos.component';
     ModalComponent,
     StatusBarComponent,
     CreditosComponent,
-    
-    
+
   ],
   imports: [
     BrowserModule,
@@ -38,7 +37,7 @@ import { CreditosComponent } from './creditos/creditos.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    ProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

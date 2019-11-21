@@ -1,51 +1,46 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Lessons</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-</head>
-
-<body>
-
-  <div class="container">
-
-    <header>
-      <div class="design-border-header-main">
-        <div class="header-div" id="pause"></div>
-        <div class="header-div" id="score">
-          <h2 class="score"> {{score}} </h2>
+<header>
+    <div class="design-border-header-main">
+        <div class="header-div" id="pause" (click)="pausar()" *ngIf="!this.isPaused">
+            <img class="icon-score" src="../../assets/imagens/icons8-pausa-40.png">
         </div>
-        <div class="header-div" id="userName"> Samuel</div>
-      </div>
-      <div #myBar id="myProgress"><div id="myBar"></div></div>
-    </header>
+        <div class="header-div" id="retorna" (click)="retomar()" *ngIf="this.isPaused">
+            <img class="icon-score" src="../../assets/imagens/icons8-pausa-40.png">
+        </div>
+        <div class="header-div" id="score">
+            <img class="icon-score" src="../../assets/imagens/icons8-moedas-48.png">
+            <span class="score"> {{score}} </span>
+        </div>
+        <div class="header-div" id="userName">
+            <span>Samuel</span>
+        </div>
+    </div>
+    <progress-bar [progress]="this.timeLeft" [color]="'#488aff'" class="prog-bar">
+    </progress-bar>
+</header>
+
+<div class="container-lessons">
 
     <app-modal></app-modal>
 
 
+    <div class="game-container col-12">
 
-    <div class="questions-container">
-      <div class="questions-title  "> Qual Palavra?</div>
-      <div class="blocks-wraper">
-        <div #answer1 class="questions-div" (click)="onSubmit(this.a)">{{this.a.Palavra}} </div>
-        <div class="questions-div " (click)="onSubmit(this.b)">{{this.b.Palavra}} </div>
-        <div class="questions-div " (click)="onSubmit(this.c)">{{this.c.Palavra}} </div>
-        <div class="questions-div " (click)="onSubmit(this.d)">{{this.d.Palavra}} </div>
-      </div>
+        <div class="questions-container col-md-8">
+            <h2>Qual Palavra?</h2>
+            <div class="questions-wrap">
+                <div #answer1 class="questions-div" (click)="onSubmit(this.a)">{{this.a.Palavra}} </div>
+                <div class="questions-div" (click)="onSubmit(this.b)">{{this.b.Palavra}} </div>
+                <div class="questions-div " (click)="onSubmit(this.c)">{{this.c.Palavra}} </div>
+                <div class="questions-div " (click)="onSubmit(this.d)">{{this.d.Palavra}} </div>
+            </div>
+        </div>
+
+        <div class="image-container col-md-4">
+            <video [src]="video" autoplay loop></video>
+        </div>
+
     </div>
 
-    <div class="image-container">
-      <video class="img-wraper" [src]="video" autoplay loop></video>
-    </div>
 
-  
 
-  </div>
-
-</body>
-
-</html>
+</div>

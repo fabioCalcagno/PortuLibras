@@ -1,32 +1,19 @@
-<!DOCTYPE html>
-
-
-<head>
-    <title>Criar uma Conta</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
-</head>
-
-<body>
-    <div class="container">
-        <h1 class="title">PortuLibras</h1>
-            <div class="container-scroll flexcroll">
-                <form [formGroup]="user" (ngSubmit)="onSubmit(user)">
-                    <div class="login-container">
-                        <div class="login">
-                            <input class="input" type="text" formControlName="Username" placeholder="Usuário:"> </div>   
-                            <div class="login">
-                            <input class="input" type="email" formControlName="Email" placeholder="E-mail:"> </div>
-                        <div class="login">
-                            <input class="input" type="password" formControlName="Senha" placeholder="Senha:"> </div>
-                        <div class="login">
-                            <input class="input" type="password" formControlName="reSenha" placeholder="Repetir senha:"> </div>
-                            <label  class="input error" type="text"> {{erro.msg}} </label>
-                        <h3>Termos de uso</h3>
-                        <textarea class="termos-uso" name="termosUso" id="" cols="65" disabled rows="15">
+<div class="container-criar-conta">
+    <h1 class="title">PortuLibras</h1>
+    <div class="container-scroll flexcroll">
+        <form [formGroup]="user" (ngSubmit)="onSubmit(user)">
+            <div class="login-container">
+                <div class="login">
+                    <input class="input" type="text" formControlName="Username" placeholder="Usuário:"> </div>
+                <div class="login">
+                    <input class="input" type="email" formControlName="Email" placeholder="E-mail:"> </div>
+                <div class="login">
+                    <input class="input" type="password" formControlName="Senha" placeholder="Senha:"> </div>
+                <div class="login">
+                    <input class="input" type="password" formControlName="reSenha" placeholder="Repetir senha:"> </div>
+                <label class="input error" type="text"> {{erro.msg}} </label>
+                <h3>Termos de uso</h3>
+                <textarea class="termos-uso" name="termosUso" id="" cols="65" disabled rows="15">
 É preciso que você siga as políticas disponibilizadas a você dentro 
 dos Serviços.
 Não faça uso indevido de nossos Serviços.
@@ -48,16 +35,14 @@ o direito de usar quaisquer marcas ou logotipos utilizados
 em nossos Serviços. Não remova, oculte ou altere quaisquer
 avisos legais exibidos em ou junto a nossos Serviços.
 </textarea>
-                        <br>
-                        <input class="checkbox" formControlName="termo" type="checkbox">Aceitar Termos de uso
-                        <br>
-                        <button class="entrar" type="submit" [disabled]="!campoValidate(user)">
+                <br>
+                <input class="checkbox" formControlName="termo" type="checkbox">Aceitar Termos de uso
+                <br>
+                <button class="entrar" type="submit" [disabled]="!campoValidate(user)">
                             <img src="../../../assets/imagens/user.png" alt="">
                             <h2>Criar Conta</h2>
                         </button>
-                    </div>
-                </form>
             </div>
-        </div>
-    
-</body>
+        </form>
+    </div>
+</div>

@@ -1,42 +1,19 @@
-
-paleta{
-    color:#22e245;
-    color:#054393;
-    color:#35a7ff;
-    color:#ef5151;
-    color:#fa7268;
-    color:#403232;
-}
-
-@font-face {
-    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
-    font-family: 'Skranji-Regular';    
-    font-weight: normal;
-} 
-
-body{
-    font-family: 'Skranji-Regular';
-    letter-spacing: .1rem; 
-}
-
-
-
-.header{
+.header {
     height: 13%;
     width: 100%;
     background-color: #fa7268;
     margin: 0%;
-    position:fixed;
-    top:0;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 5;
     display: flex;
     overflow: hidden !important;
-    box-shadow: 0 0 .3em #a33838 ;
+    box-shadow: 0 0 .3em #a33838;
 }
 
-.header-divs{
+.header-divs {
     width: 25%;
     height: 100%;
     background-color: inherit;
@@ -44,26 +21,26 @@ body{
     color: white;
     font-size: 2em;
     margin-top: 1%;
-   
-}
-#opcaoTela{
- background-image: url('../../assets/imagens/long-arrow-pointing-to-left.png');
- background-position-x: left;
- background-size: 10%;
- background-repeat: no-repeat;
- padding-left: 4%;
- text-shadow: 4px 4px #ef5151 ; 
-
 }
 
-#opcaoTela:hover{
+#opcaoTela {
+    background-image: url('../../assets/imagens/long-arrow-pointing-to-left.png');
+    background-position-x: left;
+    background-size: 10%;
+    background-repeat: no-repeat;
+    padding-left: 4%;
+    text-shadow: 4px 4px #ef5151;
+}
+
+#opcaoTela:hover {
     cursor: pointer;
 }
 
-#username{
-        text-align: right;
+#username {
+    text-align: right;
 }
-#main-header-div{
+
+#main-header-div {
     width: 40%;
     background-color: inherit;
 }

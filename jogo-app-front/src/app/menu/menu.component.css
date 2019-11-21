@@ -1,26 +1,6 @@
-paleta{
-    color:#22e245;
-    color:#054393;
-    color:#35a7ff;
-    color:#ef5151;
-    color:#fa7268;
-}
-
-@font-face {
-    src: url('../../fonts/Skranji/Skranji-Regular.ttf');
-    font-family: 'Skranji-Regular';    
-    font-weight: normal;
-} 
-
-
-body{
-    font-family: 'Skranji-Regular'; 
-    letter-spacing: .1rem;
-}
-
-.container{
-    height:88%;
-    width:100%;
+.container-menu {
+    height: 100%;
+    width: 100%;
     left: 0;
     background-color: #ef5151;
     position: absolute;
@@ -28,30 +8,25 @@ body{
     margin-top: 5%;
     overflow-x: hidden;
     overflow-y: hidden;
-    
 }
 
+.title {
+    color: white;
+    font-size: 450%;
+    margin-top: 5%;
+    text-align: center;
+    text-shadow: 4px 4px #fa7268;
+}
 
-
-.title{
-color:white;
-font-size: 450%;
-margin-top: 5%;
-text-align: center;
-text-shadow: 4px 4px #fa7268;
-
-} 
-
-
-.menu-container{
+.menu-container {
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 5%;
     background-color: #ef5151;
     height: 80%;
-} 
+}
 
-.menu-options{
+.menu-options {
     width: 80%;
     margin-top: 1%;
     margin-left: 10%;
@@ -62,29 +37,28 @@ text-shadow: 4px 4px #fa7268;
     background-size: 12%;
     background-repeat: no-repeat;
     text-align: center;
-    
 }
 
-.menu-options:hover{
-   cursor: pointer;
+.menu-options:hover {
+    cursor: pointer;
 }
 
-
-
-#jogarJogo{
-    background-color: #22e245 ;
+#jogarJogo {
+    background-color: #22e245;
     background-image: url('../../assets/imagens/play-arrow.png');
 }
 
-#placar{
+#placar {
     background-color: #35a7ff;
     background-image: url('../../assets/imagens/star.png');
 }
-#creditos{
-    background-color: #C4C4C4 ;
+
+#creditos {
+    background-color: #C4C4C4;
     background-image: url('../../assets/imagens/information-symbol.png');
 }
-#sairJogo{
-    background-color: #fa7268 ;
+
+#sairJogo {
+    background-color: #fa7268;
     background-image: url('../../assets/imagens/sair.png');
 }
