@@ -1,28 +1,40 @@
 .container-creditos {
-    height: 100%;
-    width: 100%;
-    left: 0;
-    background-color: #ef5151;
-    position: absolute;
-    margin: 0px;
-    margin-top: 5%;
+    padding: 2rem;
+    max-width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .title {
     color: white;
     font-size: 450%;
-    margin-top: 5%;
     text-align: center;
     text-shadow: 4px 4px #fa7268;
-    margin-bottom: 2%;
 }
 
-.menu-container {
-    margin-left: 15%;
-    margin-right: 15%;
-    background-color: #fa7268;
-    height: 50%;
-    padding-top: 10px;
+.creditos-wrap {
+    padding: 3rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    color: white;
+    text-align: center;
+}
+
+.creditos-item {
+    margin-bottom: 3rem;
+}
+
+.creditos-item img {
+    width: 300px;
+}
+
+p {
+    color: black;
+    font-size: 1.5rem;
 }
 
 .menu-container>.container-credits {

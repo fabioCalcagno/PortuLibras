@@ -1,21 +1,25 @@
 .container-menu {
-    height: 100%;
-    width: 100%;
-    left: 0;
-    background-color: #ef5151;
-    position: absolute;
-    margin: 0px;
-    margin-top: 5%;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    height: calc(100vh - 100px);
+    width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-wrap {
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .title {
+    text-align: center;
     color: white;
     font-size: 450%;
-    margin-top: 5%;
-    text-align: center;
-    text-shadow: 4px 4px #fa7268;
+    text-shadow: 4px 4px #EE9386;
 }
 
 .menu-container {
@@ -27,38 +31,26 @@
 }
 
 .menu-options {
-    width: 80%;
-    margin-top: 1%;
-    margin-left: 10%;
-    height: 13%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    height: 100%;
     color: white;
     font-size: 300%;
-    background-position: left;
-    background-size: 12%;
-    background-repeat: no-repeat;
     text-align: center;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all .3s cubic-bezier(.18, .89, .32, 1.28);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .menu-options:hover {
     cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-#jogarJogo {
-    background-color: #22e245;
-    background-image: url('../../assets/imagens/play-arrow.png');
-}
-
-#placar {
-    background-color: #35a7ff;
-    background-image: url('../../assets/imagens/star.png');
-}
-
-#creditos {
-    background-color: #C4C4C4;
-    background-image: url('../../assets/imagens/information-symbol.png');
-}
-
-#sairJogo {
-    background-color: #fa7268;
-    background-image: url('../../assets/imagens/sair.png');
+.menu-options img {
+    margin: 0 1rem;
 }

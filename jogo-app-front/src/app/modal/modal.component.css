@@ -1,40 +1,32 @@
-
 @font-face {
     src: url('../../fonts/Skranji/Skranji-Regular.ttf');
-    font-family: 'Skranji-Regular';    
+    font-family: 'Skranji-Regular';
     font-weight: normal;
-} 
+}
 
-body{
-    font-family: 'Skranji-Regular'; 
+body {
+    font-family: 'Skranji-Regular';
     letter-spacing: .1rem;
 }
 
-
-paleta{
-    color:#22e245;
-    color:#054393;
-    color:#35a7ff;
-    color:#ef5151;
-    color:#fa7268;
-    color:#403232;
+paleta {
+    color: #22e245;
+    color: #054393;
+    color: #35a7ff;
+    color: #ef5151;
+    color: #fa7268;
+    color: #403232;
 }
 
-
-
-
-.alert-title{
-   
-    color:white;
-    
-}
-
-#not{
+.alert-title {
     color: white;
-   
 }
 
-.alert-wrapper-not{
+#not {
+    color: white;
+}
+
+.alert-wrapper-not {
     position: absolute;
     margin-top: 10%;
     width: 30%;
@@ -47,21 +39,16 @@ paleta{
     font-size: 80%;
     color: white;
     box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.75);
-   
 }
 
-.yesOrNo{
+.yesOrNo {
     display: inline-block;
     font-size: 200%;
     color: white;
     padding-bottom: -5%;
-  
-    
-    
-    
 }
 
-.ok{
+.ok {
     display: inline-block;
     font-size: 200%;
     color: white;
@@ -71,37 +58,29 @@ paleta{
     width: 30%;
 }
 
-#yes{
+#yes {
     margin-right: 30%;
     background-color: #22e245;
     width: 30%;
 }
 
-#no{
+#no {
     background-color: #ef5151;
     width: 30%;
 }
 
-
-
-.container{
-    height:100%;
-    width:100%;
+.container {
+    height: 100%;
+    width: 100%;
     left: 0;
     overflow-x: hidden;
     overflow-y: hidden;
     position: absolute;
     z-index: -99;
     background-color: #ef5151;
-    
 }
 
-
-
-
-
-
-.menu-container{
+.menu-container {
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 10%;
@@ -109,9 +88,9 @@ paleta{
     background-color: rgba(0, 0, 0, 0.75);
     height: 60%;
     box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.55);
-} 
+}
 
-.menu-options{
+.menu-options {
     width: 80%;
     margin-top: 1%;
     margin-left: 10%;
@@ -122,29 +101,28 @@ paleta{
     background-size: 12%;
     background-repeat: no-repeat;
     text-align: center;
-    
 }
 
-.menu-options:hover{
-   cursor: pointer;
+.menu-options:hover {
+    cursor: pointer;
 }
 
-
-
-#voltar{
-    background-color: #22e245 ;
-    background-image: url('../../assets/imagens/back-arrow.png');
+#voltar {
+    background-color: #22e245;
+    background-image: url('../../assets/imagens/long-arrow-pointing-to-left.png');
 }
 
-#placar{
+#placar {
     background-color: #35a7ff;
     background-image: url('../../assets/imagens/star.png');
 }
-#editar{
-    background-color: #ef5151 ;
+
+#editar {
+    background-color: #ef5151;
     background-image: url('../../assets/imagens/pencil-edit-button.png');
 }
-#sairJogo{
-    background-color: #C4C4C4 ;
+
+#sairJogo {
+    background-color: #C4C4C4;
     background-image: url('../../assets/imagens/sair.png');
 }

@@ -1,46 +1,26 @@
-.header {
-    height: 13%;
+.header-container {
+    padding: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
     width: 100%;
-    background-color: #fa7268;
-    margin: 0%;
-    position: fixed;
+    height: 100px;
+    position: sticky;
     top: 0;
     left: 0;
-    right: 0;
-    z-index: 5;
-    display: flex;
+    z-index: 99999;
     overflow: hidden !important;
-    box-shadow: 0 0 .3em #a33838;
 }
 
 .header-divs {
-    width: 25%;
-    height: 100%;
-    background-color: inherit;
-    float: left;
     color: white;
     font-size: 2em;
-    margin-top: 1%;
 }
 
-#opcaoTela {
-    background-image: url('../../assets/imagens/long-arrow-pointing-to-left.png');
-    background-position-x: left;
-    background-size: 10%;
-    background-repeat: no-repeat;
-    padding-left: 4%;
-    text-shadow: 4px 4px #ef5151;
-}
-
-#opcaoTela:hover {
+.header-divs:hover {
     cursor: pointer;
 }
 
-#username {
+.header-divs:nth-of-type(2) {
     text-align: right;
-}
-
-#main-header-div {
-    width: 40%;
-    background-color: inherit;
 }

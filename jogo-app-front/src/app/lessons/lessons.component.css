@@ -3,10 +3,14 @@
     width: 100%;
     min-height: calc(100vh - 100px);
     display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    justify-content: center;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
     background-color: #ef5151;
+}
+
+.flex-row {
+    display: flex;
 }
 
 header {

@@ -1,7 +1,7 @@
-<div class="header">
-    <div class="header-divs" id="opcaoTela" [routerLink]="['/menu']"> {{currentScreen}} </div>
-    <div class="header-divs" id="main-header-div"></div>
-    <div class="header-divs" id="username" (click)="this.headerService.mostraOpcoes(true)"> {{username}} </div>
+<div class="header-container bg-cor-2">
+    <div class="header-divs col-md-6" [routerLink]="['/menu']">
+        <img src="../../assets/imagens/long-arrow-pointing-to-left.png" width="50px" alt=""> {{currentScreen}}
+    </div>
+    <div class="header-divs col-md-6" (click)="this.headerService.mostraOpcoes(true) "> {{username}} </div>
 </div>
-
 <router-outlet></router-outlet>

@@ -1,10 +1,15 @@
 <header>
     <div class="design-border-header-main">
-        <div class="header-div" id="pause" (click)="pausar()" *ngIf="!this.isPaused">
-            <img class="icon-score" src="../../assets/imagens/icons8-pausa-40.png">
-        </div>
-        <div class="header-div" id="retorna" (click)="retomar()" *ngIf="this.isPaused">
-            <img class="icon-score" src="../../assets/imagens/icons8-pausa-40.png">
+        <div class="flex-row">
+            <div class="header-div" id="pause" (click)="pausar()" *ngIf="!this.isPaused">
+                <img class="icon-score" src="../../assets/imagens/icons8-pausa-40.png">
+            </div>
+            <div class="header-div" id="retorna" (click)="retomar()" *ngIf="this.isPaused">
+                <img class="icon-score" src="../../assets/imagens/icons8-pausa-40.png">
+            </div>
+            <div class="header-div" id="retorna">
+                <img class="icon-score" src="../../assets/imagens/question.png" width="40" style="margin-left: 1rem;">
+            </div>
         </div>
         <div class="header-div" id="score">
             <img class="icon-score" src="../../assets/imagens/icons8-moedas-48.png">

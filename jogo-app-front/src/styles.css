@@ -100,3 +100,31 @@ paleta {
     color: #ef5151;
     color: #fa7268;
 }
+
+.bg-cor-1 {
+    background-color: #E47261;
+}
+
+.bg-cor-2 {
+    background-color: #EE9386;
+}
+
+.bg-cor-3 {
+    background-color: #6E4F4F;
+}
+
+.bg-amarelo {
+    background-color: #EBCA53;
+}
+
+.bg-azul {
+    background-color: #4E728F;
+}
+
+.bg-verde {
+    background-color: #4A7351;
+}
+
+.bg-vermelho {
+    background-color: #BA3F23;
+}

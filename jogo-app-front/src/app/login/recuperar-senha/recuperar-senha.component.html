@@ -1,5 +1,5 @@
-<div class="container-recuperar-senha">
-    <h1 class="title-senha">Esquecer senha</h1>
+<!-- <div class="container-recuperar">
+    <h1 class="title-senha">Lembrar senha</h1>
     <div class="login-container" *ngIf="confirmacaoEmail">
         <div class="login">
             <input class="input" id="usuario" type="text" placeholder="Usuário:"> </div>
@@ -14,17 +14,80 @@
             <h2 [routerLink]="['']">Criar conta</h2>
         </div>
     </div>
-</div>
+</div> -->
 
+<div class="container-recuperar bg-cor-1">
 
-<div class="container" *ngIf="!confirmacaoEmail">
-    <h1 class="title-senha">Esquecer senha</h1>
-    <div class="login-container" *ngIf="!confirmacaoEmail">
-        <div class="login">
-            <input class="input" id="numeroRecuperacao" type="text" placeholder="Numero:"> </div>
-        <div class="entrar">
-            <img src="../../assets/imagens/login.png" alt="">
-            <h2 [routerLink]="['']">Enviar Numero</h2>
-        </div>
+    <div class="recuperar-wrap col-md-6" *ngIf="confirmacaoEmail">
+
+        <h1 class="title">Lembrar senha</h1>
+        <form class="col-md-12">
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input class="input bg-cor-2" id="usuario" type="text" placeholder="Usuário:">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input class="input bg-cor-2" type="email" placeholder="E-mail:">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <button type="submit" class="entrar bg-azul" (click)="confirmaEmail()">
+                            <img style="margin-left: 5%" src="../../assets/imagens/login.png" alt="">
+                            <h2>Confirmar Conta</h2>
+                        </button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <button type="submit" class="entrar bg-verde" [routerLink]="['']">
+                                <img style="margin-left: 5%" src="../../assets/imagens/add-people-interface-symbol-of-black-person-close-up-with-plus-sign-in-small-circle.png" alt="">
+                                <h2>Criar Conta</h2>
+                            </button>
+                </div>
+            </div>
+
+        </form>
+
     </div>
+
+    <div class="recuperar-wrap col-md-6" *ngIf="!confirmacaoEmail">
+
+        <h1 class="title">Digitar número</h1>
+        <form class="col-md-12">
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input class="input bg-cor-2" id="numeroRecuperacao" type="text" placeholder="Numero:">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <button type="submit" class="entrar bg-azul">
+                                <img style="margin-left: 5%" src="../../assets/imagens/login.png" alt="">
+                                <h2>Confirmar número</h2>
+                            </button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <button type="submit" class="entrar bg-verde">
+                                    <img style="margin-left: 5%" src="../../assets/imagens/receber-email.png" alt="">
+                                    <h2>Receber número</h2>
+                                </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
 </div>

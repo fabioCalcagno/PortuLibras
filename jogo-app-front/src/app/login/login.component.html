@@ -1,21 +1,36 @@
-<div class="container-login">
-    <h1 class="title">PortuLibras</h1>
-    <form [formGroup]="user" (ngSubmit)="onSubmit()">
-        <div class="login-container">
-            <div class="login">
-                <input class="input" formControlName="Username" type="email" placeholder="E-mail:" autofocus>
-            </div>
-            <div class="login">
-                <input class="input" formControlName="Senha" type="password" placeholder="Senha:"> </div>
-            <button type="submit" class="entrar">
-                <img style="margin-left: 5%" src="../../assets/imagens/login.png" alt="">
-                <h2>Entrar Conta</h2>
-            </button>
-            <div class="login-options">
-                <div class="options" [routerLink]="['/menu/redefinir']">Esqueci a senha</div>
-                <div class="options" id="criar-conta" [routerLink]="['/menu/criarconta']">Criar conta</div>
-            </div>
-        </div>
-    </form>
+<div class="container-login bg-cor-1">
+    <div class="login-wrap col-md-6">
 
+        <h1 class="title">PortuLibras</h1>
+        <form [formGroup]="user" (ngSubmit)="onSubmit()" class="col-md-12">
+
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input class="input bg-cor-2" formControlName="Username" type="email" placeholder="E-mail:" autofocus>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <input class="input bg-cor-2" formControlName="Senha" type="password" placeholder="Senha:">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <button type="submit" class="entrar bg-azul">
+                        <img style="margin-left: 5%" src="../../assets/imagens/login.png" alt="">
+                        <h2>Entrar Conta</h2>
+                    </button>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <div class="options" [routerLink]="['/menu/redefinir']">Esqueci a senha</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="options" id="criar-conta" [routerLink]="['/menu/criarconta']">Criar conta</div>
+                </div>
+            </div>
+        </form>
+
+    </div>
 </div>

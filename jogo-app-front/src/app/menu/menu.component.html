@@ -1,12 +1,18 @@
-<div class="container-menu" *ngIf="this.menuService.mostraMenu">
-    <div class="menu-container">
+<div class="container-menu bg-cor-1" *ngIf="this.menuService.mostraMenu">
+    <div class="menu-wrap col-md-5">
         <div class="title">PortuLibras</div>
-        <div class="menu-options" id="jogarJogo" [routerLink]="['/lessons']">
-            Jogar Jogo
+        <div class="menu-options bg-amarelo" [routerLink]="['/lessons']">
+            <img src="../../assets/imagens/play-arrow.png" width="50px" alt=""> Jogar Jogo
         </div>
-        <div class="menu-options" id="placar" [routerLink]="['/menu/pontuacao']"> Placar </div>
-        <div class="menu-options" id="creditos" [routerLink]="['/menu/creditos']"> Créditos </div>
-        <div class="menu-options" id="sairJogo" [routerLink]="['']"> Sair Jogo</div>
+        <div class="menu-options bg-azul" [routerLink]="['/menu/pontuacao']">
+            <img src="../../assets/imagens/star.png" width="50px" alt=""> Placar
+        </div>
+        <div class="menu-options bg-verde" [routerLink]="['/menu/creditos']">
+            <img src="../../assets/imagens/information-symbol.png" width="50px" alt=""> Créditos
+        </div>
+        <div class="menu-options bg-vermelho" [routerLink]="['']">
+            <img src="../../assets/imagens/sair.png" width="50px" alt=""> Sair Jogo
+        </div>
     </div>
 </div>
 
