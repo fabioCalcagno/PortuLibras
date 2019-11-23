@@ -32,49 +32,10 @@ export class VideoService {
 
    jogarJogo(user:IUser){
      console.log('user req' , user)
-     return of(this.mock);
-    //  return this.http.post(this.url, user, {headers: this.headers})
+    /*  return of(this.mock); */
+     return this.http.post(this.url, user, {headers: this.headers})
    }
 
-   /* interval;
-   isPaused;
-   totalTime: number = 7.5; //tempo total do jogo em minutos
-   timeLeft: number = 100; //n muda
-   pauseTimer() {
-    clearInterval(this.interval);
-  }
-
-   pausar() {
-    this.pauseTimer();
-    this.isPaused = true; 
-    this.modalService.showPauseMenu();
-  }
-  calcularTempo(): number {
-    let tempoEmSegundos = this.totalTime * 60;
-    return (tempoEmSegundos/100) * 1000;
-  }
-
-  
-  onCompleteBar() {
-    this.modalService.tempoAcabar();
-  }
-
-  startTimer(intervalo: number) {
-    console.log(intervalo);
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-      } else {
-        this.onCompleteBar();
-        // this.timeLeft = 60;
-      }
-    }, intervalo) //5 segundos de intervalo
-    //fazer a conta do numero do intervalo * 100 para saber qual o tempo total
-  }
-
-  retomar() {
-    this.startTimer(this.calcularTempo());
-    this.isPaused = false;
-  } */
+   
 
 }
