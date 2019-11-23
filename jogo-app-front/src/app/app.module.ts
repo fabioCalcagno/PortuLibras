@@ -15,6 +15,7 @@ import { ModalComponent } from './modal/modal.component';
 import { StatusBarComponent } from './status-bar/status-bar.component';
 import { CreditosComponent } from './creditos/creditos.component';
 import {ProgressBarModule} from 'angular-progress-bar';
+import { TutorialComponent } from '../app/tutorial/tutorial.component'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {ProgressBarModule} from 'angular-progress-bar';
     ModalComponent,
     StatusBarComponent,
     CreditosComponent,
+    TutorialComponent
 
   ],
   imports: [

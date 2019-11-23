@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUser } from '../../../models/User';
+import { ModalService } from '../../../modal/Services/modal.service'
 import { of } from 'rxjs';
  
 @Injectable({
@@ -9,7 +10,10 @@ import { of } from 'rxjs';
 })
 export class VideoService {
 
-  constructor(private sanitizer : DomSanitizer, private http : HttpClient) { }
+  constructor(private sanitizer : DomSanitizer,
+               private http : HttpClient,
+              private modalService:ModalService
+              ) { }
 
   url = 'http://localhost:5000/api/jogo/NovoJogo';
 
@@ -24,9 +28,53 @@ export class VideoService {
   return   this.sanitizer.bypassSecurityTrustResourceUrl(video);
    }
 
+
+
    jogarJogo(user:IUser){
      console.log('user req' , user)
      return of(this.mock);
     //  return this.http.post(this.url, user, {headers: this.headers})
    }
+
+   /* interval;
+   isPaused;
+   totalTime: number = 7.5; //tempo total do jogo em minutos
+   timeLeft: number = 100; //n muda
+   pauseTimer() {
+    clearInterval(this.interval);
+  }
+
+   pausar() {
+    this.pauseTimer();
+    this.isPaused = true; 
+    this.modalService.showPauseMenu();
+  }
+  calcularTempo(): number {
+    let tempoEmSegundos = this.totalTime * 60;
+    return (tempoEmSegundos/100) * 1000;
+  }
+
+  
+  onCompleteBar() {
+    this.modalService.tempoAcabar();
+  }
+
+  startTimer(intervalo: number) {
+    console.log(intervalo);
+    this.interval = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.onCompleteBar();
+        // this.timeLeft = 60;
+      }
+    }, intervalo) //5 segundos de intervalo
+    //fazer a conta do numero do intervalo * 100 para saber qual o tempo total
+  }
+
+  retomar() {
+    this.startTimer(this.calcularTempo());
+    this.isPaused = false;
+  } */
+
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StatusBarService } from '../../status-bar/services/progress-bar-Service/status-bar.service'
-import { LessonsComponent } from '../../lessons/lessons.component'
+import { VideoService } from '../../lessons/services/Video-Service/video.service'
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,16 @@ export class ModalService {
   showModal: boolean = false;
   alertTitle: string = '';
   yesOrNoButtons: boolean = false;
+  yesOrNoButtonsPerderProgresso:boolean;
   okButton: boolean = false;
   sim: string = 'Sim';
   nao: string = 'Não';
   mostraOpcoes = false;
   showModalTime: boolean = false;
   statusBarService: StatusBarService;
-  lessonsComponent: LessonsComponent
+  videoService: VideoService
+  opcoesUser:boolean
+  pauseMenu:boolean = false;
 
 
 
@@ -29,20 +32,57 @@ export class ModalService {
     this.showModal = false;
     this.alertTitle = "";
     this.yesOrNoButtons = false;
+    this.yesOrNoButtonsPerderProgresso=false;
     this.showModal = false;
     this.okButton = false;
   }
 
+  closePauseConfirmacaoModal(){
+    this.closeModal();
+    
+   
+  }
+
+  closepauseMenuModal(){
+    this.pauseMenu = false;
+  }
+
+  showPauseMenu(){
+    this.pauseMenu = true;
+    console.log('pausemenu', this.pauseMenu)
+  }
+
   jogarNovamente() {
     this.closeModal();
-    // this.router.navigate(['/lessons']);
     location.reload()
   }
 
-  mostraOpcoesUsuario(mostra: boolean) {
-    this.mostraOpcoes = mostra;
+  modalPauseConfirmacao(){
+    this.closepauseMenuModal()
+    this.showModal = true;
+    this.alertTitle = "Você perder progresso! Você ter certeza?";
+    this.yesOrNoButtonsPerderProgresso = true;
+    this.yesOrNoButtons = false;
+    this.okButton = false;
   }
 
+  pauseConfirmouSaida(){
+     this.closeModal()
+     this.router.navigate(['/menu']);
+  }
+
+
+
+  mostraOpcoesUsuario(mostra: boolean) {
+    this.mostraOpcoes = mostra;
+    
+    
+  } 
+
+  closeUserOptionsModal(){
+    this.closeModal();
+    location.reload()
+  }
 
 
   tempoAcabar() {
@@ -57,6 +97,7 @@ export class ModalService {
     this.alertTitle = "Jogo acabar, você ter X pontos, mais uma?";
     this.yesOrNoButtons = true;
     this.okButton = false;
+    this.yesOrNoButtonsPerderProgresso=false;
   }
 
 

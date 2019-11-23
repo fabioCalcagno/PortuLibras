@@ -10,10 +10,14 @@ import { MenuComponent } from './menu/menu.component'
 import { HeaderComponent } from './header/header.component';
 import { ModalComponent } from './modal/modal.component';
 import{ CreditosComponent } from './creditos/creditos.component'
+import { TutorialComponent } from './tutorial/tutorial.component';
 
 
 const routes: Routes = [
- 
+  {
+    path: 'teste',
+    component: ModalComponent,
+  },
   {
     path: '',
     component: LoginComponent,
@@ -45,6 +49,10 @@ const routes: Routes = [
     {
       path: 'creditos',
       component: CreditosComponent
+    },
+    {
+      path: 'tutorial',
+      component: TutorialComponent,
     },
     ]
   }

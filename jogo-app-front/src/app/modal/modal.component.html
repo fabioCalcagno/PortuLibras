@@ -22,6 +22,12 @@
                     <div class="yesOrNo" id="yes">{{this.modalService.sim}}</div>
                     <div class="yesOrNo" (click)="remove()" id="no">{{this.modalService.nao}}</div>
                 </div>
+                <div *ngIf="this.modalService.yesOrNoButtonsPerderProgresso">
+                        <div class="yesOrNo" (click)="this.modalService.pauseConfirmouSaida()" id="yes">{{this.modalService.sim}}
+                        </div>
+                        <div class="yesOrNo" (click)="this.modalService.closePauseConfirmacaoModal()" id="no">{{this.modalService.nao}}
+                        </div>
+                    </div>
                 <div *ngIf="this.modalService.okButton">
                     <div class="ok" (click)="this.modalService.closeModal()">ok</div>
                 </div>
@@ -33,6 +39,12 @@
         <div class="alert-modal">
             <h1 class="alert-title" id="not"> {{this.modalService.alertTitle}} </h1>
             <div class="alert-options">
+                <div *ngIf="this.modalService.yesOrNoButtons">
+                    <div class="yesOrNo" (click)="this.modalService.jogarNovamente()" id="yes">{{this.modalService.sim}}
+                    </div>
+                    <div class="yesOrNo" (click)="this.modalService.closeModal()" id="no">{{this.modalService.nao}}
+                    </div>
+                </div>
                 <div *ngIf="this.modalService.yesOrNoButtons">
                     <div class="yesOrNo" (click)="this.modalService.jogarNovamente()" id="yes">{{this.modalService.sim}}
                     </div>
@@ -57,6 +69,15 @@
             <div class="menu-options" id="sairJogo" [routerLink]="['']"> Sair Conta</div>
         </div>
     </div>
+
+    <!-- <div class="container" *ngIf="this.modalService.pauseMenu">
+            <div class="menu-container">
+                <div class="menu-options" id="menuComeco" (click)="this.modalService.modalPauseConfirmacao()" >
+                    Menu Começo
+                </div>
+                <div class="menu-options" id="continuar" (click)="this.modalService.closePauseConfirmacaoModal()"> Continuar Jogo </div>
+            </div>
+        </div> -->
 
 </body>
 

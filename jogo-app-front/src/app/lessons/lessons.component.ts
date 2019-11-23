@@ -11,6 +11,7 @@ import { Retorno } from '../models/Retorno';
 import { ArrayRetornoRodada } from '../models/ArrayRetornoRodada';
 import { Palavra } from '../models/Palavra';
 import { NgProgressComponent, NgProgress, NgProgressRef } from '@ngx-progressbar/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,13 +28,15 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   constructor(private renderer: Renderer2,
     private VideoService: VideoService,
     private modalService: ModalService,
+    private router: Router,
     private progress: NgProgress) { }
 
 
   progressRef: NgProgressRef;
   progressNumber: number;
   isPaused: boolean = false;
-
+  paused:boolean = false;
+  irMenu:boolean = false;
   score: number = 0;
   private timeOut: any = false;
   private acertou = false;
@@ -83,6 +86,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+   
 
     this.user = {
       Nome: 'a',
@@ -117,7 +121,8 @@ export class LessonsComponent implements OnInit, AfterViewInit {
 
   pausar() {
     this.pauseTimer();
-    this.isPaused = true;
+    this.isPaused = true; 
+    this.paused = true;
   }
 
   retomar() {
@@ -136,6 +141,24 @@ export class LessonsComponent implements OnInit, AfterViewInit {
     this.c = arrayPalavras[2];
     this.d = arrayPalavras[3];
   }
+
+  tutorial(){
+    this.router.navigate(['/menu/tutorial'])
+  }
+
+  modalPauseConfirmacao(){
+    this.paused = false;
+    this.irMenu = true;
+  }
+
+  closePauseConfirmacaoModal(){
+    this.paused = false;
+    this.irMenu =false;
+    this.retomar();
+  }
+
+
+  
 
   i: number = 1;
 

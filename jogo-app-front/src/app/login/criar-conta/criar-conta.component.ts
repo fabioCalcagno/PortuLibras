@@ -33,6 +33,20 @@ export class CriarContaComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.formBuilder.group({
+      Nome: ['',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ]
+      ],
+      Sobrenome: ['',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ]
+      ],
       Username: ['',
         [
           Validators.required,
@@ -135,7 +149,7 @@ export class CriarContaComponent implements OnInit {
     this.cadastrarUsuarioService.criarConta(this.iuser).subscribe((signin :Retorno) => {
       if (signin.Codigo == 200) {
         console.log(signin.Codigo + " " + signin.Mensagem + " " + signin.Data)
-        this.router.navigate(['/lessons'])
+        this.router.navigate(['/menu'])
       }
       else this.user.reset() 
     },
