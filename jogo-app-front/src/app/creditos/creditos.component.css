@@ -11,7 +11,7 @@
     color: white;
     font-size: 450%;
     text-align: center;
-    text-shadow: 4px 4px #fa7268;
+    text-shadow: 4px 4px #EE9386;
 }
 
 .creditos-wrap {
@@ -42,7 +42,7 @@ p {
 }
 
 .container-credits {
-    background-color: #fa7268;
+    background-color: #EE9386;
     display: inline-block;
     vertical-align: middle;
     height: 55%;
@@ -101,7 +101,7 @@ p {
     height: 120%;
     width: 100%;
     left: 0;
-    background-color: #ef5151;
+    background-color: #E47261;
     position: absolute;
     padding-top: 7%;
     vertical-align: middle;
