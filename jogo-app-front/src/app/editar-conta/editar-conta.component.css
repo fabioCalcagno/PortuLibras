@@ -32,6 +32,8 @@ input {
    padding: 0.5rem;
    background-position-x:  4%;
    margin-top: 5%;
+   transition: all .3s cubic-bezier(.18, .89, .32, 1.28);
+   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 #editar-conta{
@@ -59,7 +61,6 @@ input {
     border: none;
     color: white;
     font-size: 200%;
-    box-shadow: 0 0 .2em #d14949, inset 0 0 .2em #ec7e76;
 }
 
 h2 {
