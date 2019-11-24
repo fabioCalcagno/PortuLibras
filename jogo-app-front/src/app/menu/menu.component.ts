@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HeaderService } from '../header/services/header.service';
 import { MenuService } from './services/menu.service';
+import { ModalService } from '../modal/Services/modal.service';
 
 
 @Component({
@@ -11,15 +12,18 @@ import { MenuService } from './services/menu.service';
 export class MenuComponent implements OnInit, OnDestroy {
   
 
-  constructor(private headerService:HeaderService, private menuService: MenuService) { 
-    localStorage.setItem('token', 'token'); // tem que ser implementado no login
+  constructor(private headerService:HeaderService, 
+              private menuService: MenuService,
+              private modalService:ModalService       ) { 
+    localStorage.setItem('token', 'tokenx'); // tem que ser implementado no login
+    this.headerService.opcaoVoltar = false;
   }
 
  
 
   ngOnInit() {
       this.menuService.mostraMenu = true;
-       
+
       this.menuService.verificaMenuLogado()
       
      

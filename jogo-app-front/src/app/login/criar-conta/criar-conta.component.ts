@@ -7,6 +7,8 @@ import { NgIf } from '@angular/common';
 
 import { CadastrarUsuarioService } from './services/cadastro/cadastrar-usuario.service'
 import { Retorno } from '../../models/Retorno';
+import { HeaderService } from '../../header/services/header.service';
+
 
 @Component({
   selector: 'app-criar-conta',
@@ -27,9 +29,13 @@ export class CriarContaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cadastrarUsuarioService: CadastrarUsuarioService,
+    private headerService:HeaderService,
     private router: Router
 
-  ) { }
+  ) { 
+    this.headerService.opcaoVoltar = true;
+    
+  }
 
   ngOnInit() {
     this.user = this.formBuilder.group({
@@ -43,27 +49,27 @@ export class CriarContaComponent implements OnInit {
       Sobrenome: ['',
         [
           Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(50),
+          Validators.minLength(3),
+          Validators.maxLength(20),
         ]
       ],
       Username: ['',
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(10),
+          Validators.maxLength(20),
         ]
       ],
       Senha: ['',
         [Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(20),
+        Validators.minLength(3),
+        Validators.maxLength(10),
         ]
       ],
       reSenha: ['',
         [Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(20),
+        Validators.minLength(3),
+        Validators.maxLength(10),
         ]
       ],
       Email: ['',
@@ -80,86 +86,56 @@ export class CriarContaComponent implements OnInit {
 
   campoValidate(user: FormGroup) {
     this.erro.msg = '';
-    if (!user.controls['Nome'].valid) {
-      console.log(user)
-      if (user.controls['Nome'].errors['required']) {
-        this.erro.msg = "Preencher campo nome";
-        return false;
-      }
-      else if (user.controls['Nome'].errors['minlength']) {
-        this.erro.msg = "Preencher nome igual exemplo (Rui)";
-        return false;
-      }
-      else if (user.controls['Nome'].errors['maxlength']) {
-        this.erro.msg = "Preencher nome igual exemplo (Rui)";
-        return false;
-      }
-    }
-    if (!user.controls['Sobrenome'].valid) {
-      console.log(user)
-      if (user.controls['Sobrenome'].errors['required']) {
-        this.erro.msg = "Preencher campo sobrenome";
-        return false;
-      }
-      else if (user.controls['Sobrenome'].errors['minlength']) {
-        this.erro.msg = "Preencher sobrenome igual exemplo (Eu)";
-        return false;
-      }
-      else if (user.controls['Sobrenome'].errors['maxlength']) {
-        this.erro.msg = "Preencher sobrenome igual exemplo (Eu)";
-        return false;
-      }
-    }
     if (!user.controls['Username'].valid) {
       console.log(user)
       if (user.controls['Username'].errors['required']) {
-        this.erro.msg = "Preencher campo usuário";
+        this.erro.msg = "usuário é requerido";
         return false;
       }
       else if (user.controls['Username'].errors['minlength']) {
-        this.erro.msg = "Preencher usuário igual exemplo (Eu123456)";
+        this.erro.msg = "tamanho minino de usuário são 3 letras";
         return false;
       }
       else if (user.controls['Username'].errors['maxlength']) {
-        this.erro.msg = "Preencher usuário igual exemplo (Eu123456)";
+        this.erro.msg = "tamanho maximo de usuario são 20 letras";
         return false;
       }
     }
     if (!user.controls['Email'].valid) {
       if (user.controls['Email'].errors['required']) {
-        this.erro.msg = "Preencher campo e-mail";
+        this.erro.msg = "Email é requerido";
         return false;
       }
       else if (user.controls['Email'].errors['email']) {
-        this.erro.msg = "Preencher com e-mail válido";
+        this.erro.msg = "formatação de Email incompátivel";
         return false;
       }
     }
     if (!user.controls['Senha'].valid) {
       if (user.controls['Senha'].errors['required']) {
-        this.erro.msg = "Preencher campo senha)";
+        this.erro.msg = "senha é requerido";
         return false;
       }
       else if (user.controls['Senha'].errors['minlength']) {
-        this.erro.msg = "Preencher senha igual exemplo (Senha123)";
+        this.erro.msg = "tamanho minino de senha são 3 letras";
         console.log(user.controls['Senha'].value, 'askjhdjakshdkasjhdkl')
         return false;
       }
       else if (user.controls['Senha'].errors['maxlength']) {
-        this.erro.msg = "Preencher senha igual exemplo (Senha123)";
+        this.erro.msg = "tamanho maximo de senha é de 12 letras";
 
         return false;
       }
     }
     if (!user.controls['termo'].valid) {
-      this.erro.msg = "Aceitar Termos de Uso"
+      this.erro.msg = "é nescessario aceitar o termo de uso"
       return false;
     }
    
     else if (!(user.controls['Senha'].value == user.controls['reSenha'].value)) {
       console.log('senha ' + user.controls['Senha'].value)
       console.log('REEEsenha ' + user.controls['reSenha'].value)
-      this.erro.msg = "Senha combinar não"
+      this.erro.msg = "confirmação de senha não esta compativel com senha"
       return false;
     }
   

@@ -1,7 +1,10 @@
 <div class="container-menu bg-cor-1" *ngIf="this.menuService.mostraMenu">
     <div class="menu-wrap col-md-5">
         <div class="title">PortuLibras</div>
-        <div class="menu-options bg-amarelo" [routerLink]="['/lessons']">
+        <div *ngIf="this.menuService.menuLogado" class="menu-options bg-amarelo" [routerLink]="['/lessons']">
+            <img src="../../assets/imagens/play-arrow.png" width="50px" alt=""> Jogar Jogo
+        </div>
+        <div *ngIf="! this.menuService.menuLogado" class="menu-options bg-amarelo" (click)="this.modalService.modalMenuNaoLogadoJogar()"  >
             <img src="../../assets/imagens/play-arrow.png" width="50px" alt=""> Jogar Jogo
         </div>
         <div  *ngIf=" this.menuService.menuLogado"  class="menu-options bg-azul" [routerLink]="['/menu/pontuacao']">
@@ -19,4 +22,4 @@
     </div>
 </div>
 
-<app-modal></app-modal>
+<app-modal></app-modal>             

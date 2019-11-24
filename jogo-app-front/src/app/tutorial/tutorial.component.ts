@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HeaderService } from '../header/services/header.service'
+
 @Component({
   selector: 'app-tutorial',
   templateUrl: './tutorial.component.html',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TutorialComponent implements OnInit {
 
-  constructor() { }
+  constructor(private headerService:HeaderService) { 
+    this.headerService.opcaoVoltar = true;
+  }
 
   ngOnInit() {
   }

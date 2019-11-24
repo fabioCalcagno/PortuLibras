@@ -15,14 +15,20 @@ export class ModalService {
   yesOrNoButtons: boolean = false;
   yesOrNoButtonsPerderProgresso:boolean;
   okButton: boolean = false;
-  sim: string = 'Sim';
-  nao: string = 'Não';
+  sim: any = 'Sim';
+  nao: any = 'Não';
   mostraOpcoes = false;
   showModalTime: boolean = false;
   statusBarService: StatusBarService;
   videoService: VideoService
   opcoesUser:boolean
   pauseMenu:boolean = false;
+
+  yesFunction:Function;
+  noFunction:Function
+  
+
+
 
 
 
@@ -125,6 +131,24 @@ export class ModalService {
     this.yesOrNoButtons = false;
     this.okButton = true;
 
+  }
+
+  modalMenuNaoLogadoJogar(){
+    this.showModal = true;
+    this.alertTitle = "Usuário conectado-não";
+    this.yesOrNoButtons = true;
+    this.okButton = false;
+    this.sim ="Entrar Conta"
+    this.yesFunction = () =>{
+       this.router.navigate(['']);
+       this.closeModal()
+      
+    } 
+    this.nao = 'Cadastrar';
+    this.noFunction = () =>{
+      this.router.navigate(['/menu/criarconta']);
+      this.closeModal()
+    }
   }
 
   modalVerificarConfirmacaoEmail() {

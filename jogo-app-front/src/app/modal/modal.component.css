@@ -19,6 +19,8 @@ paleta {
 }
 
 .alert-title {
+    padding-top: 5%;
+    padding-bottom: 5%;
     color: white;
 }
 
@@ -29,10 +31,10 @@ paleta {
 .alert-wrapper-not {
     position: absolute;
     margin-top: 10%;
-    width: 30%;
+    width: 40%;
     height: fit-content;
     padding-bottom: 2%;
-    z-index: 3;
+    z-index: 9999;
     margin-left: 25%;
     background-color: #403232;
     text-align: center;
@@ -42,7 +44,7 @@ paleta {
 }
 
 .yesOrNo {
-    display: inline-block;
+    display: inline;
     font-size: 200%;
     color: white;
     padding-bottom: -5%;

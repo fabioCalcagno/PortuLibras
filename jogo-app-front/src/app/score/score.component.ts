@@ -15,7 +15,11 @@ export class ScoreComponent implements OnInit {
 
   constructor(private headerService: HeaderService,
               private headerComponent:HeaderComponent, 
-              private scoreService:ScoreService) { }
+              private scoreService:ScoreService) { 
+                this.headerService.opcaoVoltar = true;
+               
+
+              }
 
 
 private iScore: IScore;

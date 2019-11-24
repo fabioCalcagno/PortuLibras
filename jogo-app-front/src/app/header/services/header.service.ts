@@ -16,11 +16,13 @@ export class HeaderService {
               private menuService:MenuService,
              
                 ) { 
-    
+                  this.opcaoVoltar = true;
   }
 
   rotaVoltar:string = '/menu';
   menuLogado:boolean = false;
+  telaVoltar:string = "Menu";
+  opcaoVoltar:boolean = true;
   
   mostraOpcoes(item:boolean){
       this.modalService.mostraOpcoesUsuario(item);

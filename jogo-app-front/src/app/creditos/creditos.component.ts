@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderService } from '../header/services/header.service';
 
 @Component({
   selector: 'app-creditos',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreditosComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private headerService:HeaderService) {
+    this.headerService.opcaoVoltar = true;
+ }
   ngOnInit() {
   }
 
