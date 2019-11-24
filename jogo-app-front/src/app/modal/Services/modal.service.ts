@@ -158,6 +158,14 @@ export class ModalService {
     this.okButton = false;
     this.sim = 'E-mail trocar';
     this.nao = 'Continuar';
+    this.yesFunction = ()=>{
+      this.router.navigate(['/menu/criarconta']);
+      this.closeModal()
+    }
+    this.noFunction = ()=>{
+      this.router.navigate(['/menu']);
+      this.closeModal()
+    }
   }
 
   modalExcluirConta() {

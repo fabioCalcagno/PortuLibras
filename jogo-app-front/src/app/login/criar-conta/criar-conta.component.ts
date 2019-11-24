@@ -154,6 +154,7 @@ export class CriarContaComponent implements OnInit {
     console.log(this.iuser , 'aaaaa')
     this.cadastrarUsuarioService.criarConta(this.iuser).subscribe((signin :Retorno) => {
       if (signin.Codigo == 200) {
+        window.localStorage.setItem('primeiroLogin', "true")
         console.log(signin.Codigo + " " + signin.Mensagem + " " + signin.Data)
         this.router.navigate(['/menu'])
       }
