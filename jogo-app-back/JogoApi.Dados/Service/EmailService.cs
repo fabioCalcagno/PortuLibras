@@ -25,6 +25,11 @@ namespace JogoApi.Dados.Service
 
         public Retorno EnviaResetSenha(string email)
         {
+            if(email.Contains("\""))
+            {
+                email = email.Replace("\"", "");
+            }
+
             //buscar usuario por email
             var usuario = new UsuarioDTO()
             {
