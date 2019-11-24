@@ -12,7 +12,7 @@ export class CriarContaService {
     'Content-Type': 'application/json'
   })
 
-  url = 'localhost:5000/api/Email/EnviaResetSenha?email='
+  url = 'http://localhost:5000/api/Email/EnviaResetSenha?email='
 
   recuperarSenha(user){
       return this.http.get(this.url + user , { headers:this.headers })
