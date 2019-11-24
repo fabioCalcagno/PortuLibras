@@ -24,3 +24,7 @@
 .header-divs:nth-of-type(2) {
     text-align: right;
 }
+
+.transaladar{
+    transform: rotate(180deg);
+}

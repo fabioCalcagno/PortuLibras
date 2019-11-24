@@ -26,11 +26,11 @@ export class HeaderComponent implements OnInit {
 
  
   
-  ngOnInit(): void {
-
-   
-    
+  ngOnInit(): void {  
      this.username = 'samuel';
+
+     this.headerService.verificaMenuLogado();
+     
     
     
   }

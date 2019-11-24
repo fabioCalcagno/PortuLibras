@@ -2,6 +2,12 @@
     <div class="header-divs col-md-6" [routerLink]="['/menu']">
         <img src="../../assets/imagens/long-arrow-pointing-to-left.png" width="50px" alt=""> {{currentScreen}}
     </div>
-    <div class="header-divs col-md-6" (click)="this.headerService.mostraOpcoes(true) "> {{username}} </div>
+   <div *ngIf="this.headerService.menuLogado" class="header-divs col-md-6" (click)="this.headerService.mostraOpcoes(true) "> {{username}} </div>
+    <div *ngIf="!this.headerService.menuLogado"  class="header-divs col-md-6" >Entrar Conta
+        <img  class="transaladar  d-inline-block align-top " width="50" height="50" src="../../assets/imagens/sair.png" alt="">
+    </div>
+
 </div>
+
+
 <router-outlet></router-outlet>

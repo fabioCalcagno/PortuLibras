@@ -4,13 +4,16 @@
         <div class="menu-options bg-amarelo" [routerLink]="['/lessons']">
             <img src="../../assets/imagens/play-arrow.png" width="50px" alt=""> Jogar Jogo
         </div>
-        <div class="menu-options bg-azul" [routerLink]="['/menu/pontuacao']">
+        <div  *ngIf=" this.menuService.menuLogado"  class="menu-options bg-azul" [routerLink]="['/menu/pontuacao']">
             <img src="../../assets/imagens/star.png" width="50px" alt=""> Placar
+        </div>
+        <div *ngIf="! this.menuService.menuLogado" class="menu-options bg-azul" [routerLink]="['/menu/criarconta']">  <!-- menu nao logado -->
+            <img src="../../assets/imagens/star.png" width="50px" alt=""> Cadastrar
         </div>
         <div class="menu-options bg-verde" [routerLink]="['/menu/creditos']">
             <img src="../../assets/imagens/information-symbol.png" width="50px" alt=""> Créditos
         </div>
-        <div class="menu-options bg-vermelho" [routerLink]="['']">
+        <div *ngIf=" this.menuService.menuLogado" class="menu-options bg-vermelho" [routerLink]="['']">
             <img src="../../assets/imagens/sair.png" width="50px" alt=""> Sair Jogo
         </div>
     </div>

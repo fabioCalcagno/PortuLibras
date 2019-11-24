@@ -20,12 +20,18 @@ export class HeaderService {
   }
 
   rotaVoltar:string = '/menu';
+  menuLogado:boolean = false;
   
   mostraOpcoes(item:boolean){
       this.modalService.mostraOpcoesUsuario(item);
       this.menuService.mostrarMenu(!item)
   }
 
+
+  verificaMenuLogado(){
+    this.menuLogado = this.menuService.verificaMenuLogado()
+    console.log('xxxxxxxxxx', this.menuLogado)
+  }
 
  
 
