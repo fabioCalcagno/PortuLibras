@@ -1,13 +1,12 @@
 
-    .container-criar-conta {
-        height: 100%;
-        min-height: calc(100vh - 100px);
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: flex-start;
-        align-items: center;
-     }
-
+.container-criar-conta {
+    height: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 input {
     padding: 0.5rem;
@@ -30,8 +29,9 @@ input {
 
 .botao{
    background-position-y: center;
-   padding-left: 7%;
+   padding: 0.5rem;
    background-position-x:  4%;
+   margin-top: 5%;
 }
 
 #editar-conta{
@@ -62,16 +62,6 @@ input {
     box-shadow: 0 0 .2em #d14949, inset 0 0 .2em #ec7e76;
 }
 
-
-
-
-
- 
-
-
-
-
-
 h2 {
     color: white;
     font-size: 200%;
@@ -82,11 +72,6 @@ h3 {
     font-size: 2em;
     text-align: center;
 }
-
-
-
-
-
 .error {
     background-color: #E47261;
     font-size: 1em;
@@ -118,4 +103,15 @@ h3 {
     color: white;
     font-size: 110%;
     font-family: 'Skranji-Regular';
+}
+
+.botao{
+    border:0px;
+    border-radius: 0px;
+}
+
+.botao:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 }
