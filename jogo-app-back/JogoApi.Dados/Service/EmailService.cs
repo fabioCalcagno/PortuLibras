@@ -243,5 +243,21 @@ namespace JogoApi.Dados.Service
 
             return EnviaEmail(usuario.Email, body, assunto);
         }
+
+        public Retorno ReenviaResetSenha(string email)
+        {
+            if (email.Contains("\""))
+            {
+                email = email.Replace("\"", "");
+            }
+
+            var usuario = BuscaUsuario(new UsuarioDTO() { Email = email });
+
+            //busca novo token alterado
+            var tokenEmail = BuscarTokenEmail(new TokenEmailDTO() { CodigoUsuario = usuario.CodigoUsuario });
+
+            //envia email com novo token e retorna mensagem
+            return MontaEmailSenha(tokenEmail, usuario.Email);
+        }
     }
 }
