@@ -15,13 +15,19 @@ export class MenuComponent implements OnInit, OnDestroy {
   constructor(private headerService:HeaderService, 
               private menuService: MenuService,
               private modalService:ModalService       ) { 
-    localStorage.setItem('token', 'tokenx'); // tem que ser implementado no login
+    localStorage.setItem('token', 'token'); // tem que ser implementado no login
     this.headerService.opcaoVoltar = false;
   }
 
  
 
   ngOnInit() {
+    let primeiroLogin = window.localStorage.getItem('primeiroLogin');
+    console.log('primeiroLogin' , primeiroLogin);
+    if(primeiroLogin == 'true'){
+      this.modalService.modalVerificarConfirmacaoEmail();
+      localStorage.removeItem('primeiroLogin')
+    }
       this.menuService.mostraMenu = true;
 
       this.menuService.verificaMenuLogado()
