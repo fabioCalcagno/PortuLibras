@@ -201,6 +201,8 @@ export class ModalService {
     this.alertTitle = "Verificar e-mail + preencher número válido";
     this.yesOrNoButtons = false;
     this.okButton = true;
+    console.log('fui-chamado', this.showModal)
+    
   }
 
 

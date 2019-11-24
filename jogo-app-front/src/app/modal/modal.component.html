@@ -22,12 +22,6 @@
                     <div class="yesOrNo" id="yes" (click)="this.modalService.yesFunction()"  >{{this.modalService.sim}}</div>
                     <div class="yesOrNo" (click)="this.modalService.noFunction()" id="no">{{this.modalService.nao}}</div>
                 </div>
-                <div *ngIf="this.modalService.yesOrNoButtonsPerderProgresso">
-                        <div class="yesOrNo" (click)="this.modalService.pauseConfirmouSaida()" id="yes">{{this.modalService.sim}}
-                        </div>
-                        <div class="yesOrNo" (click)="this.modalService.closePauseConfirmacaoModal()" id="no">{{this.modalService.nao}}
-                        </div>
-                    </div>
                 <div *ngIf="this.modalService.okButton">
                     <div class="ok" (click)="this.modalService.closeModal()">ok</div>
                 </div>

@@ -35,7 +35,7 @@ paleta {
     height: fit-content;
     padding-bottom: 2%;
     z-index: 9999;
-    margin-left: 25%;
+    background-position-x: center;
     background-color: #403232;
     text-align: center;
     font-size: 80%;

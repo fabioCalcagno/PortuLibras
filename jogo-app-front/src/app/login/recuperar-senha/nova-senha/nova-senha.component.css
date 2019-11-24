@@ -1,0 +1,105 @@
+
+.container-criar-conta {
+    height: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+input {
+    padding: 0.5rem;
+}
+
+.criar-conta-wrap {
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.title {
+    text-align: center;
+    color: white;
+    font-size: 450%;
+    text-shadow: 4px 4px #EE9386;
+}
+
+.botao{
+   background-position-y: center;
+   padding: 0.5rem;
+   width: 100%;
+   font-size: 2em;
+   background-image: url('../../../../assets/imagens/pencil-edit-button.png');
+   background-position-x: 20%;
+   background-origin: content-box;
+   background-repeat: no-repeat;
+   background-color: #4E728F;
+   background-size: 8%;
+   
+  
+}
+
+
+.input {
+    border: none;
+    color: white;
+    font-size: 200%;
+    box-shadow: 0 0 .2em #d14949, inset 0 0 .2em #ec7e76;
+}
+
+h2 {
+    color: white;
+    font-size: 200%;
+}
+
+h3 {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
+.error {
+    background-color: #E47261;
+    font-size: 1em;
+    color: black;
+}
+
+
+::-webkit-input-placeholder {
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
+
+ :-moz-placeholder {
+    /* Firefox 18- */
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
+
+ ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
+
+ :-ms-input-placeholder {
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
+
+.botao{
+    border:0px;
+    border-radius: 0px;
+}
+
+.botao:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}

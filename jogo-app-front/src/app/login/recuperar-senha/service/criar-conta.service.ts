@@ -12,12 +12,18 @@ export class CriarContaService {
     'Content-Type': 'application/json'
   })
 
-  url = 'localhost:5000/api/Email/EnviaResetSenha?email='
+  url = 'http://localhost:5000/api/Email/EnviaResetSenha?email=';
+  urlEnviaCodigo = 'http://localhost:5000/api/Email/ValidaTokenEmail';
 
   recuperarSenha(user){
       return this.http.get(this.url + user , { headers:this.headers })
   }
 
+
+  enviarCodigoConfirmacaoEmail(emailPlusCodigo){
+    console.log(emailPlusCodigo , 'body')
+    return this.http.post(this.urlEnviaCodigo, emailPlusCodigo , {headers:this.headers} )
+  }
 
 
 }

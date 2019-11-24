@@ -4,6 +4,10 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { HeaderService } from '../../header/services/header.service';
 import { HeaderComponent } from '../../header/header.component'
 import { CriarContaService } from 'src/app/login/recuperar-senha/service/criar-conta.service';
+import { Retorno } from '../../models/Retorno';
+import { ModalService } from '../../modal/Services/modal.service';
+import { EmailPlusCodigo } from '../../models/EmailPlusCodigo'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-recuperar-senha',
   templateUrl: './recuperar-senha.component.html',
@@ -12,54 +16,94 @@ import { CriarContaService } from 'src/app/login/recuperar-senha/service/criar-c
 export class RecuperarSenhaComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
-              private headerService:HeaderService,
-              private CriarContaService:CriarContaService
-  
-                                                    ) { }
+    private headerService: HeaderService,
+    private router: Router,
+    private modalService: ModalService,
+    private CriarContaService: CriarContaService,
+    
 
-  private user : FormGroup; 
+  ) { }
+
+  private Email: FormGroup;
+  private codigoReset: FormGroup;
+   EmailPlusCodigo:EmailPlusCodigo
+
+
+  
 
 
   confirmacaoEmail = true;
 
-   confirmaEmail(){
+  confirmaEmail() {
     this.confirmacaoEmail = false;
-  
-   }
+
+  }
 
 
 
 
   ngOnInit() {
-
-    this.confirmacaoEmail=true;
-
-    this.user = this.formBuilder.group({
-
-      email: [null,
+    this.confirmacaoEmail = true;
+    this.Email = this.formBuilder.group({
+      Email: [null,
         [
           Validators.required,
-        
-          ]
+
+        ]
       ],
-     
     })
-}
 
-onSubmit(){
-  console.log(this.user.value)
- let email = JSON.stringify(this.user.controls['email'].value)
- console.log('email' , email)
-  this.CriarContaService.recuperarSenha(email).subscribe(subscribe => {
-    if(subscribe){
-      console.log('fff')
+    this.codigoReset = this.formBuilder.group({
+      CodigoReset: [null,
+        [
+          Validators.required,
+        ]
+      ]
+    })
+
+    
+
+  }
+
+  onSubmit() {
+    console.log(this.Email.value)
+    let email = this.Email.controls['Email'].value;
+    localStorage.setItem('Email', email)
+    this.CriarContaService.recuperarSenha(email).subscribe((subscribe: Retorno) => {
+      if (subscribe.Codigo == 200) {
+        this.modalService.modalRecuperacaoConta();
+        this.confirmacaoEmail = false;
+      }
+    })
+  }
+
+  reenviaTokenEmail(email) {
+
+  }
+
+
+  enviaCodigo() {
+   
+    let Email = localStorage.getItem('Email')
+    let CodigoReset =  this.codigoReset.controls['CodigoReset'].value
+    console.log(CodigoReset, 'aaaaaaaaaaaaaaaaaa')
+    let body = {
+      Email,
+      CodigoReset
     }
-  })
+   
+    this.CriarContaService.enviarCodigoConfirmacaoEmail(body)
+       .subscribe((subscribe: Retorno) => {
+
+        if (subscribe.Codigo == 200) {
+          this.router.navigate(['/menu/redefinirsenha'])
+        }
+        else console.log(subscribe.Mensagem)
+      })
+
+  } 
+
+
+
 }
 
-
-
-
-
-
-}

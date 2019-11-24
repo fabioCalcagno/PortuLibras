@@ -16,7 +16,8 @@ import { StatusBarComponent } from './status-bar/status-bar.component';
 import { CreditosComponent } from './creditos/creditos.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { TutorialComponent } from './tutorial/tutorial.component';
-import { EditarContaComponent } from './editar-conta/editar-conta.component'
+import { EditarContaComponent } from './editar-conta/editar-conta.component';
+import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EditarContaComponent } from './editar-conta/editar-conta.component'
     StatusBarComponent,
     CreditosComponent,
     TutorialComponent,
-    EditarContaComponent
+    EditarContaComponent,
+    NovaSenhaComponent
 
   ],
   imports: [

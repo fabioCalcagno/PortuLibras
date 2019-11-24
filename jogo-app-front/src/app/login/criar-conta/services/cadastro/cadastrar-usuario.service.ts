@@ -12,7 +12,7 @@ export class CadastrarUsuarioService {
 
   private url:string = 'http://localhost:5000/api/login/CadastrarUsuario'  // ver se qual é a url usada na api e se o processo é o post mesmo
 
-
+    primeiroLogin:boolean = false;
  
     private  headers= new HttpHeaders({
       'Content-Type': 'application/json'
