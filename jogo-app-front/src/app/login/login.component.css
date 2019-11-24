@@ -48,8 +48,6 @@ input {
     border-bottom-color: transparent;
     color: white;
     font-size: 200%;
-    box-shadow: 0 0 .2em #d14949, inset 0 0 .2em #ec7e76;
-    text-shadow: 0 0 .2em #d14949;
 }
 
 .entrar {
@@ -58,7 +56,7 @@ input {
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
-    width: 100%;
+    width: 99.2%;
     height: 100%;
     border: none;
     font-family: 'Skranji-Regular';
