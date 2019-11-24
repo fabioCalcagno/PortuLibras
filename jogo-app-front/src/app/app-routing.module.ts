@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { ModalComponent } from './modal/modal.component';
 import{ CreditosComponent } from './creditos/creditos.component'
 import { TutorialComponent } from './tutorial/tutorial.component';
+import { EditarContaComponent } from '../app/editar-conta/editar-conta.component'
 
 
 const routes: Routes = [
@@ -53,6 +54,10 @@ const routes: Routes = [
     {
       path: 'tutorial',
       component: TutorialComponent,
+    },
+    {
+      path: 'editarconta',
+      component: EditarContaComponent,
     },
     ]
   }
