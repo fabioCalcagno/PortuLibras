@@ -111,22 +111,22 @@ paleta {
 }
 
 #voltar {
-    background-color: #22e245;
+    background-color: #4A7351;
     background-image: url('../../assets/imagens/long-arrow-pointing-to-left.png');
 }
 
 #placar {
-    background-color: #35a7ff;
+    background-color: #4E728F;
     background-image: url('../../assets/imagens/star.png');
 }
 
 #editar {
-    background-color: #E47261;
+    background-color: #EBCA53;
     background-image: url('../../assets/imagens/pencil-edit-button.png');
 }
 
 #sairJogo {
-    background-color: #C4C4C4;
+    background-color: #BA3F23;
     background-image: url('../../assets/imagens/sair.png');
 }
 
