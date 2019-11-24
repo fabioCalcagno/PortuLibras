@@ -204,8 +204,6 @@ namespace JogoApi.Dados.DAO.Repository
 
         public int ExcluirUsuario(int codigoUsuario)
         {
-            DataSet dataSet = new DataSet();
-
             var connection = conexao.CriaConexao();
             conexao.AbrirConexao(connection);
 

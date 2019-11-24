@@ -11,5 +11,6 @@ namespace JogoApi.Dados.Interface
         List<UsuarioDTO> ListarUsuario(UsuarioDTO usuario);
         Retorno Acessar(UsuarioDTO usuario);
         Retorno ConfirmaConta(string email);
+        Retorno ExcluirConta(UsuarioDTO usuario);
     }
 }
