@@ -48,5 +48,19 @@ namespace JogoApi.Controllers
                 return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
             }
         }
+
+        [HttpGet]
+        [ActionName("ReenviaResetSenha")]
+        public IActionResult ReenviaResetSenha(string email)
+        {
+            try
+            {
+                return Content(JsonConvert.SerializeObject(service.ReenviaResetSenha(email)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+            catch (Exception ex)
+            {
+                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+        }
     }
 }

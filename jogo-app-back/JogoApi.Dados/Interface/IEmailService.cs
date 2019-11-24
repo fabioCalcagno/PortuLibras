@@ -8,5 +8,6 @@ namespace JogoApi.Dados.Interface
         Retorno ValidaTokenEmail(ResetSenha resetSenha);
         Retorno EnviaEmail(string email, string body, string assunto);
         Retorno EnviaEmailConfirmacao(UsuarioDTO usuario);
+        Retorno ReenviaResetSenha(string email);
     }
 }

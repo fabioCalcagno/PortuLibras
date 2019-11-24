@@ -180,7 +180,7 @@ namespace JogoApi.Dados.Service
 
         public Retorno ValidaTokenEmail(ResetSenha resetSenha)
         {
-            //busca usuario por email e username
+            //busca usuario por email
             var usuario = BuscaUsuario(new UsuarioDTO() { Email = resetSenha.Email });
 
             //verifica se email existe
@@ -242,6 +242,20 @@ namespace JogoApi.Dados.Service
             string assunto = HelperEmail.AssuntoConfirmacao();
 
             return EnviaEmail(usuario.Email, body, assunto);
+        }
+
+        public Retorno ReenviaResetSenha(string email)
+        {
+            if (email.Contains("\""))
+            {
+                email = email.Replace("\"", "");
+            }
+
+            var usuario = BuscaUsuario(new UsuarioDTO() { Email = email });
+
+            var tokenEmail = BuscarTokenEmail(new TokenEmailDTO() { CodigoUsuario = usuario.CodigoUsuario });
+
+            return MontaEmailSenha(tokenEmail, usuario.Email);
         }
     }
 }
