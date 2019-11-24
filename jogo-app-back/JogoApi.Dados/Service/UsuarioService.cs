@@ -231,5 +231,25 @@ namespace JogoApi.Dados.Service
                 // Token = "FALTA"
             };
         }
+
+        public Retorno ExcluirConta(UsuarioDTO usuario)
+        {
+            var retorno = repository.ExcluirUsuario(usuario.CodigoUsuario);
+
+            if (retorno == 0)
+            {
+                return new Retorno()
+                {
+                    Codigo = 500,
+                    Mensagem = "Falha ao excluir usuário"
+                };
+            }
+
+            return new Retorno()
+            {
+                Codigo = 200,
+                Mensagem = "Usuário excluído"
+            };
+        }
     }
 }

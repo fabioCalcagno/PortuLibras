@@ -36,5 +36,20 @@ namespace JogoApi.Controllers
                 return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
             }
         }
+
+        [HttpPost]
+        [ActionName("ExcluirConta")]
+        public IActionResult ExcluirConta([FromBody]UsuarioDTO usuario)
+        {
+            try
+            {
+                return Content(JsonConvert.SerializeObject(service.ExcluirConta(usuario)), new MediaTypeHeaderValue("application/json").ToString());
+
+            }
+            catch (Exception ex)
+            {
+                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+        }
     }
 }
