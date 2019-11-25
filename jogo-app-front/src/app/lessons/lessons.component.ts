@@ -50,6 +50,13 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   c: Palavra;
   d: Palavra;
 
+body : {
+  CodigoUsuario:number,
+	CodigoJogo:number,
+	Score:number,
+}
+
+
   private video: any;
   private unsinitizedVideo;
 
@@ -99,11 +106,13 @@ export class LessonsComponent implements OnInit, AfterViewInit {
 
     this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
       let a = JSON.parse(jogadas.Data) as ArrayRetornoRodada;
+      console.log(a)
       a.Partida.forEach(element => {
         this.jogadas.push(element)
       });
 
       this.jogada = this.jogadas[0] as RetornoRodada;
+      localStorage.setItem('CodigoUsuario', 'this.user.CodigoUsuario')
       this.arrayPalavras = this.jogada.Palavras;
       this.carregaPalavra(this.arrayPalavras)
       this.video = this.jogada.Diretorio
@@ -131,7 +140,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   }
 
   onCompleteBar() {
-    this.modalService.tempoAcabar();
+    this.modalService.lessonsjogoAcabar(this.score);
   }
 
 
@@ -157,42 +166,61 @@ export class LessonsComponent implements OnInit, AfterViewInit {
     this.retomar();
   }
 
+  desabilitarQuestoes(){
+    this.paused = true;
+    this.irMenu =true;
+  }
 
-  
+
+Pontos:number;
 
   i: number = 1;
 
   onSubmit(item) {
+    console.log(this.i , 'inicio')
 
-    console.log(item.CodigoAcerto, 'heiheouletsgo')
+    if(this.i === 15 ){
+      if(item.CodigoAcerto === 1 ){this.score+=10}
+        if(item.CodigoAcerto===0 ){this.score-=1}
 
-    if (item.CodigoAcerto === 1) {
+        this.modalService.lessonsjogoAcabar(this.score);
+          this.Pontos = this.score
+        this.VideoService.salvarPontuacao(this.user.CodigoUsuario , this.Pontos).subscribe((subscribe:Retorno)=>{
+          if(subscribe.Codigo == 200){
+            console.log(subscribe.Mensagem)
+          }else console.log(subscribe.Mensagem)
+        })
+      }
 
-      this.jogada = this.jogadas[this.i] as RetornoRodada;
-      this.arrayPalavras = this.jogada.Palavras;
-      this.carregaPalavra(this.arrayPalavras)
-      this.setaVideo(this.jogadas[this.i].Diretorio)
-      this.i++
-
-      if (this.i == 14) {
+    if (item.CodigoAcerto === 1 && this.i <=15 ) {
+     
+        this.jogada = this.jogadas[this.i] as RetornoRodada;
+        this.arrayPalavras = this.jogada.Palavras;
+        this.carregaPalavra(this.arrayPalavras)
+        this.setaVideo(this.jogadas[this.i].Diretorio)
+        this.score +=10;
+        this.i++;
+        console.log(this.i , '<15');
+        }
+          
+     else{
+       this.i += 0
+      if( this.score !== 0 ) {
+        this.score -=1;
+      }
+      else{
+        this.score = 0;
+      }
+      
+      /*  if (this.i === 15) {
+        console.log(this.i, 'i final')
         this.modalService.jogoAcabar()
-        this.subscription$.unsubscribe()
-      }
-
-      if (this.score > 0) {
-        this.score = this.score + 10;
-      } else this.score = 10;
-
-
-    } else {
-      if (this.score == 0) {
-        this.score = 0
-      }
-      else {
-        this.score = this.score - 1;
-      }
-
+      /*  this.VideoService.salvarPontuacao() */
+       
     }
+      
+
+
   }
 
 }

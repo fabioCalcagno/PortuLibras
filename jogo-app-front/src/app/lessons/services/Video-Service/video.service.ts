@@ -16,6 +16,7 @@ export class VideoService {
               ) { }
 
   url = 'http://localhost:5000/api/jogo/NovoJogo';
+  urlPontos = 'http://localhost:5000/api/pontos/RegistrarPontos'
 
   private  headers= new HttpHeaders({
     'Content-Type': 'application/json'
@@ -34,6 +35,12 @@ export class VideoService {
      console.log('user req' , user)
     /*  return of(this.mock); */
      return this.http.post(this.url, user, {headers: this.headers})
+   }
+
+
+   salvarPontuacao(codigoUsuario , Pontos){
+    console.log(codigoUsuario , Pontos)
+     return this.http.post(this.urlPontos, codigoUsuario + Pontos, { headers: this.headers } )
    }
 
    

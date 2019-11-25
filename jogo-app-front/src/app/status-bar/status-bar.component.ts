@@ -26,7 +26,7 @@ export class StatusBarComponent implements OnInit {
       console.log('em execução ', observe)
       this.timeOut = observe;
       if (this.timeOut === true) {
-        this.modalService.tempoAcabar()
+     
         this.subscription$.unsubscribe();
       }
       console.log(observe)

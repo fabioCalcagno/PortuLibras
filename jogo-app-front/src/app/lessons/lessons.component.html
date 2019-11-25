@@ -34,6 +34,8 @@
         </div>
     </div>
 
+    <app-modal></app-modal>
+
     <div *ngIf="irMenu" class="alert-wrapper-not">
         <div class="alert-modal">
             <h1 class="alert-title" id="not"> Você perder progresso! Você ter certeza? </h1>
@@ -48,7 +50,6 @@
 
 
             <div class="game-container col-12">
-
                 <div class="questions-container col-md-8">
                     <h2>Qual Palavra?</h2>
                     <div class="questions-wrap" *ngIf="!paused && !irMenu"  >

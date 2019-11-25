@@ -18,7 +18,7 @@ import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senh
 const routes: Routes = [
   {
     path: 'teste',
-    component: NovaSenhaComponent,
+    component: ModalComponent,
   },
   {
     path: '',

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StatusBarService } from '../../status-bar/services/progress-bar-Service/status-bar.service'
 import { VideoService } from '../../lessons/services/Video-Service/video.service'
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LessonsComponent } from '../../lessons/lessons.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +26,11 @@ export class ModalService {
   pauseMenu:boolean = false;
 
   yesFunction:Function;
-  noFunction:Function
+  noFunction:Function;
+
+  opcoesMenu:boolean = false;
+  opcoesLesson:boolean = false;
+
   
 
 
@@ -34,79 +39,69 @@ export class ModalService {
 
 
   closeModal() {
-    this.showModalTime = false;
     this.showModal = false;
     this.alertTitle = "";
     this.yesOrNoButtons = false;
-    this.yesOrNoButtonsPerderProgresso=false;
-    this.showModal = false;
     this.okButton = false;
+    this.mostraOpcoes=false
   }
 
-  closePauseConfirmacaoModal(){
-    this.closeModal();
-    
-   
+  lessonCloseMenuPause(){
+    this.mostraOpcoes = false;
+    this.opcoesLesson = false;
   }
 
-  closepauseMenuModal(){
-    this.pauseMenu = false;
+  lessonsShowMenuPause(){
+    this.mostraOpcoes = true;
+    this.opcoesMenu = false;
+    this.opcoesLesson = true;
+    this.yesFunction = () =>{
+      this.lessonModalSairJogo()
+      this.lessonCloseMenuPause()
+    }
+    this.noFunction = () =>{
+      this.lessonCloseMenuPause()
+    }
+
   }
 
-  showPauseMenu(){
-    this.pauseMenu = true;
-    console.log('pausemenu', this.pauseMenu)
-  }
-
+  
   jogarNovamente() {
     this.closeModal();
     location.reload()
   }
 
-  modalPauseConfirmacao(){
-    this.closepauseMenuModal()
-    this.showModal = true;
-    this.alertTitle = "Você perder progresso! Você ter certeza?";
-    this.yesOrNoButtonsPerderProgresso = true;
-    this.yesOrNoButtons = false;
-    this.okButton = false;
-  }
-
-  pauseConfirmouSaida(){
-     this.closeModal()
-     this.router.navigate(['/menu']);
-  }
-
-
-
   mostraOpcoesUsuario(mostra: boolean) {
     this.mostraOpcoes = mostra;
-    
-    
+    this.opcoesMenu = mostra; 
   } 
 
   closeUserOptionsModal(){
     this.closeModal();
-    location.reload()
+   location.reload()
   }
 
 
-  tempoAcabar() {
-    this.showModalTime = true;
-    this.alertTitle = "Tempo acabar, você ter X pontos, continuar?";
+  lessonsjogoAcabar(score) {
+    this.showModal = true;
+    this.alertTitle = `Jogo acabar, você ter ${score}  pontos, Novamente?`
     this.yesOrNoButtons = true;
     this.okButton = false;
+    this.yesFunction = () =>{
+       this.jogarNovamente();
+      this.closeModal();
+
+    }
+    this.noFunction = () =>{
+     
+      this.router.navigate(['/menu']).then(navigate =>{
+        if(navigate) this.closeModal()
+        else location.reload()
+      })
+     
+     
+    }   
   }
-
-  jogoAcabar() {
-    this.showModalTime = true;
-    this.alertTitle = "Jogo acabar, você ter X pontos, mais uma?";
-    this.yesOrNoButtons = true;
-    this.okButton = false;
-    this.yesOrNoButtonsPerderProgresso=false;
-  }
-
-
 
   modalSenhaOk() {
     this.showModal = true;
@@ -175,11 +170,19 @@ export class ModalService {
     this.okButton = false;
   }
 
-  modalPauseMenuComeco() {
+  lessonModalSairJogo() {
     this.showModal = true;
     this.alertTitle = "Você perder progresso! Você ter certeza?";
     this.yesOrNoButtons = true;
     this.okButton = false;
+    
+    this.yesFunction = () =>{
+      this.router.navigate(['/menu'])
+      this.closeModal()
+    }
+    this.noFunction = () =>{
+      this.closeModal()
+    }
   }
 
   modaSairdaTela() {
@@ -204,6 +207,7 @@ export class ModalService {
     console.log('fui-chamado', this.showModal)
     
   }
+
 
 
 
