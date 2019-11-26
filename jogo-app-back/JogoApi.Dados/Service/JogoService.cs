@@ -197,5 +197,16 @@ namespace JogoApi.Dados.Service
             };
 
         }
+
+        public Retorno SalvarJogo(JogoDTO jogo)
+        {
+            int retorno = repoJogo.SalvarJogo(jogo);
+
+            return new Retorno()
+            {
+                Codigo = 200,
+                Mensagem = "Jogo salvado"
+            };
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace JogoApi.Dados.Interface
     {
         Retorno NovoJogo(UsuarioDTO usuario);
         Retorno GerarNovaRodada(NovaRodada novaRodada);
+        Retorno SalvarJogo(JogoDTO jogo);
     }
 }

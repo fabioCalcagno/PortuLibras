@@ -34,6 +34,20 @@ namespace JogoApi.Controllers
             }
         }
 
+        [HttpPost]
+        [ActionName("RegistrarPontos")]
+        public IActionResult RegistrarPontos([FromBody]JogoDTO jogo)
+        {
+            try
+            {
+                return Content(JsonConvert.SerializeObject(service.SalvarJogo(jogo)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+            catch (Exception ex)
+            {
+                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+        }
+
 
         ////id do jogo
         ////numero da rodada

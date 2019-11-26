@@ -152,8 +152,6 @@ namespace JogoApi.Dados.DAO.Repository
 
         public int AlterarUsuario(UsuarioDTO usuario)
         {
-            DataSet dataSet = new DataSet();
-
             var connection = conexao.CriaConexao();
             conexao.AbrirConexao(connection);
 

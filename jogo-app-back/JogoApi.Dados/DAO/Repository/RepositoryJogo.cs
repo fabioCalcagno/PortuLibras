@@ -77,8 +77,6 @@ namespace JogoApi.Dados.DAO.Repository
 
         public int CriarJogo(int codigoUsuario, int? score)
         {
-            DataSet dataSet = new DataSet();
-
             var connection = conexao.CriaConexao();
             conexao.AbrirConexao(connection);
 
@@ -99,6 +97,52 @@ namespace JogoApi.Dados.DAO.Repository
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
 
                 string retorno = command.ExecuteScalar().ToString();
+
+                transaction.Commit();
+
+                return Convert.ToInt32(retorno);
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    transaction.Rollback();
+                    throw new Exception(ex.Message);
+                }
+                catch (Exception ex2)
+                {
+                    throw new Exception(ex2.Message);
+                }
+            }
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
+        }
+
+        public int SalvarJogo(JogoDTO jogo)
+        {
+            var connection = conexao.CriaConexao();
+            conexao.AbrirConexao(connection);
+
+            SqlCommand command = new SqlCommand("JOGO_ALTERAR", connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@ID_JOGO", jogo.CodigoJogo);
+            command.Parameters.AddWithValue("@ID_USUARIO", jogo.CodigoUsuario);
+            command.Parameters.AddWithValue("@SCORE", jogo.Score);
+
+            SqlTransaction transaction = connection.BeginTransaction();
+
+            command.Connection = connection;
+            command.Transaction = transaction;
+
+            try
+            {
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+
+                string retorno = command.ExecuteNonQuery().ToString();
 
                 transaction.Commit();
 
