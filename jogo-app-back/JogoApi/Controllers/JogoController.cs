@@ -6,9 +6,11 @@ using Newtonsoft.Json;
 using System;
 using JogoApi.Util;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JogoApi.Controllers
 {
+    [Authorize]
     [Produces("aplication/json")]
     [Route("api/[controller]/[action]")]
     [EnableCors("AllowSpecificOrigin")]
@@ -49,20 +51,18 @@ namespace JogoApi.Controllers
         }
 
 
-        ////id do jogo
-        ////numero da rodada
-        //[HttpPost]
-        //[ActionName("NovaRodada")]
-        //public IActionResult NovaRodada([FromBody]NovaRodada novaRodada)
-        //{
-        //    try
-        //    {
-        //        return Content(JsonConvert.SerializeObject(service.GerarNovaRodada(novaRodada)), new MediaTypeHeaderValue("application/json").ToString());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-        //    }
-        //}
+        [HttpPost]
+        [ActionName("SalvarJogo")]
+        public IActionResult SalvarJogo([FromBody]JogoDTO jogo)
+        {
+            try
+            {
+                return Content(JsonConvert.SerializeObject(service.SalvarJogo(jogo)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+            catch (Exception ex)
+            {
+                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
+            }
+        }
     }
 }

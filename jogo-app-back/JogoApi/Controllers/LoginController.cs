@@ -1,6 +1,7 @@
 ﻿using JogoApi.Dados.Interface;
 using JogoApi.DTO;
 using JogoApi.Util;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -63,6 +64,7 @@ namespace JogoApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         [ActionName("EditarUsuario")]
         public IActionResult EditarUsuario([FromBody]UsuarioDTO usuario)

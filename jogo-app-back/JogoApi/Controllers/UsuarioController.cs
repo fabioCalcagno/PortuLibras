@@ -6,13 +6,14 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http.Headers;
 using JogoApi.Util;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JogoApi.Controllers
 {
+    [Authorize] 
     [Produces("aplication/json")]
     [Route("api/[controller]/[action]")]
     [EnableCors("AllowSpecificOrigin")]
-    //[Authorization] //JWT Token
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService service;

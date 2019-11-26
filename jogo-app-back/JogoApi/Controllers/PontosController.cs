@@ -1,6 +1,7 @@
 ﻿using JogoApi.Dados.Interface;
 using JogoApi.DTO;
 using JogoApi.Util;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -9,6 +10,7 @@ using System.Net.Http.Headers;
 
 namespace JogoApi.Controllers
 {
+    [Authorize]
     [Produces("aplication/json")]
     [Route("api/[controller]/[action]")]
     [EnableCors("AllowSpecificOrigin")]

@@ -4,6 +4,7 @@ using JogoApi.Dados.Interface;
 using JogoApi.Dados.Interface.Repository;
 using JogoApi.Dados.Service;
 using JogoApi.DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace JogoApi
 {
@@ -26,6 +29,24 @@ namespace JogoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string securityKey = Configuration["ChaveToken"];
+
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //o que validar
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    //setup validacao
+                    ValidIssuer = "portu.libras",
+                    ValidAudience = "readers",
+                    IssuerSigningKey = symmetricSecurityKey
+                };
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors(options =>
             {
@@ -49,6 +70,7 @@ namespace JogoApi
             services.AddTransient<IRepositoryTokenEmail, RepositoryTokenEmail>();
             services.AddTransient<IRepositoryUsuario, RepositoryUsuario>();
             services.AddTransient<IRepositoryRodada, RepositoryRodada>();
+            services.AddTransient<IAuthTokenService, AuthTokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +107,7 @@ namespace JogoApi
                 });
             });
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseCors("AllowSpecificOrigin");
             app.UseMvc();
