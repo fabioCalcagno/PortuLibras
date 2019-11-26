@@ -13,22 +13,24 @@ namespace JogoApi.Dados.Service
         private readonly ICriptografia criptografia;
         private readonly IEmailService emailService;
         private readonly IRepositoryUsuario repository;
+        private readonly IAuthTokenService authService;
 
-        public UsuarioService(ICriptografia criptografia, IEmailService emailService, IRepositoryUsuario repository)
+        public UsuarioService(ICriptografia criptografia, IEmailService emailService, IRepositoryUsuario repository, IAuthTokenService authService)
         {
             this.criptografia = criptografia;
             this.emailService = emailService;
             this.repository = repository;
+            this.authService = authService;
         }
 
         public Retorno CriarUsuario(UsuarioDTO usuario)
         {
             //validacao dos campos
-            if (String.IsNullOrEmpty(usuario.Nome.Trim())) return new Retorno() { Mensagem = "Nome não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Sobrenome.Trim())) return new Retorno() { Mensagem = "Sobrenome não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Email.Trim())) return new Retorno() { Mensagem = "Email não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Username.Trim())) return new Retorno() { Mensagem = "Username não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Senha.Trim())) return new Retorno() { Mensagem = "Senha não informada", Codigo = 400 };
+            string verificaCampos = ValidaCampos(usuario);
+            if (!String.IsNullOrEmpty(verificaCampos))
+            {
+                return new Retorno() { Mensagem = verificaCampos, Codigo = 400 };
+            }
 
             //criptografa senha
             usuario.Senha = criptografia.Criptografar(usuario.Senha);
@@ -63,7 +65,16 @@ namespace JogoApi.Dados.Service
                 return retornoEmail;
             }
 
-            return new Retorno() { Mensagem = "Cadastro realizado com sucesso, um e-mail foi enviado para confirmação da conta", Codigo = 200, Data = JsonConvert.SerializeObject(usuario).ToString() };
+            //adiciona token
+            string token = authService.GeraTokenUsuario(usuarioInserido);
+
+            return new Retorno()
+            {
+                Mensagem = "Cadastro realizado com sucesso, um e-mail foi enviado para confirmação da conta",
+                Codigo = 200,
+                Data = JsonConvert.SerializeObject(usuario).ToString(),
+                Token = token
+            };
         }
 
         public UsuarioDTO BuscarUsuario(UsuarioDTO usuario)
@@ -185,12 +196,15 @@ namespace JogoApi.Dados.Service
                 };
             }
 
+            string token = authService.GeraTokenUsuario(usuarioLocalizado);
+
             if (usuarioLocalizado.Ativo == false)
             {
                 return new Retorno()
                 {
                     Codigo = 200,
-                    Mensagem = "E-mail não confirmado"
+                    Mensagem = "E-mail não confirmado",
+                    Token = token
                 };
             }
 
@@ -198,18 +212,18 @@ namespace JogoApi.Dados.Service
             {
                 Codigo = 200,
                 Mensagem = "Bem vindo!",
-                Token = "FALTA"
+                Token = token
             };
         }
 
         public Retorno EditaUsuario(UsuarioDTO usuario)
         {
             //validacao dos campos
-            if (String.IsNullOrEmpty(usuario.Nome.Trim())) return new Retorno() { Mensagem = "Nome não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Sobrenome.Trim())) return new Retorno() { Mensagem = "Sobrenome não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Email.Trim())) return new Retorno() { Mensagem = "Email não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Username.Trim())) return new Retorno() { Mensagem = "Username não informado", Codigo = 400 };
-            if (String.IsNullOrEmpty(usuario.Senha.Trim())) return new Retorno() { Mensagem = "Senha não informada", Codigo = 400 };
+            string verificaCampos = ValidaCampos(usuario);
+            if (!String.IsNullOrEmpty(verificaCampos))
+            {
+                return new Retorno() { Mensagem = verificaCampos, Codigo = 400 };
+            }
 
             usuario.Senha = criptografia.Criptografar(usuario.Senha);
 
@@ -250,6 +264,16 @@ namespace JogoApi.Dados.Service
                 Codigo = 200,
                 Mensagem = "Usuário excluído"
             };
+        }
+
+        private string ValidaCampos(UsuarioDTO usuario)
+        {
+            if (String.IsNullOrEmpty(usuario.Nome.Trim())) return "Nome não informado";
+            if (String.IsNullOrEmpty(usuario.Sobrenome.Trim())) return "Sobrenome não informado";
+            if (String.IsNullOrEmpty(usuario.Email.Trim())) return "Email não informado";
+            if (String.IsNullOrEmpty(usuario.Username.Trim())) return "Username não informado";
+            if (String.IsNullOrEmpty(usuario.Senha.Trim())) return "Senha não informada";
+            return "";
         }
     }
 }
