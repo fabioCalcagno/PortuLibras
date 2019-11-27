@@ -11,7 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { ModalComponent } from './modal/modal.component';
 import{ CreditosComponent } from './creditos/creditos.component'
 import { TutorialComponent } from './tutorial/tutorial.component';
-import { EditarContaComponent } from '../app/editar-conta/editar-conta.component';
+import { EditarContaComponent } from './editar-conta/editar-conta.component';
 import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component'
 
 

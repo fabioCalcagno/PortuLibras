@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 import { HeaderService } from '../../header/services/header.service';
 import { HeaderComponent } from '../../header/header.component'
-import { CriarContaService } from 'src/app/login/recuperar-senha/service/criar-conta.service';
+import { CriarContaService } from './service/criar-conta.service';
 import { Retorno } from '../../models/Retorno';
 import { ModalService } from '../../modal/Services/modal.service';
 import { EmailPlusCodigo } from '../../models/EmailPlusCodigo'

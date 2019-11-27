@@ -8,10 +8,12 @@ import { ModalService } from '../modal/Services/modal.service';
 import { IUser } from '../models/User';
 import { RetornoRodada } from '../models/RetornoRodada';
 import { Retorno } from '../models/Retorno';
+import { Token } from '../models/Token';
 import { ArrayRetornoRodada } from '../models/ArrayRetornoRodada';
 import { Palavra } from '../models/Palavra';
 import { NgProgressComponent, NgProgress, NgProgressRef } from '@ngx-progressbar/core';
 import { Router } from '@angular/router';
+import { AuthTokenService } from '../auth-services/header-token/token.service';
 
 
 @Component({
@@ -26,20 +28,40 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   @ViewChild(NgProgressComponent, { static: true }) bar: NgProgressComponent;
 
   constructor(private renderer: Renderer2,
-    private VideoService: VideoService,
-    private modalService: ModalService,
-    private router: Router,
-    private progress: NgProgress) { }
+              private VideoService: VideoService,
+              private modalService: ModalService,
+              private router: Router,
+              private AuthTokenService:AuthTokenService,
+              private progress: NgProgress) {
 
 
+                this.token  =  this.AuthTokenService.showDecodedJwt();
+                console.log('jwttwtw', this.token)
+
+               
+            
+                this.user = {
+                  Nome: this.token.Nome,
+                  CodigoUsuario: this.token.CodigoUsuario,
+                  Sobrenome: this.token.Sobrenome,
+                  Username: this.token.Username,
+                  Senha: null,
+                  Email: this.token.Email,
+                  Score: null ,
+                  CodigoJogo:null, 
+                } 
+
+               
+               }
+
+  body:any;
+  token:Token;
   progressRef: NgProgressRef;
   progressNumber: number;
   isPaused: boolean = false;
   paused:boolean = false;
   irMenu:boolean = false;
   score: number = 0;
-  private timeOut: any = false;
-  private acertou = false;
   private user: IUser;
   subscription$: Subscription;
   jogadas = [];
@@ -49,13 +71,6 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   b: Palavra;
   c: Palavra;
   d: Palavra;
-
-body : {
-  CodigoUsuario:number,
-	CodigoJogo:number,
-	Score:number,
-}
-
 
   private video: any;
   private unsinitizedVideo;
@@ -93,18 +108,8 @@ body : {
   }
 
   ngOnInit() {
-   
 
-    this.user = {
-      Nome: 'a',
-      CodigoUsuario: 4,
-      Sobrenome: 'a',
-      Username: 'a',
-      Senha: 'a',
-      Email: 'a',
-    }
-
-    this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
+      this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
       let a = JSON.parse(jogadas.Data) as ArrayRetornoRodada;
       console.log(a)
       a.Partida.forEach(element => {
@@ -112,7 +117,7 @@ body : {
       });
 
       this.jogada = this.jogadas[0] as RetornoRodada;
-      localStorage.setItem('CodigoUsuario', 'this.user.CodigoUsuario')
+      this.user.CodigoJogo = this.jogada.CodigoJogo
       this.arrayPalavras = this.jogada.Palavras;
       this.carregaPalavra(this.arrayPalavras)
       this.video = this.jogada.Diretorio
@@ -172,20 +177,28 @@ body : {
   }
 
 
-Pontos:number;
-
+  Pontos:number;
   i: number = 1;
 
   onSubmit(item) {
-    console.log(this.i , 'inicio')
+    this.user.Score = this.score
+   
+    console.log(this.user, 'jerusalem')
 
     if(this.i === 15 ){
       if(item.CodigoAcerto === 1 ){this.score+=10}
         if(item.CodigoAcerto===0 ){this.score-=1}
 
+        
+        this.body = {
+          CodigoJogo: this.user.CodigoJogo,
+          CodigoUsuario: this.token.CodigoUsuario,
+          Score: this.score
+                  }
+
         this.modalService.lessonsjogoAcabar(this.score);
-          this.Pontos = this.score
-        this.VideoService.salvarPontuacao(this.user.CodigoUsuario , this.Pontos).subscribe((subscribe:Retorno)=>{
+          
+        this.VideoService.salvarPontuacao(this.body).subscribe((subscribe:Retorno)=>{
           if(subscribe.Codigo == 200){
             console.log(subscribe.Mensagem)
           }else console.log(subscribe.Mensagem)

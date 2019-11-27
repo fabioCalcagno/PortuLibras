@@ -3,7 +3,8 @@ import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@a
 import { IUser } from '../models/User';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
-
+import { Token } from '../models/Token'
+import { AuthTokenService } from '../auth-services/header-token/token.service'
 import { Retorno } from '../models/Retorno';
 
 
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
+    private AuthTokenService:AuthTokenService,
     
   ) { }
   private erro = {
@@ -69,7 +71,15 @@ export class LoginComponent implements OnInit {
    this.loginService.register(this.iuser).subscribe((login : Retorno) => {
      
       if(login.Codigo == 200) {
-        console.log( 'ok deu certo' + login.Codigo +  'ou login ' + login );
+      
+      this.AuthTokenService.setHeaderToken(login.Token);
+     this.AuthTokenService.setLocalStorageToken(login.Token)
+     let a = this.AuthTokenService.getLocaStorageToken()
+     console.log('aaaa', a)
+     
+      
+        
+        console.log( 'ok deu certo cod usuario -> '  +  'Mensagem ->  ' + login.Mensagem  );
        this.router.navigate(['/menu']); }
       else console.log(login.Mensagem , 'deu error')
    })

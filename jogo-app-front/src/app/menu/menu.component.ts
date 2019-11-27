@@ -2,6 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HeaderService } from '../header/services/header.service';
 import { MenuService } from './services/menu.service';
 import { ModalService } from '../modal/Services/modal.service';
+import { AuthTokenService } from '../auth-services/header-token/token.service';
+import { Token } from '../models/Token';
+
 
 
 @Component({
@@ -9,24 +12,26 @@ import { ModalService } from '../modal/Services/modal.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit, OnDestroy {
+export class MenuComponent implements OnInit {
   
 
   constructor(private headerService:HeaderService, 
               private menuService: MenuService,
-              private modalService:ModalService       ) { 
-    localStorage.setItem('token', 'token'); // tem que ser implementado no login
+              private modalService:ModalService,
+              private AuthTokenService:AuthTokenService      ) { 
+                
+     this.ativo = this.AuthTokenService.showDecodedJwt();
+  
     this.headerService.opcaoVoltar = false;
   }
 
- 
+ ativo:Token;
 
   ngOnInit() {
-    let primeiroLogin = window.localStorage.getItem('primeiroLogin');
-    console.log('primeiroLogin' , primeiroLogin);
-    if(primeiroLogin == 'true'){
+    console.log(this.ativo.Ativo , 'asdds');
+    if(this.ativo.Ativo ){
       this.modalService.modalVerificarConfirmacaoEmail();
-      localStorage.removeItem('primeiroLogin')
+     
     }
       this.menuService.mostraMenu = true;
 
@@ -38,8 +43,6 @@ export class MenuComponent implements OnInit, OnDestroy {
 
 
 
-  ngOnDestroy(): void {
-    localStorage.clear()
-  }
+
 
 }
