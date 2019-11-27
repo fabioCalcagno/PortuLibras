@@ -67,6 +67,7 @@ namespace JogoApi.Dados.Service
 
             //adiciona token
             string token = authService.GeraTokenUsuario(usuarioInserido);
+            usuario.Senha = null;
 
             return new Retorno()
             {
@@ -191,7 +192,7 @@ namespace JogoApi.Dados.Service
             {
                 return new Retorno()
                 {
-                    Codigo = 200,
+                    Codigo = 404,
                     Mensagem = "Usuário não cadastrado"
                 };
             }
