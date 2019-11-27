@@ -38,7 +38,10 @@ export class LessonsComponent implements OnInit, AfterViewInit {
                 this.token  =  this.AuthTokenService.showDecodedJwt();
                 console.log('jwttwtw', this.token)
 
-               
+                this.username = this.token.Username;
+                this.username = this.username.toLowerCase().replace(/(?:^|\s)\S/g, 
+                function(a) { return a.toUpperCase(); });
+              
             
                 this.user = {
                   Nome: this.token.Nome,
@@ -54,6 +57,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
                
                }
 
+  username:string;             
   body:any;
   token:Token;
   progressRef: NgProgressRef;
