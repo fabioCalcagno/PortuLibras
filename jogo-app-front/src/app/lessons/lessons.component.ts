@@ -143,6 +143,11 @@ export class LessonsComponent implements OnInit, AfterViewInit {
     this.paused = true;
   }
 
+  pausarJogoAcabar(){
+    this.pauseTimer();
+    this.isPaused = true; 
+  }
+
   retomar() {
     this.startTimer(this.calcularTempo());
     this.isPaused = false;
@@ -201,6 +206,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
                   }
 
         this.modalService.lessonsjogoAcabar(this.score);
+        this.pausarJogoAcabar()
           
         this.VideoService.salvarPontuacao(this.body).subscribe((subscribe:Retorno)=>{
           if(subscribe.Codigo == 200){

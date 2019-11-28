@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
+import { AuthTokenService } from '../../auth-services/header-token/token.service';
+import { ModalService } from '../../modal/Services/modal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
 
-  constructor() { }
+  constructor(private AuthTokenService:AuthTokenService,
+              private ModalService:ModalService
+  ) {
 
+    this.ativo = this.AuthTokenService.showDecodedJwt();
+   }
+
+   
+    ativo:any;
     mostraMenu: boolean = false;
     menuLogado:boolean = false;
 
@@ -16,10 +25,10 @@ export class MenuService {
 
 
     verificaMenuLogado(){
-      let token = window.localStorage.getItem('token')
-      console.log(token)
-      if(token == 'token'){
-       return this.menuLogado = true
+      console.log(this.ativo.Ativo, 'ativo');
+      if(this.ativo){
+        this.ModalService.modalVerificarConfirmacaoEmail();
+        return this.menuLogado = true
       }else{
        return this.menuLogado = false
       }

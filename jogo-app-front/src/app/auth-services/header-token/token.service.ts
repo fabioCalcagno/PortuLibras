@@ -40,7 +40,7 @@ getHeaderToken(){
  return this.httpOptions = {
     headers:  ({
       'Content-Type':  'application/json',
-      'Authorization': 'Bearer ' + `${this.getLocaStorageToken()}`,
+      'Authorization': 'Bearer ' + `${this.getLocalStorageToken()}`,
      
     })
   }
@@ -52,12 +52,12 @@ getHeaderToken(){
     return window.localStorage.setItem('authToken', token);
    }
  
-   getLocaStorageToken(){ 
+   getLocalStorageToken(){ 
       return window.localStorage.getItem('authToken');
    }
 
    showDecodedJwt(){
-    const token = jwt_decode(this.getLocaStorageToken()) as Token;
+    const token = jwt_decode(this.getLocalStorageToken()) as Token;
     console.log(token.CodigoUsuario, 'showDecodedJwt')
     return token;
    }

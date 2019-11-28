@@ -18,11 +18,11 @@ export class VideoService {
               ) { }
 
   url = 'http://localhost:5000/api/jogo/NovoJogo';
-  urlPontos = 'http://localhost:5000/api/pontos/RegistrarPontos'
+  urlPontos = 'http://localhost:5000/api/jogo/RegistrarPontos'
 
    private  headers= new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + this.AuthTokenService.getLocaStorageToken()
+    'Authorization': 'Bearer ' + this.AuthTokenService.getLocalStorageToken()
   })
 
   

@@ -13,6 +13,7 @@ import { Token } from '../models/Token';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+ 
   
 
   constructor(private headerService:HeaderService, 
@@ -20,7 +21,7 @@ export class MenuComponent implements OnInit {
               private modalService:ModalService,
               private AuthTokenService:AuthTokenService      ) { 
                 
-     this.ativo = this.AuthTokenService.showDecodedJwt();
+  
   
     this.headerService.opcaoVoltar = false;
   }
@@ -28,11 +29,8 @@ export class MenuComponent implements OnInit {
  ativo:Token;
 
   ngOnInit() {
-    console.log(this.ativo.Ativo , 'asdds');
-    if(this.ativo.Ativo ){
-      this.modalService.modalVerificarConfirmacaoEmail();
-     
-    }
+    
+  
       this.menuService.mostraMenu = true;
 
       this.menuService.verificaMenuLogado()
@@ -40,6 +38,10 @@ export class MenuComponent implements OnInit {
      
       
   }
+
+
+
+
 
 
 
