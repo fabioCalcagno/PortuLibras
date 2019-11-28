@@ -31,6 +31,7 @@ paleta {
 .alert-wrapper-not {
     position: absolute;
     margin-top: 10%;
+    margin-left: 25%;
     width: 40%;
     height: fit-content;
     padding-bottom: 2%;

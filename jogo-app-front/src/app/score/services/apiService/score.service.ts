@@ -22,6 +22,7 @@ export class ScoreService {
 
 
   listaPontuacao(user) {
+    console.log(this.headers, 'console')
     return this.http.post(this.url, user,{headers:this.headers} )
   }
 
