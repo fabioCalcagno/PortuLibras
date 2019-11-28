@@ -192,8 +192,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   onSubmit(item) {
     this.user.Score = this.score
    
-    console.log(this.user, 'jerusalem')
-
+   
     if(this.i === 15 ){
       if(item.CodigoAcerto === 1 ){this.score+=10}
         if(item.CodigoAcerto===0 ){this.score-=1}

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthTokenService } from '../../../auth-services/header-token/token.service';
 
 
 
@@ -8,29 +9,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ScoreService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient,
+    private AuthTokenService: AuthTokenService, ) { }
 
-  private  headers= new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
 
-    private commomUrl = 'http://localhost:5000/api/pontos/';
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + this.AuthTokenService.getLocalStorageToken()
+  })
 
-   
+  private url = 'http://localhost:5000/api/Pontos/ListaJogos';
 
-    
-    
 
-      
-    registrarPontuacao(iScore){
-         return this.httpClient.post(this.commomUrl + 'RegistrarPontos',
-                                      iScore.CodigoUsuario + iScore.Pontos,
-                                       {headers: this.headers});
-      }
+  listaPontuacao(user) {
+    return this.http.post(this.url, user,{headers:this.headers} )
+  }
 
-      buscarPontuacaoUsuario(iScore){
-        return this.httpClient.get(this.commomUrl + 'ListaJogos?' + iScore.CodigoUsuario, 
-                                     {headers: this.headers} );
-      }
+
+
 
 }

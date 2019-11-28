@@ -5,6 +5,9 @@ import { HeaderComponent } from '../header/header.component';
 import { ScoreService } from './services/apiService/score.service';
 import { IScore } from '../models/Score';
 import { Retorno } from '../models/Retorno';
+import { Token } from '../models/Token';
+import { AuthTokenService } from '../auth-services/header-token/token.service';
+import { IUser } from '../models/User';
 
 @Component({
   selector: 'app-score',
@@ -14,28 +17,51 @@ import { Retorno } from '../models/Retorno';
 export class ScoreComponent implements OnInit {
 
   constructor(private headerService: HeaderService,
-              private headerComponent:HeaderComponent, 
+             private AuthTokenService:AuthTokenService, 
               private scoreService:ScoreService) { 
+
+
                 this.headerService.opcaoVoltar = true;
+                this.token = AuthTokenService.showDecodedJwt() as Token
                
 
-              }
+                this.user = {
+                  Nome: this.token.Nome,
+                  CodigoUsuario: this.token.CodigoUsuario,
+                  Sobrenome: this.token.Sobrenome,
+                  Username: this.token.Username,
+                  Senha: null,
+                  Email: this.token.Email,
+                  Score: null ,
+                  CodigoJogo:null, 
+                } 
+                
+              
+
+    }
 
 
+user:IUser
+token:Token
 private iScore: IScore;
-score = [10000,2000,3000,4000,500,600,700,800,100,200,300,400,500,60,60,8,9,1];
+private iScoreArray: Array<IScore>
+score = [];
     
    
   ngOnInit() {
-  
-  
-    /* this.headerComponent.currentScreen='Menu começo';
-    this.scoreService.buscarPontuacaoUsuario(this.iScore)
-                     .subscribe((pontos:Retorno) =>{
-                       console.log(pontos)
-                     })
- */
+      this.scoreService.listaPontuacao(this.user).subscribe((subscribe:Retorno) =>{
+
+        if(subscribe.Codigo == 200){
+          this.iScoreArray = JSON.parse(subscribe.Data) 
+         this.iScoreArray.forEach((pontos: IScore) => {
+           this.score.push(pontos.Score)
+         })
+         
+        
+      }
       
-  }
+  })
+
+}
 
 }

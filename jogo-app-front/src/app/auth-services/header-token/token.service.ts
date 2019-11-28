@@ -13,15 +13,11 @@ import { Token } from '../../models/Token'
 export class AuthTokenService {
 
 
-  constructor(   ) { }
+  constructor(   ) {   }
   
-  private headers = new  HttpHeaders();
+  private headers = new HttpHeaders();
   httpOptions;
    
- 
-
-
-
   setHeaderToken(token){
     this.httpOptions = {
       headers:  ({
