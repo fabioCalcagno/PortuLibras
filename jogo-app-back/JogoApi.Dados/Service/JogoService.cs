@@ -34,16 +34,12 @@ namespace JogoApi.Dados.Service
             //Gera partida
             var listaJogo = NovaPartida(jogo.CodigoJogo);
 
-            //Gera nova rodada
-            //RetornoRodada novaRodada = NovaRodada(jogo.CodigoJogo, numeroRodada);
-
             //retornar rodada
             return new Retorno()
             {
                 Codigo = 200,
                 Data = JsonConvert.SerializeObject(listaJogo).ToString(),
-                Mensagem = "Partida gerada com sucesso!",
-                Token = "FALTA"
+                Mensagem = "Partida gerada com sucesso!"
             };
         }
 
@@ -152,7 +148,6 @@ namespace JogoApi.Dados.Service
                 Codigo = 200,
                 Data = JsonConvert.SerializeObject(retornoRodada).ToString(),
                 Mensagem = "Rodada " + novaRodada.NumeroRodada,
-                Token = "FALTA"
             };
         }
 
@@ -200,10 +195,13 @@ namespace JogoApi.Dados.Service
 
         public Retorno SalvarJogo(JogoDTO jogo)
         {
-            int retorno = repoJogo.SalvarJogo(jogo);
+            repoJogo.SalvarJogo(jogo);
+
+            var retorno = repoJogo.BuscarJogo(jogo);
 
             return new Retorno()
             {
+                Data = JsonConvert.SerializeObject(retorno).ToString(),
                 Codigo = 200,
                 Mensagem = "Jogo salvado"
             };

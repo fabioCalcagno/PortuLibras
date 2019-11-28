@@ -53,8 +53,6 @@ namespace JogoApi.Dados.Service
             //busca token no banco
             tokenEmail = BuscarTokenEmail(tokenEmail);
 
-            //if(tokenEmail)
-
             //gera novo token
             string token = HelperEmail.GeraCodigo();
 
@@ -186,7 +184,7 @@ namespace JogoApi.Dados.Service
             //verifica se email existe
             if (usuario == null)
             {
-                return new Retorno() { Codigo = 404, Mensagem = "Email não encontrado." };
+                return new Retorno() { Codigo = 400, Mensagem = "Email não encontrado." };
             }
 
             //busca token do usuario
@@ -195,7 +193,7 @@ namespace JogoApi.Dados.Service
             //verifica existencia do token
             if (tokenEmail == null)
             {
-                return new Retorno() { Codigo = 404, Mensagem = "Falha ao recuperar o código de reset de senha, por favor gere o código de reset de senha novamente" };
+                return new Retorno() { Codigo = 400, Mensagem = "Falha ao recuperar o código de reset de senha, por favor gere o código de reset de senha novamente" };
             }
 
             //verifica se token de reset de senha está correto
@@ -203,7 +201,7 @@ namespace JogoApi.Dados.Service
             {
                 return new Retorno()
                 {
-                    Codigo = 403,
+                    Codigo = 400,
                     Mensagem = "Código de reset de senha errado"
                 };
             }
@@ -213,7 +211,7 @@ namespace JogoApi.Dados.Service
             {
                 return new Retorno()
                 {
-                    Codigo = 403,
+                    Codigo = 400,
                     Mensagem = "Código de reset de senha expirado, por favor realize a solicitação do código de reset de senha novamente"
                 };
             }
@@ -222,7 +220,6 @@ namespace JogoApi.Dados.Service
             {
                 Codigo = 200,
                 Mensagem = "Código de reset de senha correto",
-                Token = "FALTA"
             };
         }
 

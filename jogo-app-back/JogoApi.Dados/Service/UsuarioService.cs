@@ -39,7 +39,7 @@ namespace JogoApi.Dados.Service
             string verificaUsuario = VerificaExisteUsuario(usuario);
             if (!String.IsNullOrEmpty(verificaUsuario))
             {
-                return new Retorno() { Mensagem = verificaUsuario, Codigo = 409 };
+                return new Retorno() { Mensagem = verificaUsuario, Codigo = 400 };
             }
 
             //inserir usuario no banco
@@ -67,13 +67,13 @@ namespace JogoApi.Dados.Service
 
             //adiciona token
             string token = authService.GeraTokenUsuario(usuarioInserido);
-            usuario.Senha = null;
+            usuarioInserido.Senha = null;
 
             return new Retorno()
             {
                 Mensagem = "Cadastro realizado com sucesso, um e-mail foi enviado para confirmação da conta",
                 Codigo = 200,
-                Data = JsonConvert.SerializeObject(usuario).ToString(),
+                Data = JsonConvert.SerializeObject(usuarioInserido).ToString(),
                 Token = token
             };
         }
@@ -167,7 +167,7 @@ namespace JogoApi.Dados.Service
             {
                 Codigo = 200,
                 Mensagem = "Conta do usuário ativada",
-                Data = JsonConvert.SerializeObject(usuario).ToString()
+                Data = JsonConvert.SerializeObject(usuarioLocalizado).ToString()
             };
         }
 
@@ -192,7 +192,7 @@ namespace JogoApi.Dados.Service
             {
                 return new Retorno()
                 {
-                    Codigo = 404,
+                    Codigo = 400,
                     Mensagem = "Usuário não cadastrado"
                 };
             }
@@ -209,8 +209,10 @@ namespace JogoApi.Dados.Service
                 };
             }
 
+            usuarioLocalizado.Senha = null;
             return new Retorno()
             {
+                Data = JsonConvert.SerializeObject(usuarioLocalizado).ToString(),
                 Codigo = 200,
                 Mensagem = "Bem vindo!",
                 Token = token
@@ -234,7 +236,6 @@ namespace JogoApi.Dados.Service
                 {
                     Codigo = 500,
                     Mensagem = "Falha ao alterar os dados, por favor entre em contato com o suporte"
-                    //, Token = "FALTA"
                 };
             }
 
@@ -243,7 +244,6 @@ namespace JogoApi.Dados.Service
                 Codigo = 200,
                 Mensagem = "Cadastro alterado com sucesso",
                 Data = JsonConvert.SerializeObject(usuario).ToString(),
-                // Token = "FALTA"
             };
         }
 

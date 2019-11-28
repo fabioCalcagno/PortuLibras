@@ -63,21 +63,5 @@ namespace JogoApi.Controllers
                 return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
             }
         }
-
-        [Authorize]
-        [HttpPost]
-        [ActionName("EditarUsuario")]
-        public IActionResult EditarUsuario([FromBody]UsuarioDTO usuario)
-        {
-            try
-            {
-                return Content(JsonConvert.SerializeObject(service.EditaUsuario(usuario)), new MediaTypeHeaderValue("application/json").ToString());
-
-            }
-            catch (Exception ex)
-            {
-                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-        }
     }
 }

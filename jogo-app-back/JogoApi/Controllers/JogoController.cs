@@ -49,20 +49,5 @@ namespace JogoApi.Controllers
                 return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
             }
         }
-
-
-        [HttpPost]
-        [ActionName("SalvarJogo")]
-        public IActionResult SalvarJogo([FromBody]JogoDTO jogo)
-        {
-            try
-            {
-                return Content(JsonConvert.SerializeObject(service.SalvarJogo(jogo)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-            catch (Exception ex)
-            {
-                return Content(JsonConvert.SerializeObject(ExceptionHandler.HandleException(ex)), new MediaTypeHeaderValue("application/json").ToString());
-            }
-        }
     }
 }

@@ -8,5 +8,6 @@ namespace JogoApi.Dados.Interface.Repository
         int CriarJogo(int codigoUsuario, int? score);
         List<JogoDTO> BuscarMelhoresPontos(int codigoUsuario);
         int SalvarJogo(JogoDTO jogo);
+        JogoDTO BuscarJogo(JogoDTO jogo);
     }
 }

@@ -40,9 +40,8 @@ namespace JogoApi.Dados.Service
             return new Retorno()
             {
                 Codigo = 200,
-                Mensagem = "Melhores jogos " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(usuario.Username.ToLower()),
-                Data = JsonConvert.SerializeObject(lstJogos).ToString(),
-                Token = "Falta"
+                Mensagem = "Melhores jogos",
+                Data = JsonConvert.SerializeObject(lstMelhores).ToString(),
             };
         }
 

@@ -17,6 +17,66 @@ namespace JogoApi.Dados.DAO.Repository
             this.conexao = conexao;
         }
 
+        public JogoDTO BuscarJogo(JogoDTO jogo)
+        {
+            var retorno = new JogoDTO();
+            DataSet dataSet = new DataSet();
+
+            var connection = conexao.CriaConexao();
+            conexao.AbrirConexao(connection);
+
+            SqlCommand command = new SqlCommand("JOGO_SELECIONAR", connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue ("@Id_Jogo", jogo.CodigoJogo);
+            command.Parameters.AddWithValue("@Score", jogo.Score);
+            command.Parameters.AddWithValue("@Id_Usuario", jogo.CodigoUsuario);
+
+            SqlTransaction transaction = connection.BeginTransaction();
+
+            command.Connection = connection;
+            command.Transaction = transaction;
+
+            try
+            {
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+
+                dataAdapter.Fill(dataSet);
+
+                DataTableReader reader = dataSet.Tables[0].CreateDataReader();
+
+                while (reader.Read())
+                {
+                    retorno = new JogoDTO()
+                    {
+                        CodigoJogo = (int)reader["ID_JOGO"],
+                        CodigoUsuario = (int)reader["ID_USUARIO"],
+                        Score = (int)reader["SCORE"]
+                    };
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    transaction.Rollback();
+                    throw new Exception(ex.Message);
+                }
+                catch (Exception ex2)
+                {
+                    throw new Exception(ex2.Message);
+                }
+            }
+            finally
+            {
+                conexao.FecharConexao(connection);
+            }
+            return retorno;
+        }
+
         public List<JogoDTO> BuscarMelhoresPontos(int codigoUsuario)
         {
             DataSet dataSet = new DataSet();
