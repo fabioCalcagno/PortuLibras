@@ -6,7 +6,7 @@
 
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input class="input bg-cor-2 col-12" type="text" formControlName="Nome" placeholder="Nome:" autofocus>
+                    <input class="input bg-cor-2 col-12" type="text" formControlName="Nome" placeholder="Nome:" autofocus >
                 </div>
             </div>
             <div class="form-row">
@@ -32,7 +32,7 @@
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <input class="input bg-cor-2 col-12" type="password" formControlName="reSenha" placeholder="Repetir senha:">
-                    <label class="input error" type="text"> {{erro.msg}} </label>
+                    <label *ngIf="!this.ValidationFormService.erro.status"  class="input error" autofocus  type="text"> {{this.ValidationFormService.erro.msg}} </label>
                 </div>
             </div>
 
@@ -73,7 +73,7 @@ Estes termos são regidas pelas leis da República Federativa do Brasil, e qualq
 
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <button class="criar bg-azul" type="submit" [disabled]="!campoValidate(user)">
+                    <button class="criar bg-azul" type="submit" [disabled]="!this.ValidationFormService.campoValidate(user)" >
                             <img style="margin-left: 5%; margin-right: 1rem;" width="50" src="../../assets/imagens/add-people-interface-symbol-of-black-person-close-up-with-plus-sign-in-small-circle.png" alt="">
                         Criar conta
                         </button>
@@ -82,3 +82,5 @@ Estes termos são regidas pelas leis da República Federativa do Brasil, e qualq
 
         </form>
     </div>
+
+    
