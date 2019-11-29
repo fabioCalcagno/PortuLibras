@@ -154,12 +154,14 @@ export class ModalService {
     this.sim = 'E-mail trocar';
     this.nao = 'Continuar';
     this.yesFunction = ()=>{
-      this.closeModal()
+      this.sim = 'Sim';
+      this.nao = 'Não';
       this.router.navigate(['/menu/criarconta']);
       this.closeModal()
     }
     this.noFunction = ()=>{
-      this.closeModal()
+      this.sim = 'Sim';
+      this.nao = 'Não';
       this.router.navigate(['/menu']);
       this.closeModal()
     }

@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
         this.AuthTokenService.setHeaderToken(login.Token);
         this.AuthTokenService.setLocalStorageToken(login.Token)
         let a = this.AuthTokenService.getLocalStorageToken()
-        console.log('aaaa', a)
+        console.log('token', a)
         console.log( 'Mensagem ->  ' + login.Mensagem);
         this.router.navigate(['/menu']);
       }

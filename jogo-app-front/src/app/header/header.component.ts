@@ -25,14 +25,26 @@ export class HeaderComponent implements OnInit {
   private user: IUser;
   decodedToken;
   private username:string;
+  private teste:string = 'ola'
 
  
   
-  ngOnInit(): void {  
-    this.decodedToken = this.AuthTokenService.showDecodedJwt()
-    this.username = this.decodedToken.Username;
-    this.username = this.username.toLowerCase().replace(/(?:^|\s)\S/g, 
-                                               function(a) { return a.toUpperCase(); });
+  ngOnInit(): void {
+    try{  
+    this.decodedToken = this.AuthTokenService.showDecodedJwt() }
+    catch{
+      (Error)=>{
+        return this.decodedToken.Username = this.teste.valueOf
+      }
+    }
+    if(this.decodedToken.Username !== undefined){
+      this.username = this.decodedToken.Username;
+      this.username = this.username.toLowerCase().replace(/(?:^|\s)\S/g, 
+                                                 function(a) { return a.toUpperCase(); });
+    }
+    else  console.log(this.decodedToken.Username)
+   
+   
                                                          
 
      this.headerService.verificaMenuLogado();

@@ -53,9 +53,15 @@ getHeaderToken(){
    }
 
    showDecodedJwt(){
+     try{
     const token = jwt_decode(this.getLocalStorageToken()) as Token;
     console.log(token.CodigoUsuario, 'showDecodedJwt')
     return token;
+     }catch (Error){
+       console.log(Error.message)
+       return Error.message
+     }
+    
    }
 
    hasHeaderToken(){

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthTokenService } from '../../auth-services/header-token/token.service';
 import { ModalService } from '../../modal/Services/modal.service';
+import { Token } from '../../models/Token';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,12 @@ export class MenuService {
               private ModalService:ModalService
   ) {
 
-    this.ativo = this.AuthTokenService.showDecodedJwt();
+    this.tokenDecoded = this.AuthTokenService.showDecodedJwt();
+    
    }
 
    
-    ativo:any;
+    tokenDecoded:Token;
     mostraMenu: boolean = false;
     menuLogado:boolean = false;
 
@@ -25,13 +27,24 @@ export class MenuService {
 
 
     verificaMenuLogado(){
-      console.log(this.ativo.Ativo, 'ativo');
-      if(this.ativo){
+      console.log(this.tokenDecoded)
+      console.log(this.tokenDecoded.Ativo, 'ativo');
+      
+      if(this.tokenDecoded.Ativo == 'False'){
+        console.log('nao esta ativo')
         this.ModalService.modalVerificarConfirmacaoEmail();
         return this.menuLogado = true
-      }else{
-       return this.menuLogado = false
       }
+      else if(this.tokenDecoded.Ativo == undefined){
+       return this.menuLogado = false;
+      }
+      else if (this.tokenDecoded.Ativo == "True"){
+        console.log("usuario ativo")
+        return this.menuLogado = true
+      }
+
+ 
     }
 
-}
+
+  }

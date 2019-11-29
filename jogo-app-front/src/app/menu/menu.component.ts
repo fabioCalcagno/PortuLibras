@@ -24,6 +24,7 @@ export class MenuComponent implements OnInit {
   
   
     this.headerService.opcaoVoltar = false;
+    this.headerService.telaVoltar=''
   }
 
  ativo:Token;
