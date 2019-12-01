@@ -23,10 +23,18 @@ export class MenuService {
     tokenDecoded:Token;
     mostraMenu: boolean = false;
     menuLogado:boolean = false;
+    menu = true;
     private userSubject = new BehaviorSubject<Token>(null)
 
     mostrarMenu(mostra:boolean){
       this.mostraMenu = mostra;
+    }
+
+    verificaAtivo(){
+      if(this.tokenDecoded.Ativo == 'False'){
+        console.log('nao esta ativo');
+        this.ModalService.modalVerificarConfirmacaoEmail();
+      }
     }
 
 
@@ -34,11 +42,10 @@ export class MenuService {
       console.log(this.tokenDecoded)
       console.log(this.tokenDecoded.Ativo, 'ativo');
       
-      if(this.tokenDecoded.Ativo == 'False'){
-        console.log('nao esta ativo')
-        this.ModalService.modalVerificarConfirmacaoEmail();
+       if(this.tokenDecoded.Ativo == 'False'){
+        console.log('nao esta ativo');
        return  this.menuLogado = true
-      }
+      } 
       else if(this.tokenDecoded.Ativo == undefined){
        return  this.menuLogado = false;
       }

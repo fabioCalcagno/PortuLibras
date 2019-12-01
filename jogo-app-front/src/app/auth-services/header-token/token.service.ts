@@ -1,8 +1,11 @@
 import { Injectable, OnInit } from '@angular/core';
 import * as jwt_decode from 'jwt-decode'; 
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Token } from '../../models/Token'
 import { IUser } from '../../models/User';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+
 
 
 
@@ -14,10 +17,11 @@ import { IUser } from '../../models/User';
 export class AuthTokenService {
 
 
-  constructor(   ) {   }
+  constructor( private router:Router  ) {   }
   
   private headers = new HttpHeaders();
   httpOptions;
+  private userSubject$ = new BehaviorSubject<Token>(null)
    
   setHeaderToken(token){
     this.httpOptions = {
@@ -28,7 +32,7 @@ export class AuthTokenService {
       })
     }
     window.localStorage.setItem('authToken', `${token}`);
-    console.log(this.getHeaderToken())
+    console.log( 'token->',  this.getHeaderToken())
   }
 
   
@@ -75,11 +79,12 @@ getHeaderToken(){
    showDecodedJwt(){
      try{
     const token = jwt_decode(this.getLocalStorageToken()) as Token;
+    this.userSubject$.next(token)
     console.log(token.CodigoUsuario, 'showDecodedJwt')
     return token;
      }catch (Error){
        console.log(Error.message)
-       return Error.message
+        return this.router.navigate(['menu']) 
      }
     
    }

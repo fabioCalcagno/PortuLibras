@@ -25,16 +25,19 @@ export class MenuComponent implements OnInit {
   
     this.headerService.opcaoVoltar = false;
     this.headerService.telaVoltar=''
+    this.token = this.AuthTokenService.getLocalStorageToken()
   }
 
- ativo:Token;
+ token:any;
 
   ngOnInit() {
     
-  
+     
       this.menuService.mostraMenu = true;
-
+     
       this.menuService.verificaMenuLogado()
+
+      this.menuService.verificaAtivo()
       
      
       

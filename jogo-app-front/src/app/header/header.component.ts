@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   ){ }
   private user: IUser;
-  decodedToken;
+  decodedToken:any;
   private username:string;
   private teste:string = 'ola'
   private userSubject$ = new BehaviorSubject<Token>(null)
@@ -35,22 +35,21 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     try{  
     this.decodedToken = this.AuthTokenService.showDecodedJwt()
-      this.userSubject$.next(this.decodedToken)
+    this.userSubject$.next(this.decodedToken)     
   }
     catch{
       (Error)=>{
-        return this.decodedToken.Username = this.teste.valueOf
+        return Error.message
       }
     }
-    if(this.decodedToken.Username !== undefined){
-      this.username = this.decodedToken.Username;
-      this.username = this.username.toLowerCase().replace(/(?:^|\s)\S/g, 
+    if(this.decodedToken.Username !== undefined && this.decodedToken.Username !== null){
+      this.decodedToken.Username = this.decodedToken.Username.toLowerCase().replace(/(?:^|\s)\S/g, 
                                                  function(a) { return a.toUpperCase(); });
     }
-    else  console.log(this.decodedToken.Username)
+    else  this.user.Username = ' '
    
    
-                                                         
+                                         
 
       this.headerService.verificaMenuLogado(); 
      
