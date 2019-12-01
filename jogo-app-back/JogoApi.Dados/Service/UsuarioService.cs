@@ -124,8 +124,13 @@ namespace JogoApi.Dados.Service
 
         public List<UsuarioDTO> ListarUsuario(UsuarioDTO usuario)
         {
+            var guardasenha = usuario.Senha;
             usuario.Senha = null;
-            return repository.ListarUsuario(usuario);
+            var retorno = repository.ListarUsuario(usuario);
+
+            usuario.Senha = guardasenha;
+
+            return retorno;
         }
 
         public Retorno ConfirmaConta(string email)
@@ -163,6 +168,8 @@ namespace JogoApi.Dados.Service
                     Mensagem = "Falha ao ativar a conta, entre em contato com o suporte"
                 };
             }
+
+            usuarioLocalizado.Senha = null;
 
             return new Retorno()
             {
@@ -236,7 +243,7 @@ namespace JogoApi.Dados.Service
             {
                 return "Preencher campo usuário + campo senha";
             }
-            
+
             if (String.IsNullOrEmpty(usuario.Username.Trim()))
             {
                 return "Preencher campo usuário";
@@ -253,13 +260,20 @@ namespace JogoApi.Dados.Service
         public Retorno EditaUsuario(UsuarioDTO usuario)
         {
             //validacao dos campos
-            string verificaCampos = ValidaCampos(usuario);
-            if (!String.IsNullOrEmpty(verificaCampos))
+            string mensagemValida = ValidaCampos(usuario);
+            if (!String.IsNullOrEmpty(mensagemValida))
             {
-                return new Retorno() { Mensagem = verificaCampos, Codigo = 400 };
+                return new Retorno() { Mensagem = mensagemValida, Codigo = 400 };
             }
 
             usuario.Senha = criptografia.Criptografar(usuario.Senha);
+
+            mensagemValida = ValidaUsuarioEditar(usuario);
+
+            if (!String.IsNullOrEmpty(mensagemValida))
+            {
+                return new Retorno() { Mensagem = mensagemValida, Codigo = 400 };
+            }
 
             if (repository.AlterarUsuario(usuario) == 0)
             {
@@ -270,12 +284,69 @@ namespace JogoApi.Dados.Service
                 };
             }
 
+
+            usuario.Senha = null;
+
             return new Retorno()
             {
                 Codigo = 200,
                 Mensagem = "Cadastro alterado com sucesso",
                 Data = JsonConvert.SerializeObject(usuario).ToString(),
             };
+        }
+
+        private string ValidaUsuarioEditar(UsuarioDTO usuario)
+        {
+            var localizarUser = new UsuarioDTO();
+            localizarUser.CodigoUsuario = usuario.CodigoUsuario;
+            var usuarioLocalizado = BuscarUsuario(localizarUser);
+
+            if (usuarioLocalizado.Nome != usuario.Nome.ToUpper() && usuarioLocalizado.Sobrenome != usuario.Sobrenome.ToUpper())
+            {
+                //Verifica nome e sobrenome
+                var buscaUsuario = new UsuarioDTO();
+                buscaUsuario.CodigoUsuario = 0;
+                buscaUsuario.Nome = usuario.Nome;
+                buscaUsuario.Sobrenome = usuario.Sobrenome;
+                buscaUsuario.Email = String.Empty;
+                buscaUsuario.Username = String.Empty;
+                buscaUsuario.Senha = String.Empty;
+                if (ListarUsuario(buscaUsuario).Count > 0) return "Nome e Sobrenome já existem";
+            }
+
+            //Verifica email
+            if (usuarioLocalizado.Email != usuario.Email.ToUpper())
+            {
+                if (usuarioLocalizado.Ativo == true)
+                {
+                    return "E-mail está ativo, portando não é possível alterar e-mail";
+                }
+
+                var buscaUsuario = new UsuarioDTO();
+                buscaUsuario.Email = usuario.Email;
+                buscaUsuario.CodigoUsuario = 0;
+                buscaUsuario.Nome = String.Empty;
+                buscaUsuario.Sobrenome = String.Empty;
+                buscaUsuario.Username = String.Empty;
+                buscaUsuario.Senha = String.Empty;
+                if (ListarUsuario(buscaUsuario).Count > 0) return "E-mail já existe";
+            }
+
+
+            //Verifica username
+            if (usuarioLocalizado.Username != usuario.Username.ToUpper())
+            {
+                var buscaUsuario = new UsuarioDTO();
+                buscaUsuario.Username = usuario.Username;
+                buscaUsuario.Email = String.Empty;
+                buscaUsuario.CodigoUsuario = 0;
+                buscaUsuario.Nome = String.Empty;
+                buscaUsuario.Sobrenome = String.Empty;
+                buscaUsuario.Senha = String.Empty;
+                if (ListarUsuario(buscaUsuario).Count > 0) return "Username já existe";
+            }
+
+            return "";
         }
 
         public Retorno ExcluirConta(UsuarioDTO usuario)
