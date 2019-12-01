@@ -15,8 +15,7 @@ export class MenuService {
   ) {
 
     this.tokenDecoded = this.AuthTokenService.showDecodedJwt();
-    this.userSubject.next(this.tokenDecoded)
-    
+   
    }
 
    
@@ -27,6 +26,7 @@ export class MenuService {
     private userSubject = new BehaviorSubject<Token>(null)
 
     mostrarMenu(mostra:boolean){
+      this.userSubject.next(this.tokenDecoded)
       this.mostraMenu = mostra;
     }
 
@@ -41,6 +41,8 @@ export class MenuService {
     verificaMenuLogado(){
       console.log(this.tokenDecoded)
       console.log(this.tokenDecoded.Ativo, 'ativo');
+      this.userSubject.next(this.tokenDecoded)
+    
       
        if(this.tokenDecoded.Ativo == 'False'){
         console.log('nao esta ativo');

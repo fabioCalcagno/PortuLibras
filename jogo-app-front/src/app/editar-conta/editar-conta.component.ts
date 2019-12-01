@@ -31,7 +31,7 @@ export class EditarContaComponent implements OnInit {
       } 
    }
 
-   token:Token;
+   token:any;
    User:IUser;
 
   ngOnInit() {
