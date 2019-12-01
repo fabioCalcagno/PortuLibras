@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import * as jwt_decode from 'jwt-decode'; 
 import { HttpHeaders } from '@angular/common/http';
 import { Token } from '../../models/Token'
+import { IUser } from '../../models/User';
 
 
 
@@ -41,6 +42,23 @@ getHeaderToken(){
     })
   }
 }
+
+
+    preencheUserComToken(user:IUser){
+      let token:Token;
+      token = this.showDecodedJwt()
+      user.CodigoJogo = null;
+      user.CodigoUsuario = token.CodigoUsuario;
+      user.Email = token.Email;
+      user.Nome = token.Nome;
+      user.Score = null;
+      user.Senha = null;
+      user.Sobrenome = token.Sobrenome;
+      user.Username = token.Username;
+      console.log('preencheUserComToken' , user)
+      return user;
+     
+    }
 
 
 

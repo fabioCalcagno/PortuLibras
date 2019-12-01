@@ -11,6 +11,13 @@ input {
     padding: 0.5rem;
 }
 
+.erro{
+    color: white;
+    font-size: 1em;
+    background-color: inherit;
+    text-shadow: 1px 1px black;
+}
+
 .login-wrap {
     padding: 2rem;
     display: flex;

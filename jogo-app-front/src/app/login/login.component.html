@@ -14,6 +14,11 @@
                     <input class="input bg-cor-2" formControlName="Senha" type="password" placeholder="Senha:">
                 </div>
             </div>
+            <div *ngIf="erro.status" class="form-row">
+                <div class="col-md-12 mb-3">
+                    <span class="input bg-cor-2 erro "  type="text" placeholder="Erro:" > {{erro.msg}} </span>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <button type="submit" class="entrar bg-azul">
@@ -28,12 +33,6 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="options" id="criar-conta" [routerLink]="['/menu/criarconta']">Criar conta</div>
-                </div>
-            </div>
-
-            <div *ngIf="erro.status" class="form-row">
-                <div class="col-md-12 mb-3">
-                    <span class="input bg-cor-2"  type="text" placeholder="Erro:" > {{erro.msg}} </span>
                 </div>
             </div>
         </form>

@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
    
                                                          
 
-     this.headerService.verificaMenuLogado();
+      this.headerService.verificaMenuLogado(); 
      
     
     

@@ -35,7 +35,10 @@ export class ModalService {
 
 
 
-
+  sairConta(){
+    localStorage.clear();
+    this.router.navigate([''])
+  }
 
 
   closeModal() {

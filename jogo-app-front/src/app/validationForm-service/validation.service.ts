@@ -42,7 +42,7 @@ export class ValidationFormService {
         return false;
       }
     }
-    if (user.controls['Sobrenome'].invalid && user.controls['Sobrenome'].valueChanges ) {
+    if (user.controls['Sobrenome'].invalid && user.controls['Sobrenome'].touched ) {
       if (user.controls['Sobrenome'].errors['required']) {
         this.erro.msg = "Sobrenome é obrigátorio";
         console.log(user.controls['Sobrenome'].errors['required'], 'erssjjsj')
@@ -85,7 +85,7 @@ export class ValidationFormService {
         return false;
       }
     }
-    if (user.controls['Email'].invalid) {
+    if (user.controls['Email'].invalid && user.controls['Email'].touched ) {
       if (user.controls['Email'].errors['required']) {
         this.erro.msg = "Email é obrigátorio";
         return false;
@@ -95,7 +95,7 @@ export class ValidationFormService {
         return false;
       }
     }
-    if (user.controls['Senha'].invalid) {
+    if (user.controls['Senha'].invalid && user.controls['Senha'].touched ) {
       if (user.controls['Senha'].errors['required']) {
         this.erro.msg = "Senha é obrigátorio";
         return false;
@@ -116,7 +116,7 @@ export class ValidationFormService {
         return false;
       }
     }
-    if (user.controls['termo'].invalid) {
+    if (user.controls['termo'].invalid &&  user.controls['termo'].touched) {
       this.erro.msg = "É nescessario aceitar os termo de uso"
       return false;
     }

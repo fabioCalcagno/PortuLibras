@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthTokenService } from '../../auth-services/header-token/token.service';
 import { ModalService } from '../../modal/Services/modal.service';
 import { Token } from '../../models/Token';
+import { HeaderService } from '../../header/services/header.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +34,10 @@ export class MenuService {
       if(this.tokenDecoded.Ativo == 'False'){
         console.log('nao esta ativo')
         this.ModalService.modalVerificarConfirmacaoEmail();
-        return this.menuLogado = true
+       return  this.menuLogado = true
       }
       else if(this.tokenDecoded.Ativo == undefined){
-       return this.menuLogado = false;
+       return  this.menuLogado = false;
       }
       else if (this.tokenDecoded.Ativo == "True"){
         console.log("usuario ativo")

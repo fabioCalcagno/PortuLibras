@@ -22,6 +22,7 @@ export class ScoreComponent implements OnInit {
 
 
                 this.headerService.opcaoVoltar = true;
+                this.headerService.rotaVoltar = 'Menu'
                 this.token = AuthTokenService.showDecodedJwt() as Token
                
 

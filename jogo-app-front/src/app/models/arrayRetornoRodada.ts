@@ -1,4 +1,4 @@
-import { RetornoRodada } from '../models/RetornoRodada'
+import { RetornoRodada } from './RetornoRodada'
 
 
 

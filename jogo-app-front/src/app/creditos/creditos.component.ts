@@ -10,6 +10,7 @@ export class CreditosComponent implements OnInit {
 
   constructor(private headerService:HeaderService) {
     this.headerService.opcaoVoltar = true;
+    this.headerService.telaVoltar='Menu'
  }
   ngOnInit() {
   }

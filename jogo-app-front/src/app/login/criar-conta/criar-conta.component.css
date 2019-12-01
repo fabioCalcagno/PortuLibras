@@ -101,9 +101,12 @@ h3 {
 .error {
     background-color: #E47261;
     font-size: 1em;
-    color: black;
-    text-shadow: 1px 1px #EE9386;
+    color: white;
+    text-shadow: 1px 1px black;
 }
+
+
+
 
 
 

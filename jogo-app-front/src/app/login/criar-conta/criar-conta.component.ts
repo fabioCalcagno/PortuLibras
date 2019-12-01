@@ -28,10 +28,12 @@ export class CriarContaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private cadastrarUsuarioService: CadastrarUsuarioService,
     private headerService:HeaderService,
+    private ValidationFormService:ValidationFormService,
     private router: Router
 
   ) { 
     this.headerService.opcaoVoltar = true;
+    this.headerService.rotaVoltar = "Menu"
     
   }
 
@@ -90,6 +92,8 @@ export class CriarContaComponent implements OnInit {
         ]
       ]
     })
+
+    this.ValidationFormService.campoValidate(this.user)
   }
 
     
