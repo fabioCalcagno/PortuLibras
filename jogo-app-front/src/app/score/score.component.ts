@@ -43,7 +43,7 @@ export class ScoreComponent implements OnInit {
 
 
 user:IUser
-token:Token
+token:any
 private iScore: IScore;
 private iScoreArray: Array<IScore>
 score = [];

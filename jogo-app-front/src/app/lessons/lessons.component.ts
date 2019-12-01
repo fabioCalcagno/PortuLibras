@@ -59,7 +59,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
 
   username:string;             
   body:any;
-  token:Token;
+  token:any;
   progressRef: NgProgressRef;
   progressNumber: number;
   isPaused: boolean = false;

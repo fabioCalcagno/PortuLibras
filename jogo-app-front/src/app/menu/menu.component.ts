@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
     this.headerService.opcaoVoltar = false;
     this.headerService.telaVoltar=''
     this.token = this.AuthTokenService.getLocalStorageToken()
+    
   }
 
  token:any;
