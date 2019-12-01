@@ -3,7 +3,7 @@
         <img  *ngIf="this.headerService.opcaoVoltar" src="../../assets/imagens/long-arrow-pointing-to-left.png" width="50px" alt=""> {{this.headerService.telaVoltar}}
     </div>
    <div *ngIf="this.headerService.menuLogado" class="header-divs col-md-6" (click)="this.headerService.mostraOpcoes(true) "> {{this.decodedToken?.Username}} </div>
-    <div *ngIf="!this.headerService.menuLogado"   [routerLink]=" [''] "  class="header-divs col-md-6" >Entrar Conta
+    <div *ngIf="!this.headerService.menuLogado"   [routerLink]=" ['login'] "  class="header-divs col-md-6" >Entrar Conta
         <img  class="transaladar  d-inline-block align-top " width="50" height="50" src="../../assets/imagens/sair.png" alt="">
     </div>
 

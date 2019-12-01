@@ -9,7 +9,7 @@ import { ScoreComponent } from "./score/score.component"
 import { MenuComponent } from './menu/menu.component'
 import { HeaderComponent } from './header/header.component';
 import { ModalComponent } from './modal/modal.component';
-import{ CreditosComponent } from './creditos/creditos.component'
+import { CreditosComponent } from './creditos/creditos.component'
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { EditarContaComponent } from './editar-conta/editar-conta.component';
 import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component';
@@ -17,15 +17,25 @@ import { AuthGuardService } from '../app/auth-services/Route-guard/auth-guard.se
 
 
 const routes: Routes = [
-  
+
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: '',
-    component: LoginComponent,
+    redirectTo: 'menu',
+    pathMatch: 'full'
+  },
+  {
+    path: 'menu/login',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
     path: 'lessons',
     component: LessonsComponent,
-    canActivate:[AuthGuardService]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'menu',
@@ -33,51 +43,51 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MenuComponent,       
+        component: MenuComponent,
       },
-    {
-      path: 'pontuacao',
-      component:ScoreComponent,
-     
-     
-    },
-    {
-      path: 'redefinir',
-      component: RecuperarSenhaComponent,
-     
-    },
-    {
-      path: 'criarconta',
-      component: CriarContaComponent,
-      
-    },
-    {
-      path: 'creditos',
-      component: CreditosComponent,
-    },
-    {
-      path: 'tutorial',
-      component: TutorialComponent,
-    },
-    {
-      path: 'editarconta',
-      component: EditarContaComponent,
-      canActivate:[AuthGuardService]
-      
-    },
-    {
-      path: 'redefinirsenha',
-      component: NovaSenhaComponent,
+      {
+        path: 'pontuacao',
+        component: ScoreComponent,
 
-    },
+
+      },
+      {
+        path: 'redefinir',
+        component: RecuperarSenhaComponent,
+
+      },
+      {
+        path: 'criarconta',
+        component: CriarContaComponent,
+
+      },
+      {
+        path: 'creditos',
+        component: CreditosComponent,
+      },
+      {
+        path: 'tutorial',
+        component: TutorialComponent,
+      },
+      {
+        path: 'editarconta',
+        component: EditarContaComponent,
+        canActivate: [AuthGuardService]
+
+      },
+      {
+        path: 'redefinirsenha',
+        component: NovaSenhaComponent,
+
+      },
     ]
   },
-/*   {
-    path: '**',
-    redirectTo: 'menu',
-  }, */
+  /*   {
+      path: '**',
+      redirectTo: 'menu',
+    }, */
 
-  
+
 ];
 
 @NgModule({

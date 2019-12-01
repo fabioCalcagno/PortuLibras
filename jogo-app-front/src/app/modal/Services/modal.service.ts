@@ -37,7 +37,7 @@ export class ModalService {
 
   sairConta(){
     localStorage.clear();
-    this.router.navigate([''])
+    this.router.navigate(['login'])
   }
 
 
@@ -138,7 +138,7 @@ export class ModalService {
     this.okButton = false;
     this.sim ="Entrar Conta"
     this.yesFunction = () =>{
-       this.router.navigate(['']);
+       this.router.navigate(['login']);
        this.closeModal()
       
     } 

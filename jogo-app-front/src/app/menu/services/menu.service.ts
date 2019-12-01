@@ -20,7 +20,7 @@ export class MenuService {
    }
 
    
-    tokenDecoded:Token;
+    tokenDecoded:any;
     mostraMenu: boolean = false;
     menuLogado:boolean = false;
     menu = true;
