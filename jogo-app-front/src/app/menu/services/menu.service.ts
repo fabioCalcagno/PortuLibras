@@ -3,6 +3,7 @@ import { AuthTokenService } from '../../auth-services/header-token/token.service
 import { ModalService } from '../../modal/Services/modal.service';
 import { Token } from '../../models/Token';
 import { HeaderService } from '../../header/services/header.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class MenuService {
   ) {
 
     this.tokenDecoded = this.AuthTokenService.showDecodedJwt();
+    this.userSubject.next(this.tokenDecoded)
     
    }
 
@@ -21,6 +23,7 @@ export class MenuService {
     tokenDecoded:Token;
     mostraMenu: boolean = false;
     menuLogado:boolean = false;
+    private userSubject = new BehaviorSubject<Token>(null)
 
     mostrarMenu(mostra:boolean){
       this.mostraMenu = mostra;

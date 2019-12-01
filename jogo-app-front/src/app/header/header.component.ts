@@ -4,6 +4,8 @@ import { IUser } from '../models/User';
 import { HeaderService } from './services/header.service';
 import { ModalService } from '../modal/Services/modal.service';
 import { AuthTokenService } from '../auth-services/header-token/token.service';
+import { BehaviorSubject } from 'rxjs';
+import { Token } from '../models/Token';
 
 @Component({
   selector: 'app-header',
@@ -26,12 +28,15 @@ export class HeaderComponent implements OnInit {
   decodedToken;
   private username:string;
   private teste:string = 'ola'
+  private userSubject$ = new BehaviorSubject<Token>(null)
 
  
   
   ngOnInit(): void {
     try{  
-    this.decodedToken = this.AuthTokenService.showDecodedJwt() }
+    this.decodedToken = this.AuthTokenService.showDecodedJwt()
+      this.userSubject$.next(this.decodedToken)
+  }
     catch{
       (Error)=>{
         return this.decodedToken.Username = this.teste.valueOf

@@ -44,21 +44,23 @@ getHeaderToken(){
 }
 
 
-    preencheUserComToken(user:IUser){
+/*     preencheUserComToken(user:IUser){
       let token:Token;
       token = this.showDecodedJwt()
-      user.CodigoJogo = null;
-      user.CodigoUsuario = token.CodigoUsuario;
-      user.Email = token.Email;
-      user.Nome = token.Nome;
-      user.Score = null;
-      user.Senha = null;
-      user.Sobrenome = token.Sobrenome;
-      user.Username = token.Username;
+      user = {
+      CodigoJogo = null,
+      CodigoUsuario = token.CodigoUsuario,
+      Email = token.Email;
+      Nome = token.Nome;
+      Score = null;
+      Senha = null;
+      Sobrenome = token.Sobrenome;
+      Username = token.Username;
+      }
       console.log('preencheUserComToken' , user)
       return user;
      
-    }
+    } */
 
 
 
