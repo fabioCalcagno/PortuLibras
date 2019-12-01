@@ -124,6 +124,7 @@ namespace JogoApi.Dados.Service
 
         public List<UsuarioDTO> ListarUsuario(UsuarioDTO usuario)
         {
+            usuario.Senha = null;
             return repository.ListarUsuario(usuario);
         }
 
@@ -173,11 +174,12 @@ namespace JogoApi.Dados.Service
 
         public Retorno Acessar(UsuarioDTO usuario)
         {
-            if (String.IsNullOrEmpty(usuario.Username.Trim()) || String.IsNullOrEmpty(usuario.Senha.Trim()))
+            string mensagemValida = ValidaRetorno(usuario);
+            if (!String.IsNullOrEmpty(mensagemValida))
             {
                 return new Retorno()
                 {
-                    Mensagem = ("Usuário e senha precisam ser preenchidos"),
+                    Mensagem = mensagemValida,
                     Codigo = 400,
                 };
             }
@@ -186,6 +188,15 @@ namespace JogoApi.Dados.Service
 
             var lstUsuario = ListarUsuario(usuario);
 
+            if (lstUsuario.Count == 0)
+            {
+                return new Retorno()
+                {
+                    Codigo = 400,
+                    Mensagem = "Preencher com usuário válido"
+                };
+            }
+
             var usuarioLocalizado = lstUsuario.FirstOrDefault(encontrado => encontrado.Senha == usuario.Senha && encontrado.Username == usuario.Username.ToUpper());
 
             if (usuarioLocalizado == null)
@@ -193,7 +204,7 @@ namespace JogoApi.Dados.Service
                 return new Retorno()
                 {
                     Codigo = 400,
-                    Mensagem = "Usuário não cadastrado"
+                    Mensagem = "Preencher senha igual exemplo (Senha123)"
                 };
             }
 
@@ -217,6 +228,26 @@ namespace JogoApi.Dados.Service
                 Mensagem = "Bem vindo!",
                 Token = token
             };
+        }
+
+        private string ValidaRetorno(UsuarioDTO usuario)
+        {
+            if (String.IsNullOrEmpty(usuario.Username.Trim()) && String.IsNullOrEmpty(usuario.Senha.Trim()))
+            {
+                return "Preencher campo usuário + campo senha";
+            }
+            
+            if (String.IsNullOrEmpty(usuario.Username.Trim()))
+            {
+                return "Preencher campo usuário";
+            }
+
+            if (String.IsNullOrEmpty(usuario.Senha.Trim()))
+            {
+                return "Preencher campo senha";
+            }
+
+            return "";
         }
 
         public Retorno EditaUsuario(UsuarioDTO usuario)
