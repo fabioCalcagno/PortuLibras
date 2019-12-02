@@ -6,6 +6,7 @@ import { ModalService } from '../modal/Services/modal.service';
 import { AuthTokenService } from '../auth-services/header-token/token.service';
 import { BehaviorSubject } from 'rxjs';
 import { Token } from '../models/Token';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,12 +22,18 @@ export class HeaderComponent implements OnInit {
 
   constructor( private headerService: HeaderService,
                 private AuthTokenService:AuthTokenService,
+                private router:Router,
                private modalService: ModalService
 
   ){ }
   private user: IUser;
   decodedToken:any;
   private userSubject$ = new BehaviorSubject<Token>(null)
+
+
+  tutorial(){
+    this.router.navigate(['/menu/tutorial'])
+  }
 
  
   

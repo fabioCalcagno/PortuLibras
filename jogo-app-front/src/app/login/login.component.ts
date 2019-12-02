@@ -55,7 +55,10 @@ export class LoginComponent implements OnInit {
 
   }
 
-
+  lembrarSenha(){
+    this.router.navigate(['/redefinir'])
+    
+  }
 
 
   onSubmit() {

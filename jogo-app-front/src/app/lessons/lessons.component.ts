@@ -166,6 +166,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   }
 
   tutorial(){
+    this.pausarJogoAcabar()
     this.router.navigate(['/menu/tutorial'])
   }
 
