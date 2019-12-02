@@ -26,8 +26,6 @@ export class HeaderComponent implements OnInit {
   ){ }
   private user: IUser;
   decodedToken:any;
-  private username:string;
-  private teste:string = 'ola'
   private userSubject$ = new BehaviorSubject<Token>(null)
 
  

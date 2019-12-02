@@ -49,6 +49,7 @@ export class MenuService {
        return  this.menuLogado = true
       } 
       else if(this.tokenDecoded.Ativo == undefined){
+        console.log(this.tokenDecoded.Ativo, 'vendo se esta undefined')
        return  this.menuLogado = false;
       }
       else if (this.tokenDecoded.Ativo == "True"){

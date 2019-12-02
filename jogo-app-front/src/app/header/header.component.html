@@ -1,6 +1,6 @@
 <div class="header-container bg-cor-2">
     <div   class="header-divs col-md-6" [routerLink]="['/menu']">
-        <img  *ngIf="this.headerService.opcaoVoltar" src="../../assets/imagens/long-arrow-pointing-to-left.png" width="50px" alt=""> {{this.headerService.telaVoltar}}
+        <img  *ngIf="this.headerService.opcaoVoltar" src="../../assets/imagens/long-arrow-pointing-to-left.png" width="50px" alt=""> <h2 class=" d-inline-block align-top col-md-6" *ngIf="this.headerService.opcaoVoltar">Menu</h2>
     </div>
    <div *ngIf="this.headerService.menuLogado" class="header-divs col-md-6" (click)="this.headerService.mostraOpcoes(true) "> {{this.decodedToken?.Username}} </div>
     <div *ngIf="!this.headerService.menuLogado"   [routerLink]=" ['login'] "  class="header-divs col-md-6" >Entrar Conta

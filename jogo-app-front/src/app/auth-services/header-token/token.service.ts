@@ -89,6 +89,12 @@ getHeaderToken(){
     
    }
 
+
+   decodificadorToken(token){
+    let x = jwt_decode(token) as Token;
+    return x;
+   }
+
    hasHeaderToken(){
      console.log(this.headers.has('Authorization'))
     return  this.headers.has('Authorization');
