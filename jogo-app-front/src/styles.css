@@ -1,0 +1,130 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    src: url('fonts/Skranji/Skranji-Regular.ttf');
+    font-family: 'Skranji-Regular';
+    font-weight: normal;
+}
+
+body {
+    font-family: 'Skranji-Regular';
+    letter-spacing: .1rem;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+paleta {
+    color: #22e245;
+    color: #054393;
+    color: #35a7ff;
+    color: #ef5151;
+    color: #fa7268;
+}
+
+.bg-cor-1 {
+    background-color: #E47261;
+}
+
+.bg-cor-2 {
+    background-color: #EE9386;
+}
+
+.bg-cor-3 {
+    background-color: #6E4F4F;
+}
+
+.bg-amarelo {
+    background-color: #EBCA53;
+}
+
+.bg-azul {
+    background-color: #4E728F;
+}
+
+.bg-verde {
+    background-color: #4A7351;
+}
+
+.bg-vermelho {
+    background-color: #BA3F23;
+}

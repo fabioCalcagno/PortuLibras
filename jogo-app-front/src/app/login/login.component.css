@@ -1,0 +1,147 @@
+.container-login {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    padding: 0.5rem;
+}
+
+.erro{
+    color: white;
+    font-size: 1em;
+    background-color: inherit;
+    text-shadow: 1px 1px black;
+}
+
+.login-wrap {
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.title {
+    text-align: center;
+    color: white;
+    font-size: 450%;
+    text-shadow: 4px 4px #EE9386;
+}
+
+.login {
+    height: 12%;
+}
+
+.login-container {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 5%;
+    background-color: #E47261;
+    height: 80%;
+}
+
+.input {
+    width: 99%;
+    margin-top: 2%;
+    height: 80%;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    color: white;
+    font-size: 200%;
+}
+
+.entrar {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    width: 99.2%;
+    height: 100%;
+    border: none;
+    font-family: 'Skranji-Regular';
+    transition: all .3s cubic-bezier(.18, .89, .32, 1.28);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.entrar:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.entrar:invalid {
+    opacity: 0.3;
+}
+
+img {
+    width: 50px;
+}
+
+h2 {
+    margin-left: 1rem;
+    margin-bottom: 0;
+    color: white;
+    font-size: 200%;
+    display: inline;
+    text-shadow: 2px 2px rgba(255, 255, 255, 0.2);
+}
+
+#creditos {
+    font-size: 100%;
+    margin-left: 0%;
+}
+
+#creditos-img {
+    margin-left: 0%;
+    height: 90%;
+    width: 10%;
+    vertical-align: super;
+}
+
+.options {
+    height: 100%;
+    color: white;
+    font-size: 200%;
+}
+
+.options:hover {
+    cursor: pointer;
+}
+
+#criar-conta {
+    text-align: end;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
+
+ :-moz-placeholder {
+    /* Firefox 18- */
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
+
+ ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
+
+ :-ms-input-placeholder {
+    color: white;
+    font-size: 110%;
+    font-family: 'Skranji-Regular';
+}
