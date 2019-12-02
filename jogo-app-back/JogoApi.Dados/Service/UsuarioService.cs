@@ -181,6 +181,24 @@ namespace JogoApi.Dados.Service
 
         public Retorno Acessar(UsuarioDTO usuario)
         {
+            if (usuario.Username == null)
+            {
+                return new Retorno()
+                {
+                    Mensagem = "Preencher campo usuário",
+                    Codigo = 400,
+                };
+            }
+
+            if (usuario.Senha ==null)
+            {
+                return new Retorno()
+                {
+                    Mensagem = "Preencher campo senha",
+                    Codigo = 400,
+                };
+            }
+
             string mensagemValida = ValidaRetorno(usuario);
             if (!String.IsNullOrEmpty(mensagemValida))
             {
