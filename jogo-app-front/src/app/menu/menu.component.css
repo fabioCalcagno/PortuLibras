@@ -1,0 +1,59 @@
+.container-menu {
+    height: 100%;
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.menu-wrap {
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.title {
+    text-align: center;
+    color: white;
+    font-size: 450%;
+    text-shadow: 4px 4px #EE9386;
+}
+
+.menu-container {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 5%;
+    background-color: #E47261;
+    height: 80%;
+}
+
+.menu-options {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    height: 100%;
+    color: white;
+    font-size: 300%;
+    text-align: center;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all .3s cubic-bezier(.18, .89, .32, 1.28);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.menu-options:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.menu-options img {
+    margin: 0 1rem;
+}
