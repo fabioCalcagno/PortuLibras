@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace JogoApi.Controllers
 {
-    [Authorize] 
     [Produces("aplication/json")]
     [Route("api/[controller]/[action]")]
     [EnableCors("AllowSpecificOrigin")]
@@ -23,6 +22,7 @@ namespace JogoApi.Controllers
             this.service = service;
         }
 
+        [Authorize]
         [HttpPost]
         [ActionName("EditarUsuario")]
         public IActionResult EditarUsuario([FromBody]UsuarioDTO usuario)
@@ -38,6 +38,7 @@ namespace JogoApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         [ActionName("ExcluirConta")]
         public IActionResult ExcluirConta([FromBody]UsuarioDTO usuario)
