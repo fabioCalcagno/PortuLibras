@@ -33,9 +33,9 @@
     <div class="container" *ngIf="this.modalService.mostraOpcoes">
         <div class="menu-container">
         <div *ngIf="this.modalService.opcoesMenu">
-            <div class="menu-options" id="placar" [routerLink]="['/menu/pontuacao']">Ver Placar</div>
+            <div class="menu-options" id="placar" (click)="this.modalService.mostraPontuacao()">Ver Placar</div>
             <div class="menu-options" id="voltar" (click)="this.modalService.closeUserOptionsModal()"> Voltar Tela </div>
-            <div class="menu-options" id="editar" [routerLink]="['/menu/editarconta']"> Editar Conta </div>
+            <div class="menu-options" id="editar" (click)="this.modalService.editarConta()"> Editar Conta </div>
             <div class="menu-options" id="sairJogo" (click)="this.modalService.sairConta()"> Sair Conta</div>
         </div>
             <div *ngIf="this.modalService.opcoesLesson" > 

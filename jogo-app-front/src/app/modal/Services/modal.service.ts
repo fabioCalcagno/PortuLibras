@@ -86,6 +86,16 @@ export class ModalService {
    location.reload()
   }
 
+  mostraPontuacao(){
+    this.mostraOpcoes=false;
+    this.router.navigate(['/menu/pontuacao'])
+  }
+
+  editarConta(){
+    this.mostraOpcoes=false;
+    this.router.navigate(['/menu/editarconta'])
+  }
+
 
   lessonsjogoAcabar(score) {
     this.showModal = true;
