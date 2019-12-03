@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HeaderService } from '../../../header/services/header.service';
 import { CriarContaService } from '../service/criar-conta.service';
 import { Retorno } from '../../../models/Retorno';
+import { ModalService } from '../../../modal/Services/modal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nova-senha',
@@ -13,6 +15,8 @@ export class NovaSenhaComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
               private HeaderService:HeaderService, 
+              private ModalService:ModalService,
+              private router:Router,
               private CriarContaService:CriarContaService) { 
 
    
@@ -70,7 +74,9 @@ export class NovaSenhaComponent implements OnInit {
 
         this.CriarContaService.cadastrarNovaSenha(body).subscribe((subscribe:Retorno) =>{
             if(subscribe.Codigo == 200){
+              this.ModalService.modalSenhaOk()
               console.log('senhaCadastradaComSucesso', subscribe.Mensagem)
+              this.router.navigate(['menu'])
             }else{
               console.log(subscribe.Mensagem)
             }

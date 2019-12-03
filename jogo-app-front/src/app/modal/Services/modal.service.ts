@@ -194,11 +194,18 @@ export class ModalService {
     }
   }
 
-  modaSairdaTela() {
+  modalSairdaTela() {
     this.showModal = true;
     this.alertTitle = "Você sair tela! Você ter certeza?";
     this.yesOrNoButtons = true;
     this.okButton = false;
+    this.yesFunction = () =>{
+      this.router.navigate(['/menu/criarconta'])
+      this.closeModal()
+    }
+    this.noFunction = () =>{
+      this.closeModal()
+    }
   }
 
   modalSairDaConta() {

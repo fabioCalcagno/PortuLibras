@@ -31,7 +31,6 @@ paleta {
 .alert-wrapper-not {
     position: absolute;
     margin-top: 10%;
-    margin-left: 25%;
     width: 40%;
     height: fit-content;
     padding-bottom: 2%;
@@ -45,7 +44,8 @@ paleta {
 }
 
 .yesOrNo {
-    display: inline;
+    width: 15%;
+    display: inline-block;
     font-size: 200%;
     color: white;
     padding-bottom: -5%;

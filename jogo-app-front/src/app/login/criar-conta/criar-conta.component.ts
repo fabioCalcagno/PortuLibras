@@ -115,7 +115,10 @@ export class CriarContaComponent implements OnInit {
         console.log(signin.Codigo + " " + signin.Mensagem + " " + signin.Data)
         this.router.navigate(['/menu'])
       }
-      else this.user.reset() 
+       if(signin.Codigo !== 200) {
+        this.ValidationFormService.erro.status = false
+        this.ValidationFormService.erro.msg =signin.Mensagem
+      }
     },
       (error: any) => {
         console.log(error.error)

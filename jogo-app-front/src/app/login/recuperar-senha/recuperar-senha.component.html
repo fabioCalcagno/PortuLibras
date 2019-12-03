@@ -34,7 +34,7 @@
 
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <button type="submit" class="entrar bg-verde" [routerLink]="['/menu/criarconta']">
+                    <button type="submit" class="entrar bg-verde" (click)='criarConta()'>
                                 <img style="margin-left: 5%" src="../../assets/imagens/add-people-interface-symbol-of-black-person-close-up-with-plus-sign-in-small-circle.png" alt="">
                                 <h2>Criar Conta</h2>
                             </button>
@@ -66,7 +66,7 @@
 
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <button type="button" (click)="reenviaTokenEmail(email)"  class="entrar bg-verde">
+                    <button type="button" (click)="reenviaTokenEmail()"  class="entrar bg-verde">
                                     <img style="margin-left: 5%" src="../../assets/imagens/receber-email.png" alt="">
                                     <h2>Receber número</h2>
                                 </button>

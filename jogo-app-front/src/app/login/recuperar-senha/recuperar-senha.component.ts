@@ -43,6 +43,22 @@ export class RecuperarSenhaComponent implements OnInit {
   }
 
 
+  criarConta(){
+    this.modalService.modalSairdaTela()
+  }
+
+  reenviaTokenEmail() {
+    let email = localStorage.getItem('Email:')
+    console.log(email, 'reenvio de email')
+    this.CriarContaService.recuperarSenha(email).subscribe((subscribe:Retorno)=>{
+      if (subscribe.Codigo == 200) {
+        this.modalService.modalRecuperacaoConta();
+      }
+    })
+  }
+
+
+
 
 
   ngOnInit() {
@@ -71,7 +87,7 @@ export class RecuperarSenhaComponent implements OnInit {
   onSubmit() {
     console.log(this.Email.value)
     let email = this.Email.controls['Email'].value;
-    localStorage.setItem('Email', email)
+    localStorage.setItem('Email:', email)
     this.CriarContaService.recuperarSenha(email).subscribe((subscribe: Retorno) => {
       if (subscribe.Codigo == 200) {
         this.modalService.modalRecuperacaoConta();
@@ -80,10 +96,7 @@ export class RecuperarSenhaComponent implements OnInit {
     })
   }
 
-  reenviaTokenEmail(email) {
-
-  }
-
+ 
 
   enviaCodigo() {
    
