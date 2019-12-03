@@ -12,5 +12,6 @@ namespace JogoApi.Dados.Interface
         Retorno Acessar(UsuarioDTO usuario);
         Retorno ConfirmaConta(string email);
         Retorno ExcluirConta(UsuarioDTO usuario);
+        Retorno AlterarSenha(UsuarioDTO usuario);
     }
 }

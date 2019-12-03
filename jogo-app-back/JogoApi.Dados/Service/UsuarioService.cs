@@ -388,5 +388,34 @@ namespace JogoApi.Dados.Service
             if (String.IsNullOrEmpty(usuario.Senha.Trim())) return "Senha não informada";
             return "";
         }
+
+        public Retorno AlterarSenha(UsuarioDTO usuario)
+        {
+            var novaSenha = criptografia.Criptografar(usuario.Senha);
+
+            usuario.Senha = null;
+
+            var usuarioLocalizado = BuscarUsuario(usuario);
+
+            usuarioLocalizado.Senha = novaSenha;
+
+            if (repository.AlterarUsuario(usuarioLocalizado) == 0)
+            {
+                return new Retorno()
+                {
+                    Codigo = 500,
+                    Mensagem = "Falha ao alterar os dados, por favor entre em contato com o suporte"
+                };
+            }
+
+            usuarioLocalizado.Senha = null;
+
+            return new Retorno()
+            {
+                Codigo = 200,
+                Mensagem = "Senha alterada com sucesso",
+                Data = JsonConvert.SerializeObject(usuarioLocalizado).ToString(),
+            };
+        }
     }
 }

@@ -15,12 +15,14 @@ namespace JogoApi.Dados.Service
         private readonly IConfiguration configuration;
         private readonly IRepositoryUsuario repositoryUsuario;
         private readonly IRepositoryTokenEmail repositoryTokenEmail;
+        private readonly IAuthTokenService authService;
 
-        public EmailService(IConfiguration configuration, IRepositoryUsuario repositoryUsuario, IRepositoryTokenEmail repositoryTokenEmail)
+        public EmailService(IConfiguration configuration, IRepositoryUsuario repositoryUsuario, IRepositoryTokenEmail repositoryTokenEmail, IAuthTokenService authService)
         {
             this.configuration = configuration;
             this.repositoryUsuario = repositoryUsuario;
             this.repositoryTokenEmail = repositoryTokenEmail;
+            this.authService = authService;
         }
 
         public Retorno EnviaResetSenha(string email)
@@ -216,10 +218,14 @@ namespace JogoApi.Dados.Service
                 };
             }
 
+            string token = authService.GeraTokenUsuario(usuario);
+
+
             return new Retorno()
             {
                 Codigo = 200,
                 Mensagem = "Código de reset de senha correto",
+                Token = token
             };
         }
 
