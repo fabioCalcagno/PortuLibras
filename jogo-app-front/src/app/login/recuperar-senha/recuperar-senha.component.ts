@@ -96,7 +96,7 @@ export class RecuperarSenhaComponent implements OnInit {
        .subscribe((subscribe: Retorno) => {
 
         if (subscribe.Codigo == 200) {
-          this.router.navigate(['/menu/redefinirsenha'])
+          this.router.navigate(['redefinirsenha'])
         }
         else console.log(subscribe.Mensagem)
       })

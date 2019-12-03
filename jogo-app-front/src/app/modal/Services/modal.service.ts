@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { StatusBarService } from '../../status-bar/services/progress-bar-Service/status-bar.service'
 import { VideoService } from '../../lessons/services/Video-Service/video.service'
 import { Router, RouterLink } from '@angular/router';
-import { LessonsComponent } from '../../lessons/lessons.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +36,10 @@ export class ModalService {
 
   sairConta(){
     localStorage.clear();
-    this.router.navigate(['login'])
+    this.closeModal();
+    location.reload()
+    this.router.navigate(['login']);
+    
   }
 
 

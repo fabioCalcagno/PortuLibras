@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HeaderService } from '../../../header/services/header.service';
 
 @Component({
   selector: 'app-nova-senha',
@@ -8,7 +9,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class NovaSenhaComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder, private HeaderService:HeaderService) { 
+
+    this.HeaderService.opcaoVoltar = true;
+    
+
+  }
   senhaNova:FormGroup;
 
   ngOnInit() {

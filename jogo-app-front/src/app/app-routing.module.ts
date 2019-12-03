@@ -18,25 +18,79 @@ import { AuthGuardService } from '../app/auth-services/Route-guard/auth-guard.se
 
 const routes: Routes = [
 
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: '',
-    redirectTo: 'menu',
-    pathMatch: 'full'
-  },
+
+
+  //redirecionamentos nescessarios
   {
     path: 'menu/login',
     redirectTo: 'login',
     pathMatch: 'full'
   },
   {
+    path: '',
+    redirectTo: 'menu',
+    pathMatch: 'full'
+  },
+   {
+    path: 'redefinir/login',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login/redefinir',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login/criarconta',
+    redirectTo: 'criarconta',
+    pathMatch: 'full'
+  }, 
+  {
+    path: 'criarconta',
+    component: CriarContaComponent,
+  },
+  
+  {
+    path: 'login',
+    component: LoginComponent,
+    children: [
+          {
+          path: 'redefinir',
+          component: RecuperarSenhaComponent,
+        },
+        
+          {
+            path: 'redefinirsenha',
+            component: NovaSenhaComponent,
+        
+          },
+          {
+            path: 'criarconta',
+            component: CriarContaComponent,
+          },
+        
+      ]
+      },
+
+  {
+    path: 'redefinir',
+    component: RecuperarSenhaComponent,
+  },
+  {
+    path: 'redefinirsenha',
+    component: NovaSenhaComponent,
+
+  },
+  {
     path: 'lessons',
     component: LessonsComponent,
     canActivate: [AuthGuardService]
   },
+
+
+  
+ // rotas com o header
   {
     path: 'menu',
     component: HeaderComponent,
@@ -48,18 +102,10 @@ const routes: Routes = [
       {
         path: 'pontuacao',
         component: ScoreComponent,
-
-
       },
       {
         path: 'redefinir',
         component: RecuperarSenhaComponent,
-
-      },
-      {
-        path: 'criarconta',
-        component: CriarContaComponent,
-
       },
       {
         path: 'creditos',
@@ -73,12 +119,10 @@ const routes: Routes = [
         path: 'editarconta',
         component: EditarContaComponent,
         canActivate: [AuthGuardService]
-
       },
       {
-        path: 'redefinirsenha',
-        component: NovaSenhaComponent,
-
+        path: 'criarconta',
+        component: CriarContaComponent,
       },
     ]
   },
