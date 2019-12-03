@@ -32,7 +32,7 @@
                     <div class="options" [routerLink]="['/redefinir']" >Lembrar Senha</div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <div class="options" id="criar-conta" [routerLink]="['/criarconta']">Criar conta</div>
+                    <div class="options" id="criar-conta" (click)="redirecionarCriarConta()"  >Criar conta</div>
                 </div>
             </div>
         </form>

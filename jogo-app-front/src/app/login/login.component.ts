@@ -36,6 +36,14 @@ export class LoginComponent implements OnInit {
     msg: ''
   }
 
+
+  redirecionarCriarConta(){
+   
+    this.router.navigate(['criarconta'], ).then(sucess =>{
+      this.loginService.headerOn = true;
+    })
+  }
+
   ngOnInit() {
 
     this.erro.status = false;

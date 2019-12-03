@@ -11,7 +11,7 @@ export class LoginService {
 
   private url:string = 'http://localhost:5000/api/login/Acessar'  // ver se qual é a url usada na api e se o processo é o post mesmo
 
-
+   headerOn:boolean;
  
     private  headers= new HttpHeaders({
       'Content-Type': 'application/json'

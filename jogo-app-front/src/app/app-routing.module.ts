@@ -20,9 +20,14 @@ const routes: Routes = [
 
 
 
-  //redirecionamentos nescessarios
+  //redirecionamentos nescessarios 
   {
     path: 'menu/login',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'criarconta/login',
     redirectTo: 'login',
     pathMatch: 'full'
   },

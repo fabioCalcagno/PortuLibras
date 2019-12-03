@@ -1,6 +1,6 @@
 
 
-<div class="header-container bg-cor-2">
+<div *ngIf="this.loginService.headerOn"  class="header-container bg-cor-2">
     <div   class="header-divs col-md-6" >
         <img   src="../../assets/imagens/long-arrow-pointing-to-left.png" width="50px" alt="" [routerLink]="['/login']"> 
         <h2  class="menu d-inline-block align-top col-md-6" [routerLink]="['/login']" >Voltar</h2>
@@ -10,7 +10,6 @@
         <img  class="transaladar  d-inline-block align-top " width="50" height="50" src="../../assets/imagens/sair.png" alt="">
     </div>
 </div>
-
 
 <div class="container-criar-conta bg-cor-1">
     <div class="criar-conta-wrap col-md-6">

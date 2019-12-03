@@ -27,6 +27,7 @@ export class CriarContaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cadastrarUsuarioService: CadastrarUsuarioService,
+    private loginService:LoginService,
     private headerService:HeaderService,
     private ValidationFormService:ValidationFormService,
     private router: Router
