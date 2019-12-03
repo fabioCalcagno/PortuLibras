@@ -100,7 +100,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
   enviaCodigo() {
    
-    let Email = localStorage.getItem('Email')
+    let Email = localStorage.getItem('Email:')
     let CodigoReset =  this.codigoReset.controls['CodigoReset'].value
     console.log(CodigoReset, 'aaaaaaaaaaaaaaaaaa')
     let body = {
