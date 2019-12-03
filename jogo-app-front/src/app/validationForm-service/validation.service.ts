@@ -74,34 +74,41 @@ export class ValidationFormService {
       }
       else if (user.controls['Username'].errors['minlength']) {
         this.erro.msg = "Campo usuário ter mínim@ 3 caractere+";
+        this.erro.status = false;
         return false;
       }
       else if (user.controls['Username'].errors['pattern']) {
         this.erro.msg = "Campo usuário só letra + número";
+        this.erro.status = false;
         return false;
       }
       else if (user.controls['Username'].errors['maxlength']) {
         this.erro.msg = "Campo usuário ter máxim@ 10 caractere+";
+        this.erro.status = false;
         return false;
       }
     }
     if (user.controls['Email'].invalid && user.controls['Email'].touched ) {
       if (user.controls['Email'].errors['required']) {
         this.erro.msg = "Preencher campo e-mail";
+        this.erro.status = false;
         return false;
       }
       else if (user.controls['Email'].errors['email']) {
         this.erro.msg = "Preencher com e-mail válido";
+        this.erro.status = false;
         return false;
       }
     }
     if (user.controls['Senha'].invalid && user.controls['Senha'].touched ) {
       if (user.controls['Senha'].errors['required']) {
         this.erro.msg = "Preencher campo senha";
+        this.erro.status = false;
         return false;
       }
       else if (user.controls['Senha'].errors['minlength']) {
         this.erro.msg = "Campo senha ter mínim@ 8 caracteres+";
+        this.erro.status = false;
         console.log(user.controls['Senha'].value, 'askjhdjakshdkasjhdkl')
         return false;
       }
@@ -112,16 +119,19 @@ export class ValidationFormService {
       }
       else if (user.controls['Senha'].errors['maxlength']) {
         this.erro.msg = "Campo senha ter máxim@ 12 caracteres+";
+        this.erro.status = false;
         return false;
       }
     }
     if (user.controls['termo'].invalid &&  user.controls['termo'].touched) {
       this.erro.msg = "Aceitar Termos de Uso"
+      this.erro.status = false;
       return false;
     }
    
     else if (user.controls['Senha'].value !== user.controls['reSenha'].value  && user.controls['reSenha'].touched ) {
       this.erro.msg = "Senha combinar-não"
+      this.erro.status = false;
       return false;
     }
 
@@ -138,4 +148,75 @@ export class ValidationFormService {
       })
   }
 
-}
+
+  validacaoEditarUsuario(user: FormGroup){
+    this.erro.msg = '';
+    if (user.controls['Username'].invalid && user.controls['Username'].touched ) {
+      if (user.controls['Username'].errors['required']) {
+        this.erro.msg = "Preencher campo usuário";
+        console.log(user.controls['Username'].errors['required'], 'erssjjsj')
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['Username'].errors['minlength']) {
+        this.erro.msg = "Campo usuário ter mínim@ 3 caractere+";
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['Username'].errors['pattern']) {
+        this.erro.msg = "Campo usuário só letra + número";
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['Username'].errors['maxlength']) {
+        this.erro.msg = "Campo usuário ter máxim@ 10 caractere+";
+        this.erro.status = false;
+        return false;
+      }
+    }
+    
+    if (user.controls['Senha'].invalid && user.controls['Senha'].touched ) {
+      if (user.controls['Senha'].errors['required']) {
+        this.erro.msg = "Preencher campo senha";
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['Senha'].errors['minlength']) {
+        this.erro.msg = "Campo senha ter mínim@ 8 caracteres+";
+        this.erro.status = false;
+        console.log(user.controls['Senha'].value, 'askjhdjakshdkasjhdkl')
+        return false;
+      }
+      else if (user.controls['Senha'].errors['pattern']) {
+        this.erro.msg = "Campo senha só letra + número";
+        console.log(user.controls['Senha'].value, 'valor do pattern')
+        return false;
+      }
+      else if (user.controls['Senha'].errors['maxlength']) {
+        this.erro.msg = "Campo senha ter máxim@ 12 caracteres+";
+        this.erro.status = false;
+        return false;
+      }
+    }
+  
+    else if (user.controls['Senha'].value !== user.controls['reSenha'].value  && user.controls['reSenha'].touched ) {
+      this.erro.msg = "Senha combinar-não"
+      this.erro.status = false;
+      return false;
+    }
+
+  
+
+    else return true;
+  }
+
+
+
+
+
+  }
+
+
+
+
+

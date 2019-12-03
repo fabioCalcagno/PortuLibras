@@ -73,11 +73,7 @@ h3 {
     font-size: 2em;
     text-align: center;
 }
-.error {
-    background-color: #E47261;
-    font-size: 1em;
-    color: black;
-}
+
 
 
 ::-webkit-input-placeholder {

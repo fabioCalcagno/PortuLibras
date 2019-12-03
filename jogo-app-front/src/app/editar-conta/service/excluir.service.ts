@@ -16,6 +16,7 @@ export class ExcluirService   {
               }
 
   url = 'http://localhost:5000/api/Usuario/ExcluirConta'
+  urlEditar = 'http://localhost:5000/api/Usuario/EditarUsuario'
   
 
    private  headers= new HttpHeaders({
@@ -28,4 +29,11 @@ export class ExcluirService   {
     console.log(user, 'codUser')
     return this.http.post(this.url, user  , {headers : this.headers} )
   }
+  
+  editarConta(user:IUser){
+    console.log(user, 'req de editar usuario')
+    return this.http.post(this.urlEditar, user, {headers:this.headers})
+  }
+
+
 }

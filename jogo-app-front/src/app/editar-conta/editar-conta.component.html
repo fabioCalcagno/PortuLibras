@@ -1,8 +1,9 @@
 <div class="container-criar-conta bg-cor-1">
+    <app-modal></app-modal>
     <div class="criar-conta-wrap col-md-6">
 
         <h1 class="title">Conta</h1>
-        <form [formGroup]="user" (ngSubmit)="onSubmit(user)" class="col-md-12 flexcroll">
+        <form [formGroup]="user" (ngSubmit)="atualizarUsuario(user)" class="col-md-12 flexcroll">
 
            
             <div class="form-row">
@@ -12,27 +13,27 @@
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input class="input bg-cor-2 col-12" type="email" formControlName="Email" placeholder="E-mail:">
+                    <input class="input bg-cor-2 col-12" type="email"  disabled value="{{User.Email}}"  > 
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input class="input bg-cor-2 col-12" type="password" formControlName="Senha" placeholder="Senha:">
+                    <input class="input bg-cor-2 col-12" type="password" formControlName="SenhaAntiga" placeholder="Senha:">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input class="input bg-cor-2 col-12" type="password" formControlName="SenhaNova" placeholder="Senha nova:">
+                    <input class="input bg-cor-2 col-12" type="password" formControlName="Senha" placeholder="Senha nova:">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input class="input bg-cor-2 col-12" type="password" formControlName="reSenha" placeholder="Repetir senha:">
-                    <label class="input error" type="text"> {{erro.msg}} </label>
+                    <input class="input bg-cor-2 col-12" type="password" formControlName="reSenha" placeholder="Repetir senha nova:">
+                    <label *ngIf="!this.ValidationFormService.erro.status"  class="input error" autofocus  type="text"> {{this.ValidationFormService.erro.msg}} </label>
                 </div>
             </div>
             <div class="buttons" >
-                <button type="button" id="editar-conta" class="botao btn btn-primary" >Editar Conta</button>
+                <button type="submit" id="editar-conta" class="botao btn btn-primary"  (click)="atualizarUsuario()"  >Editar Conta</button>
                 <button type="button" id="excluir-conta" class="botao btn btn-primary" (click)="excluirConta()" >Excluir Conta</button>
             </div>
 
