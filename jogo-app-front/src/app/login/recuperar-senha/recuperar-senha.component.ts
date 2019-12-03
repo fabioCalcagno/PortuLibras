@@ -8,6 +8,8 @@ import { Retorno } from '../../models/Retorno';
 import { ModalService } from '../../modal/Services/modal.service';
 import { EmailPlusCodigo } from '../../models/EmailPlusCodigo'
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
+import { AuthTokenService } from '../../auth-services/header-token/token.service';
 @Component({
   selector: 'app-recuperar-senha',
   templateUrl: './recuperar-senha.component.html',
@@ -19,6 +21,7 @@ export class RecuperarSenhaComponent implements OnInit {
     private headerService: HeaderService,
     private router: Router,
     private modalService: ModalService,
+    private AuthTokenService:AuthTokenService,
     private CriarContaService: CriarContaService,
     
 
@@ -93,6 +96,16 @@ export class RecuperarSenhaComponent implements OnInit {
     }
    
     this.CriarContaService.enviarCodigoConfirmacaoEmail(body)
+    .pipe(tap((res: Retorno) => {
+      let token: any;
+      token = res.Token
+      token = this.AuthTokenService.decodificadorToken(token)
+      this.CriarContaService.CodigoUsuario = token.CodigoUsuario
+      console.log('testando', token)
+      this.AuthTokenService.setHeaderToken(res.Token);
+      this.AuthTokenService.setLocalStorageToken(res.Token)
+      console.log(res)
+    }))
        .subscribe((subscribe: Retorno) => {
 
         if (subscribe.Codigo == 200) {

@@ -122,7 +122,9 @@ h3 {
 }
 
 
-
+.menu{
+    font-size: 1em;
+}
 .header-divs {
     color: white;
     font-size: 2em;
