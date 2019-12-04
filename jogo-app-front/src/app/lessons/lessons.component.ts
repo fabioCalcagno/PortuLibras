@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, OnDestroy, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxSpinnerService } from "ngx-spinner";
 import { VideoService } from './services/Video-Service/video.service'
 
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
@@ -31,6 +32,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
               private VideoService: VideoService,
               private modalService: ModalService,
               private router: Router,
+              private spinner: NgxSpinnerService,
               private AuthTokenService:AuthTokenService,
               private progress: NgProgress) {
 
@@ -116,7 +118,16 @@ export class LessonsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
+    this.spinner.show();
+  
       this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
+       
+        if(jogadas.Codigo){
+          this.spinner.hide();
+        }
+ 
+      
+
       let a = JSON.parse(jogadas.Data) as ArrayRetornoRodada;
       console.log(a)
       a.Partida.forEach(element => {

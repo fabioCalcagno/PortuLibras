@@ -15,7 +15,7 @@
             <img class="icon-score" src="../../assets/imagens/icons8-moedas-48.png">
             <span class="score"> {{score}} </span>
         </div>
-        <div class="header-div" id="userName" (click)="mostrarOpcoesUsuario()"  >
+        <div class="header-div" id="userName" (click)="mostrarOpcoesUsuario()">
             <span>{{username}}</span>
         </div>
     </div>
@@ -24,7 +24,7 @@
 </header>
 
 <div class="container-lessons">
-        <app-modal></app-modal>
+    <app-modal></app-modal>
     <div class="container" *ngIf="menuPause">
         <div class="menu-container">
             <div class="menu-options" id="menuComeco" (click)="mostrarMenuPause()">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-  
+
 
     <div *ngIf="modalConfirmacaoSaida" class="alert-wrapper-not">
         <div class="alert-modal">
@@ -45,38 +45,38 @@
                     <div class="yesOrNo" (click)="noFunction()" id="no">Não</div>
                 </div>
             </div>
-            </div>
-            </div>
-
-            <div class="container" *ngIf="mostraOpcoes">
-                    <div class="menu-container">
-                    <div>
-                        <div class="menu-options" id="placar" (click)="mostraPontuacao()">Ver Placar</div>
-                        <div class="menu-options" id="voltar" (click)="voltarOpcoesUsuario()"> Voltar Tela </div>
-                        <div class="menu-options" id="editar" (click)="editarConta()"> Editar Conta </div>
-                        <div class="menu-options" id="sairJogo" (click)="sairConta()"> Sair Conta</div>
-                    </div>
-                    </div>
-                    </div>
-
-
-            <div class="game-container col-12">
-                <div class="questions-container col-md-8">
-                    <h2>Qual Palavra?</h2>
-                    <div class="questions-wrap" *ngIf="!menuPause && !modalConfirmacaoSaida"  >
-                        <div #answer1 class="questions-div" (click)="onSubmit(this.a)">{{this.a.Palavra}} </div>
-                        <div class="questions-div" (click)="onSubmit(this.b)">{{this.b.Palavra}} </div>
-                        <div class="questions-div " (click)="onSubmit(this.c)">{{this.c.Palavra}} </div>
-                        <div class="questions-div " (click)="onSubmit(this.d)">{{this.d.Palavra}} </div>
-                    </div>
-                </div>
-
-                <div class="image-container col-md-4">
-                    <video [src]="video" autoplay loop></video>
-                </div>
-
-            </div>
-
-
-
         </div>
+    </div>
+    <ngx-spinner type="ball-clip-rotate"><span class="preparar" >Preparar</span></ngx-spinner>
+    <div class="container" *ngIf="mostraOpcoes">
+        <div class="menu-container">
+            <div>
+                <div class="menu-options" id="placar" (click)="mostraPontuacao()">Ver Placar</div>
+                <div class="menu-options" id="voltar" (click)="voltarOpcoesUsuario()"> Voltar Tela </div>
+                <div class="menu-options" id="editar" (click)="editarConta()"> Editar Conta </div>
+                <div class="menu-options" id="sairJogo" (click)="sairConta()"> Sair Conta</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="game-container col-12">
+        <div class="questions-container col-md-8">
+            <h2>Qual Palavra?</h2>
+            <div class="questions-wrap" *ngIf="!menuPause && !modalConfirmacaoSaida">
+                <div #answer1 class="questions-div" (click)="onSubmit(this.a)">{{this.a?.Palavra}} </div>
+                <div class="questions-div" (click)="onSubmit(this.b)">{{this.b?.Palavra}} </div>
+                <div class="questions-div " (click)="onSubmit(this.c)">{{this.c?.Palavra}} </div>
+                <div class="questions-div " (click)="onSubmit(this.d)">{{this.d?.Palavra}} </div>
+            </div>
+        </div>
+
+        <div class="image-container col-md-4">
+            <video [src]="video" autoplay loop></video>
+        </div>
+
+    </div>
+
+
+
+</div>
