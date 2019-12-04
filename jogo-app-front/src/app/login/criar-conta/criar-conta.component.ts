@@ -9,6 +9,7 @@ import { CadastrarUsuarioService } from './services/cadastro/cadastrar-usuario.s
 import { Retorno } from '../../models/Retorno';
 import { HeaderService } from '../../header/services/header.service';
 import { ValidationFormService } from '../../validationForm-service/validation.service';
+import { ModalService } from '../../modal/Services/modal.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class CriarContaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cadastrarUsuarioService: CadastrarUsuarioService,
+    private modalService:ModalService,
     private loginService:LoginService,
     private headerService:HeaderService,
     private ValidationFormService:ValidationFormService,

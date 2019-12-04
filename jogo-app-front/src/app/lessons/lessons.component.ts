@@ -63,8 +63,8 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   progressRef: NgProgressRef;
   progressNumber: number;
   isPaused: boolean = false;
-  paused:boolean = false;
-  irMenu:boolean = false;
+  menuPause:boolean = false;
+  modalConfirmacaoSaida:boolean = false;
   score: number = 0;
   private user: IUser;
   subscription$: Subscription;
@@ -75,7 +75,10 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   b: Palavra;
   c: Palavra;
   d: Palavra;
-
+  mostraOpcoes:boolean;
+  yesFunction:Function;
+  noFunction:Function;
+              
   private video: any;
   private unsinitizedVideo;
 
@@ -137,16 +140,79 @@ export class LessonsComponent implements OnInit, AfterViewInit {
     this.video = this.VideoService.videoSanitizer(this.unsinitizedVideo);
   }
 
+  mostrarOpcoesUsuario(){
+    this.pausar();
+    this.mostraOpcoes = true;
+  }
+
   pausar() {
     this.pauseTimer();
     this.isPaused = true; 
-    this.paused = true;
+    this.menuPause = true;
   }
 
   pausarJogoAcabar(){
     this.pauseTimer();
     this.isPaused = true; 
   }
+
+  voltarOpcoesUsuario(){
+    this.menuPause = false;
+    this.modalConfirmacaoSaida =false;
+    this.retomar()
+    this.mostraOpcoes = false
+  }
+
+  mostrarMenuPause(){
+    this.modalConfirmacaoSaida = true;
+    this.yesFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+      this.router.navigate(['menu'])
+    }
+    this.noFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+    }
+  }
+
+  mostraPontuacao(){
+    this.mostraOpcoes = false;
+    this.modalConfirmacaoSaida = true;
+    this.yesFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+      this.router.navigate(['menu/pontuacao'])
+    }
+    this.noFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+    }
+  }
+
+  editarConta(){
+    this.mostraOpcoes = false;
+    this.modalConfirmacaoSaida = true;
+    this.yesFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+      this.router.navigate(['menu/editarconta'])
+    }
+    this.noFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+    }
+  }
+
+
+  sairConta(){
+    this.mostraOpcoes = false;
+    this.modalConfirmacaoSaida = true;
+    this.yesFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+      this.AuthTokenService.clearAllTokens()
+      this.router.navigate(['menu'])
+    }
+    this.noFunction = () =>{
+      this.modalConfirmacaoSaida = false;
+    }
+  }
+
+
 
   retomar() {
     this.startTimer(this.calcularTempo());
@@ -171,19 +237,19 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   }
 
   modalPauseConfirmacao(){
-    this.paused = false;
-    this.irMenu = true;
+    this.menuPause = false;
+    this.modalConfirmacaoSaida = true;
   }
 
   closePauseConfirmacaoModal(){
-    this.paused = false;
-    this.irMenu =false;
+    this.menuPause = false;
+    this.modalConfirmacaoSaida =false;
     this.retomar();
   }
 
   desabilitarQuestoes(){
-    this.paused = true;
-    this.irMenu =true;
+    this.menuPause = true;
+    this.modalConfirmacaoSaida =true;
   }
 
 

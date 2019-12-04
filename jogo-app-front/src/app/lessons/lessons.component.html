@@ -15,7 +15,7 @@
             <img class="icon-score" src="../../assets/imagens/icons8-moedas-48.png">
             <span class="score"> {{score}} </span>
         </div>
-        <div class="header-div" id="userName">
+        <div class="header-div" id="userName" (click)="mostrarOpcoesUsuario()"  >
             <span>{{username}}</span>
         </div>
     </div>
@@ -24,35 +24,46 @@
 </header>
 
 <div class="container-lessons">
-
-    <div class="container" *ngIf="paused">
+        <app-modal></app-modal>
+    <div class="container" *ngIf="menuPause">
         <div class="menu-container">
-            <div class="menu-options" id="menuComeco" (click)="modalPauseConfirmacao()">
+            <div class="menu-options" id="menuComeco" (click)="mostrarMenuPause()">
                 Menu Começo
             </div>
             <div class="menu-options" id="continuar" (click)="closePauseConfirmacaoModal()"> Continuar Jogo </div>
         </div>
     </div>
 
-    <app-modal></app-modal>
+  
 
-    <div *ngIf="irMenu" class="alert-wrapper-not">
+    <div *ngIf="modalConfirmacaoSaida" class="alert-wrapper-not">
         <div class="alert-modal">
             <h1 class="alert-title" id="not"> Você perder progresso! Você ter certeza? </h1>
             <div class="alert-options">
                 <div>
-                    <div class="yesOrNo" [routerLink]="['/menu']" id="yes">Sim</div>
-                    <div class="yesOrNo" (click)="closePauseConfirmacaoModal()" id="no">Não</div>
+                    <div class="yesOrNo" (click)="yesFunction()" id="yes">Sim</div>
+                    <div class="yesOrNo" (click)="noFunction()" id="no">Não</div>
                 </div>
             </div>
             </div>
             </div>
 
+            <div class="container" *ngIf="mostraOpcoes">
+                    <div class="menu-container">
+                    <div>
+                        <div class="menu-options" id="placar" (click)="mostraPontuacao()">Ver Placar</div>
+                        <div class="menu-options" id="voltar" (click)="voltarOpcoesUsuario()"> Voltar Tela </div>
+                        <div class="menu-options" id="editar" (click)="editarConta()"> Editar Conta </div>
+                        <div class="menu-options" id="sairJogo" (click)="sairConta()"> Sair Conta</div>
+                    </div>
+                    </div>
+                    </div>
+
 
             <div class="game-container col-12">
                 <div class="questions-container col-md-8">
                     <h2>Qual Palavra?</h2>
-                    <div class="questions-wrap" *ngIf="!paused && !irMenu"  >
+                    <div class="questions-wrap" *ngIf="!menuPause && !modalConfirmacaoSaida"  >
                         <div #answer1 class="questions-div" (click)="onSubmit(this.a)">{{this.a.Palavra}} </div>
                         <div class="questions-div" (click)="onSubmit(this.b)">{{this.b.Palavra}} </div>
                         <div class="questions-div " (click)="onSubmit(this.c)">{{this.c.Palavra}} </div>
