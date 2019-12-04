@@ -17,7 +17,8 @@ import { CreditosComponent } from './creditos/creditos.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { EditarContaComponent } from './editar-conta/editar-conta.component';
-import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component'
+import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senh
     CreditosComponent,
     TutorialComponent,
     EditarContaComponent,
-    NovaSenhaComponent
+    NovaSenhaComponent,
+    DeleteUserComponent
 
   ],
   imports: [

@@ -102,13 +102,7 @@ export class EditarContaComponent implements OnInit {
   
 
   excluirConta(){
-   
-    this.ExcluirService.excluirConta(this.User).subscribe((subscribe:Retorno)=>{
-      if(subscribe.Codigo == 200){
-        console.log(subscribe.Mensagem)
-      }
-      else console.log(subscribe.Mensagem, 'req')
-    })
+  this.router.navigate(['menu/delete'])
   }
 
 

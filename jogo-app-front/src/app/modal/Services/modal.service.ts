@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { StatusBarService } from '../../status-bar/services/progress-bar-Service/status-bar.service'
 import { VideoService } from '../../lessons/services/Video-Service/video.service'
 import { Router, RouterLink } from '@angular/router';
+import { ExcluirService } from '../../editar-conta/service/excluir.service';
+import { Retorno } from '../../models/Retorno';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +25,7 @@ export class ModalService {
   videoService: VideoService
   opcoesUser:boolean
   pauseMenu:boolean = false;
+  private ExcluirService:ExcluirService
 
   yesFunction:Function;
   noFunction:Function;
@@ -182,11 +185,31 @@ export class ModalService {
     }
   }
 
-  modalExcluirConta() {
+  modalConfirmaContaExcluida() {
+    this.showModal = true;
+    this.alertTitle = "Conta excluir!";
+    this.yesOrNoButtons = false;
+    this.okButton = true;
+  }
+
+  modalExcluirConta(user) {
     this.showModal = true;
     this.alertTitle = "Você perder conta! Você ter certeza?";
     this.yesOrNoButtons = true;
     this.okButton = false;
+    this.yesFunction = () =>{
+      this.closeModal()
+      this.ExcluirService.excluirConta(user).subscribe((subscribe:Retorno) =>{
+          if(subscribe.Codigo == 200){
+            this.modalConfirmaContaExcluida()
+            console.log(subscribe.Mensagem)
+          }
+      })
+    }
+    this.noFunction = () =>{
+      this.closeModal()
+     
+    }
   }
 
   lessonModalSairJogo() {

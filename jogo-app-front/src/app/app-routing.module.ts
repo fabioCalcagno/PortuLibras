@@ -14,6 +14,7 @@ import { TutorialComponent } from './tutorial/tutorial.component';
 import { EditarContaComponent } from './editar-conta/editar-conta.component';
 import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component';
 import { AuthGuardService } from '../app/auth-services/Route-guard/auth-guard.service'
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 
 const routes: Routes = [
@@ -123,6 +124,11 @@ const routes: Routes = [
       {
         path: 'editarconta',
         component: EditarContaComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'delete',
+        component: DeleteUserComponent,
         canActivate: [AuthGuardService]
       },
       {

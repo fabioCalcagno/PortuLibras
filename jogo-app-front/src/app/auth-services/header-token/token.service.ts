@@ -67,6 +67,11 @@ getHeaderToken(){
     } */
 
 
+    clearAllTokens(){
+      localStorage.clear()
+    }
+
+
 
    setLocalStorageToken(token: any){
     return window.localStorage.setItem('authToken', token);

@@ -19,6 +19,9 @@ export class ExcluirService   {
   urlEditar = 'http://localhost:5000/api/Usuario/EditarUsuario'
   
 
+             
+
+
    private  headers= new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.AuthTokenService.getLocalStorageToken()
