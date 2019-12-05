@@ -57,7 +57,7 @@ export class DeleteUserComponent implements OnInit {
     this.senha = this.formBuilder.group({
      
     
-      Senha: ['',
+      Senha: ['', 
       [Validators.required,
        Validators.minLength(8),
       Validators.maxLength(20),

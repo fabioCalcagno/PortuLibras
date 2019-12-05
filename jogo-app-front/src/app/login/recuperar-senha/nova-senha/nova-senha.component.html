@@ -8,10 +8,9 @@
         <img  class="transaladar  d-inline-block align-top " width="50" height="50" src="../../assets/imagens/sair.png" alt="">
     </div>
 </div>
-
+<ngx-spinner type="ball-clip-rotate"></ngx-spinner>
 <div class="container-criar-conta bg-cor-1">
         <div class="criar-conta-wrap col-md-6">
-    
             <h1 class="title">Trocar Senha</h1>
             <form [formGroup]="senhaNova" (ngSubmit)="onSubmit(senhaNova)" class="col-md-12 flexcroll">
                 <div class="form-row">
@@ -22,6 +21,7 @@
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
                         <input class="input bg-cor-2 col-12" type="password" formControlName="reSenha" placeholder="Repetir senha:">
+                        <span  class="inputx  error "  type="text" placeholder="Erro:" > {{this.ValidationFormService.erro.msg}} </span>
                     </div>
                 </div>
                 

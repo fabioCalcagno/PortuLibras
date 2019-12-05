@@ -19,6 +19,50 @@ export class ValidationFormService implements OnDestroy{
   }
 
 
+
+
+  novaSenhaCampoValidate(user: FormGroup){
+    if (user.controls['Senha'].invalid && user.controls['Senha'].touched ) {
+      if (user.controls['Senha'].errors['required']) {
+        this.erro.msg = "Preencher campo senha";
+        this.erro.status = false;
+        return false;
+      }
+      if (user.controls['reSenha'].errors['required']) {
+        this.erro.msg = "Preencher campo confirma senha";
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['Senha'].errors['minlength']) {
+        this.erro.msg = "Campo senha ter mínim@ 8 caracteres+";
+        this.erro.status = false;
+        console.log(user.controls['Senha'].value, 'askjhdjakshdkasjhdkl')
+        return false;
+      }
+      else if (user.controls['Senha'].errors['pattern']) {
+        this.erro.msg = "Campo senha só letra + número";
+        console.log(user.controls['Senha'].value, 'valor do pattern')
+        return false;
+      }
+      else if (user.controls['Senha'].errors['maxlength']) {
+        this.erro.msg = "Campo senha ter máxim@ 12 caracteres+";
+        this.erro.status = false;
+        return false;
+      }
+      else if(user.controls['Senha'].value !== user.controls['reSenha'].value ){
+        this.erro.status = false;
+        this.erro.msg = "Senha combinar-não!"
+      }
+    }else {
+      this.erro.msg = ''
+      this.erro.status = true;
+      return true;
+    }
+
+
+  }
+
+
   campoValidate(user: FormGroup) {
    try{   
     if (user.controls['Nome'].invalid && user.controls['Nome'].touched ) {
@@ -139,7 +183,11 @@ export class ValidationFormService implements OnDestroy{
 
   
 
-    else return true;
+    else {
+      this.erro.msg = ''
+      this.erro.status = true;
+      return true;
+    }
   }catch (Error){
     console.log(Error.message)
     
@@ -148,12 +196,7 @@ export class ValidationFormService implements OnDestroy{
 
 
 
-  validaNome(nome){
-      let array: Array<string>  = nome.split('')
-      array.forEach(letra =>{
-
-      })
-  }
+ 
 
 
   validacaoEditarUsuario(user: FormGroup){
@@ -214,7 +257,11 @@ export class ValidationFormService implements OnDestroy{
 
   
 
-    else return true;
+    else {
+      this.erro.msg = ''
+      this.erro.status = true;
+      return true;
+    }
   }
 
 

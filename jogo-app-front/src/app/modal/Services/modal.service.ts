@@ -5,12 +5,16 @@ import { VideoService } from '../../lessons/services/Video-Service/video.service
 import { Router, RouterLink } from '@angular/router';
 import { ExcluirService } from '../../editar-conta/service/excluir.service';
 import { Retorno } from '../../models/Retorno';
+import { AuthTokenService } from '../../auth-services/header-token/token.service';
+import { LoginService } from '../../login/services/login/login.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, 
+              private AuthTokenService:AuthTokenService,
+              private LoginService:LoginService) { }
 
   showModal: boolean = false;
   alertTitle: string = '';
@@ -235,7 +239,9 @@ export class ModalService {
     this.yesOrNoButtons = true;
     this.okButton = false;
     this.yesFunction = () =>{
-      this.router.navigate(['/menu/criarconta'])
+      this.AuthTokenService.clearAllTokens()
+      this.LoginService.headerOn = true;
+      this.router.navigate(['login/criarconta'])
       this.closeModal()
     }
     this.noFunction = () =>{

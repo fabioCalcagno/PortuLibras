@@ -40,13 +40,14 @@ export class LoginComponent implements OnInit {
 
 
   redirecionarCriarConta() {
-
+    this.AuthTokenService.clearAllTokens()
     this.router.navigate(['criarconta'], ).then(sucess => {
       this.loginService.headerOn = true;
     })
   }
 
   ngOnInit() {
+    this.AuthTokenService.clearAllTokens()
 
     this.erro.status = false;
     this.erro.msg = ''

@@ -120,6 +120,19 @@ h3 {
     border-bottom: 4px solid rgb(235, 139, 125);
 }
 
+.inputx {
+    border: none;
+    color: white;
+    font-size: 200%;
+}
+
+.error {
+    background-color: #E47261;
+    font-size: 1em;
+    color: white;
+    text-shadow: 1px 1px rgb(235, 139, 125);;
+}
+
 
 .menu{
     font-size: 1em;

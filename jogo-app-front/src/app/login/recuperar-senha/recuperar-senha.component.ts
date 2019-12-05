@@ -93,15 +93,16 @@ export class RecuperarSenhaComponent implements OnInit {
 
   onSubmit() {
 
-    this.spinner.show();
-    setTimeout(()=>{
-      this.spinner.hide();
-    },2000)
+   
 
     console.log(this.Email.value)
     let email = this.Email.controls['Email'].value;
     localStorage.setItem('Email:', email)
+    this.spinner.show()
     this.CriarContaService.recuperarSenha(email).subscribe((subscribe: Retorno) => {
+      if(subscribe){
+        this.spinner.hide()
+      }
       if(subscribe.Codigo !== 200){
         this.erro.status = true;
         this.erro.msg = subscribe.Mensagem;
@@ -130,9 +131,13 @@ export class RecuperarSenhaComponent implements OnInit {
       Email,
       CodigoReset
     }
-   
+    this.spinner.show()
     this.CriarContaService.enviarCodigoConfirmacaoEmail(body)
-    .pipe(tap((res: Retorno) => {
+                          .pipe(tap((res: Retorno) => {
+      
+        if(res){
+          this.spinner.hide()
+        }
       let token: any;
       token = res.Token
       token = this.AuthTokenService.decodificadorToken(token)
