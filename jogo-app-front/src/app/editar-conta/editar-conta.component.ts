@@ -72,7 +72,7 @@ export class EditarContaComponent implements OnInit {
         [Validators.required,
         Validators.minLength(8),
         Validators.maxLength(20),
-        Validators.pattern('[a-zA-Z0-9]*')
+        Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9@#$]{8,12}$') 
        
         ]
       ],
@@ -80,7 +80,7 @@ export class EditarContaComponent implements OnInit {
       [Validators.required,
       Validators.minLength(8),
       Validators.maxLength(20),
-      Validators.pattern('[a-zA-Z0-9]*')
+      Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9@#$]{8,12}$') 
      
       ]
     ],
@@ -89,7 +89,7 @@ export class EditarContaComponent implements OnInit {
         [Validators.required,
           Validators.minLength(8),
           Validators.maxLength(20),
-          Validators.pattern('[a-zA-Z0-9]*')
+          Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9@#$]{8,12}$') 
         ]
       ],
       Email: [this.User.Email],
