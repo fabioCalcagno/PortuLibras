@@ -8,6 +8,7 @@ import { AuthTokenService } from '../auth-services/header-token/token.service'
 import { Retorno } from '../models/Retorno';
 import { tap } from 'rxjs/operators';
 import { MenuService } from '../menu/services/menu.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private MenuService: MenuService,
     private AuthTokenService: AuthTokenService,
 
@@ -74,6 +76,8 @@ export class LoginComponent implements OnInit {
     this.erro.status = false;
     console.log(this.iuser, 'from form')
 
+
+    this.spinner.show();
     this.loginService.register(this.iuser).pipe(tap((res: Retorno) => {
       let token: any;
       token = res.Token
@@ -85,6 +89,10 @@ export class LoginComponent implements OnInit {
       console.log(res)
     }))
       .subscribe((login: Retorno) => {
+        
+  if(login){
+    this.spinner.hide();
+  }
         if (login.Mensagem == 'Usuário não cadastrado') {
           this.erro.status = true;
           this.erro.msg = login.Mensagem;
