@@ -1,5 +1,4 @@
 <div class="container-menu bg-cor-1" *ngIf="this.menuService.mostraMenu">
-        <app-modal></app-modal>  
     <div class="menu-wrap col-md-5">
         <div class="title">PortuLibras</div>
         <div *ngIf="this.menuService.menuLogado" class="menu-options bg-amarelo" [routerLink]="['/lessons']">
@@ -21,6 +20,7 @@
             <img src="../../assets/imagens/sair.png" width="50px" alt=""> Sair Jogo
         </div>
     </div>
+    
 </div>
-
-           
+<app-modal></app-modal> 
+   
