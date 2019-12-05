@@ -11,11 +11,14 @@ input {
     padding: 0.5rem;
 }
 
-.erro{
+
+
+
+.error{
     color: white;
     font-size: 1em;
-    background-color: inherit;
     text-shadow: 1px 1px black;
+    background-color: rgb(116, 19, 4);
 }
 
 .login-wrap {
@@ -43,6 +46,18 @@ input {
     margin-top: 5%;
     background-color: #E47261;
     height: 80%;
+}
+.inputx {
+    border: none;
+    color: white;
+   
+}
+
+.error {
+    background-color: #E47261;
+    font-size: 2em;
+    color: white;
+    text-shadow: 2px 2px #fa7268;;
 }
 
 .input {

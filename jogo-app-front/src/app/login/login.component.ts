@@ -76,9 +76,14 @@ export class LoginComponent implements OnInit {
     this.erro.status = false;
     console.log(this.iuser, 'from form')
 
-
     this.spinner.show();
     this.loginService.register(this.iuser).pipe(tap((res: Retorno) => {
+
+      if(res.Codigo!== 200){      
+          this.erro.status = true;
+          this.erro.msg = res.Mensagem;
+        }
+
       let token: any;
       token = res.Token
       token = this.AuthTokenService.decodificadorToken(token)
@@ -87,25 +92,21 @@ export class LoginComponent implements OnInit {
       this.AuthTokenService.setHeaderToken(res.Token);
       this.AuthTokenService.setLocalStorageToken(res.Token)
       console.log(res)
-    }))
+    },(error =>{
+      console.log(error)
+    })
+  ))
       .subscribe((login: Retorno) => {
-        
-  if(login){
-    this.spinner.hide();
-  }
-        if (login.Mensagem == 'Usuário não cadastrado') {
-          this.erro.status = true;
-          this.erro.msg = login.Mensagem;
-        }
         if (login.Codigo === 200) {
           console.log('Mensagem ->  ' + login.Mensagem);
           this.router.navigate(['/menu'], this.MenuService.tokenDecoded.Ativo);
         }
-        if (login.Codigo !== 200) {
-          this.erro.status = true;
-          this.erro.msg = login.Mensagem;
-        }
-      })
+        
+      },(error => {
+        console.log(error,'error')
+        this.spinner.hide();
+      }) 
+    )
   }
 
 
