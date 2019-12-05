@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -20,7 +20,8 @@ import { CreditosComponent } from './creditos/creditos.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { EditarContaComponent } from './editar-conta/editar-conta.component';
 import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component';
-import { DeleteUserComponent } from './delete-user/delete-user.component'
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { ConfirmarEmailComponent } from './login/confirmar-email/confirmar-email.component';
 
 
 @NgModule({
@@ -39,7 +40,9 @@ import { DeleteUserComponent } from './delete-user/delete-user.component'
     TutorialComponent,
     EditarContaComponent,
     NovaSenhaComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    ConfirmarEmailComponent
+
 
   ],
   imports: [

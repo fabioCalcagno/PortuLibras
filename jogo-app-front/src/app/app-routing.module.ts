@@ -5,23 +5,21 @@ import { LoginComponent } from './login/login.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { CriarContaComponent } from './login/criar-conta/criar-conta.component';
 import { RecuperarSenhaComponent } from './login/recuperar-senha/recuperar-senha.component';
-import { ScoreComponent } from "./score/score.component"
-import { MenuComponent } from './menu/menu.component'
+import { ScoreComponent } from './score/score.component';
+import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
-import { ModalComponent } from './modal/modal.component';
-import { CreditosComponent } from './creditos/creditos.component'
+import { CreditosComponent } from './creditos/creditos.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { EditarContaComponent } from './editar-conta/editar-conta.component';
 import { NovaSenhaComponent } from './login/recuperar-senha/nova-senha/nova-senha.component';
-import { AuthGuardService } from '../app/auth-services/Route-guard/auth-guard.service'
+import { AuthGuardService } from '../app/auth-services/Route-guard/auth-guard.service';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { ConfirmarEmailComponent } from './login/confirmar-email/confirmar-email.component';
 
 
 const routes: Routes = [
 
-
-
-  //redirecionamentos nescessarios 
+  // redirecionamentos nescessarios
   {
     path: 'menu/login',
     redirectTo: 'login',
@@ -37,7 +35,7 @@ const routes: Routes = [
     redirectTo: 'menu',
     pathMatch: 'full'
   },
-   {
+  {
     path: 'redefinir/login',
     redirectTo: 'login',
     pathMatch: 'full'
@@ -51,33 +49,37 @@ const routes: Routes = [
     path: 'login/criarconta',
     redirectTo: 'criarconta',
     pathMatch: 'full'
-  }, 
+  },
   {
     path: 'criarconta',
     component: CriarContaComponent,
   },
-  
+  {
+    path: 'confirmarEmail',
+    component: ConfirmarEmailComponent,
+  },
+
   {
     path: 'login',
     component: LoginComponent,
     children: [
-          {
-          path: 'redefinir',
-          component: RecuperarSenhaComponent,
-        },
-        
-          {
-            path: 'redefinirsenha',
-            component: NovaSenhaComponent,
-        
-          },
-          {
-            path: 'criarconta',
-            component: CriarContaComponent,
-          },
-        
-      ]
+      {
+        path: 'redefinir',
+        component: RecuperarSenhaComponent,
       },
+
+      {
+        path: 'redefinirsenha',
+        component: NovaSenhaComponent,
+
+      },
+      {
+        path: 'criarconta',
+        component: CriarContaComponent,
+      },
+
+    ]
+  },
 
   {
     path: 'redefinir',
@@ -95,8 +97,7 @@ const routes: Routes = [
   },
 
 
-  
- // rotas com o header
+  // rotas com o header
   {
     path: 'menu',
     component: HeaderComponent,
@@ -136,13 +137,7 @@ const routes: Routes = [
         component: CriarContaComponent,
       },
     ]
-  },
-  /*   {
-      path: '**',
-      redirectTo: 'menu',
-    }, */
-
-
+  }
 ];
 
 @NgModule({

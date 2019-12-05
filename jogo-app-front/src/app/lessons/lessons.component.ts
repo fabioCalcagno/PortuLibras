@@ -1,10 +1,10 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, OnDestroy, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from "ngx-spinner";
-import { VideoService } from './services/Video-Service/video.service'
+import { VideoService } from './services/Video-Service/video.service';
 
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
-import { tap, timeInterval } from 'rxjs/operators'
+import { tap, timeInterval } from 'rxjs/operators';
 import { ModalService } from '../modal/Services/modal.service';
 import { IUser } from '../models/User';
 import { RetornoRodada } from '../models/RetornoRodada';
@@ -23,51 +23,57 @@ import { AuthTokenService } from '../auth-services/header-token/token.service';
   styleUrls: ['./lessons.component.css']
 })
 
-export class LessonsComponent implements OnInit, AfterViewInit {
+export class LessonsComponent implements OnInit {
+
+  showAcerto: number;
+  showErro: number;
+  Pontos: number;
+  i = 1;
+
 
   @ViewChild('myBar', { read: ElementRef, static: false }) private myBar: ElementRef<HTMLElement>;
   @ViewChild(NgProgressComponent, { static: true }) bar: NgProgressComponent;
 
   constructor(private renderer: Renderer2,
-              private VideoService: VideoService,
-              private modalService: ModalService,
-              private router: Router,
-              private spinner: NgxSpinnerService,
-              private AuthTokenService:AuthTokenService,
-              private progress: NgProgress) {
+    private VideoService: VideoService,
+    private modalService: ModalService,
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private AuthTokenService: AuthTokenService,
+    private progress: NgProgress) {
 
 
-                this.token  =  this.AuthTokenService.showDecodedJwt();
-                console.log('jwttwtw', this.token)
+    this.token = this.AuthTokenService.showDecodedJwt();
+    console.log('jwttwtw', this.token);
 
-                this.username = this.token.Username;
-                this.username = this.username.toLowerCase().replace(/(?:^|\s)\S/g, 
-                function(a) { return a.toUpperCase(); });
-              
-            
-                this.user = {
-                  Nome: this.token.Nome,
-                  CodigoUsuario: this.token.CodigoUsuario,
-                  Sobrenome: this.token.Sobrenome,
-                  Username: this.token.Username,
-                  Senha: null,
-                  Email: this.token.Email,
-                  Score: null ,
-                  CodigoJogo:null, 
-                } 
+    this.username = this.token.Username;
+    this.username = this.username.toLowerCase().replace(/(?:^|\s)\S/g,
+      function (a) { return a.toUpperCase(); });
 
-               
-               }
 
-  username:string;             
-  body:any;
-  token:any;
+    this.user = {
+      Nome: this.token.Nome,
+      CodigoUsuario: this.token.CodigoUsuario,
+      Sobrenome: this.token.Sobrenome,
+      Username: this.token.Username,
+      Senha: null,
+      Email: this.token.Email,
+      Score: null,
+      CodigoJogo: null,
+    };
+
+
+  }
+
+  username: string;
+  body: any;
+  token: any;
   progressRef: NgProgressRef;
   progressNumber: number;
-  isPaused: boolean = false;
-  menuPause:boolean = false;
-  modalConfirmacaoSaida:boolean = false;
-  score: number = 0;
+  isPaused = false;
+  menuPause = false;
+  modalConfirmacaoSaida = false;
+  score = 0;
   private user: IUser;
   subscription$: Subscription;
   jogadas = [];
@@ -77,22 +83,22 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   b: Palavra;
   c: Palavra;
   d: Palavra;
-  mostraOpcoes:boolean;
-  yesFunction:Function;
-  noFunction:Function;
-              
+  mostraOpcoes: boolean;
+  yesFunction: Function;
+  noFunction: Function;
+
   private video: any;
   private unsinitizedVideo;
 
   //timer gabriel
-  totalTime: number = 7.5; //tempo total do jogo em minutos
-  timeLeft: number = 100; //n muda
+  totalTime = 7.5; //tempo total do jogo em minutos
+  timeLeft = 100; //n muda
   totalPercent: number; //tempo total em segundos
   interval;
 
   calcularTempo(): number {
     let tempoEmSegundos = this.totalTime * 60;
-    return (tempoEmSegundos/100) * 1000;
+    return (tempoEmSegundos / 100) * 1000;
   }
 
   startTimer(intervalo: number) {
@@ -104,7 +110,7 @@ export class LessonsComponent implements OnInit, AfterViewInit {
         this.onCompleteBar();
         // this.timeLeft = 60;
       }
-    }, intervalo) //5 segundos de intervalo
+    }, intervalo); //5 segundos de intervalo
     //fazer a conta do numero do intervalo * 100 para saber qual o tempo total
   }
 
@@ -119,31 +125,26 @@ export class LessonsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.spinner.show();
-  
-      this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
-       
-        if(jogadas.Codigo){
-          this.spinner.hide();
-        }
- 
-      
+
+    this.VideoService.jogarJogo(this.user).subscribe((jogadas: Retorno) => {
+
+      if (jogadas.Codigo) {
+        this.spinner.hide();
+      }
 
       let a = JSON.parse(jogadas.Data) as ArrayRetornoRodada;
-      console.log(a)
+      console.log(a);
       a.Partida.forEach(element => {
-        this.jogadas.push(element)
+        this.jogadas.push(element);
       });
 
       this.jogada = this.jogadas[0] as RetornoRodada;
-      this.user.CodigoJogo = this.jogada.CodigoJogo
+      this.user.CodigoJogo = this.jogada.CodigoJogo;
       this.arrayPalavras = this.jogada.Palavras;
-      this.carregaPalavra(this.arrayPalavras)
-      this.video = this.jogada.Diretorio
-    })
-  }
-
-  ngAfterViewInit() {
-    this.startTimer(this.calcularTempo());
+      this.carregaPalavra(this.arrayPalavras);
+      this.video = this.jogada.Diretorio;
+      this.startTimer(this.calcularTempo());
+    });
   }
 
   setaVideo(diretorio: string) {
@@ -151,76 +152,76 @@ export class LessonsComponent implements OnInit, AfterViewInit {
     this.video = this.VideoService.videoSanitizer(this.unsinitizedVideo);
   }
 
-  mostrarOpcoesUsuario(){
+  mostrarOpcoesUsuario() {
     this.pausar();
     this.mostraOpcoes = true;
   }
 
   pausar() {
     this.pauseTimer();
-    this.isPaused = true; 
+    this.isPaused = true;
     this.menuPause = true;
   }
 
-  pausarJogoAcabar(){
+  pausarJogoAcabar() {
     this.pauseTimer();
-    this.isPaused = true; 
+    this.isPaused = true;
   }
 
-  voltarOpcoesUsuario(){
+  voltarOpcoesUsuario() {
     this.menuPause = false;
-    this.modalConfirmacaoSaida =false;
-    this.retomar()
-    this.mostraOpcoes = false
+    this.modalConfirmacaoSaida = false;
+    this.retomar();
+    this.mostraOpcoes = false;
   }
 
-  mostrarMenuPause(){
+  mostrarMenuPause() {
     this.modalConfirmacaoSaida = true;
-    this.yesFunction = () =>{
+    this.yesFunction = () => {
       this.modalConfirmacaoSaida = false;
-      this.router.navigate(['menu'])
-    }
-    this.noFunction = () =>{
+      this.router.navigate(['menu']);
+    };
+    this.noFunction = () => {
       this.modalConfirmacaoSaida = false;
-    }
+    };
   }
 
-  mostraPontuacao(){
+  mostraPontuacao() {
     this.mostraOpcoes = false;
     this.modalConfirmacaoSaida = true;
-    this.yesFunction = () =>{
+    this.yesFunction = () => {
       this.modalConfirmacaoSaida = false;
-      this.router.navigate(['menu/pontuacao'])
-    }
-    this.noFunction = () =>{
+      this.router.navigate(['menu/pontuacao']);
+    };
+    this.noFunction = () => {
       this.modalConfirmacaoSaida = false;
-    }
+    };
   }
 
-  editarConta(){
+  editarConta() {
     this.mostraOpcoes = false;
     this.modalConfirmacaoSaida = true;
-    this.yesFunction = () =>{
+    this.yesFunction = () => {
       this.modalConfirmacaoSaida = false;
-      this.router.navigate(['menu/editarconta'])
-    }
-    this.noFunction = () =>{
+      this.router.navigate(['menu/editarconta']);
+    };
+    this.noFunction = () => {
       this.modalConfirmacaoSaida = false;
-    }
+    };
   }
 
 
-  sairConta(){
+  sairConta() {
     this.mostraOpcoes = false;
     this.modalConfirmacaoSaida = true;
-    this.yesFunction = () =>{
+    this.yesFunction = () => {
       this.modalConfirmacaoSaida = false;
-      this.AuthTokenService.clearAllTokens()
-      this.router.navigate(['menu'])
-    }
-    this.noFunction = () =>{
+      this.AuthTokenService.clearAllTokens();
+      this.router.navigate(['menu']);
+    };
+    this.noFunction = () => {
       this.modalConfirmacaoSaida = false;
-    }
+    };
   }
 
 
@@ -242,83 +243,101 @@ export class LessonsComponent implements OnInit, AfterViewInit {
     this.d = arrayPalavras[3];
   }
 
-  tutorial(){
-    this.pausarJogoAcabar()
-    this.router.navigate(['/menu/tutorial'])
+  tutorial() {
+    this.pausarJogoAcabar();
+    this.router.navigate(['/menu/tutorial']);
   }
 
-  modalPauseConfirmacao(){
+  modalPauseConfirmacao() {
     this.menuPause = false;
     this.modalConfirmacaoSaida = true;
   }
 
-  closePauseConfirmacaoModal(){
+  closePauseConfirmacaoModal() {
     this.menuPause = false;
-    this.modalConfirmacaoSaida =false;
+    this.modalConfirmacaoSaida = false;
     this.retomar();
   }
 
-  desabilitarQuestoes(){
+  desabilitarQuestoes() {
     this.menuPause = true;
-    this.modalConfirmacaoSaida =true;
+    this.modalConfirmacaoSaida = true;
   }
 
+  onSubmit(item, idAcerto: number) {
+    this.user.Score = this.score;
 
-  Pontos:number;
-  i: number = 1;
-
-  onSubmit(item) {
-    this.user.Score = this.score
-   
-   
-    if(this.i === 15 ){
-      if(item.CodigoAcerto === 1 ){this.score+=10}
-        if(item.CodigoAcerto===0 ){this.score-=1}
-
-        
-        this.body = {
-          CodigoJogo: this.user.CodigoJogo,
-          CodigoUsuario: this.token.CodigoUsuario,
-          Score: this.score
-                  }
-
-        this.modalService.lessonsjogoAcabar(this.score);
-        this.pausarJogoAcabar()
-          
-        this.VideoService.salvarPontuacao(this.body).subscribe((subscribe:Retorno)=>{
-          if(subscribe.Codigo == 200){
-            console.log(subscribe.Mensagem)
-          }else console.log(subscribe.Mensagem)
-        })
+    // somente executa se estiver na última rodada
+    if (this.i === 15) {
+      if (item.CodigoAcerto === 1) {
+        this.showAcerto = idAcerto;
+        setTimeout(() => {
+          this.showAcerto = 0;
+        }, 1000);
+        this.score += 10;
+      }
+      if (item.CodigoAcerto === 0) {
+        this.showErro = idAcerto;
+        setTimeout(() => {
+          this.showErro = 0;
+        }, 1000);
+        this.score -= 1;
       }
 
-    if (item.CodigoAcerto === 1 && this.i <=15 ) {
-     
+      this.body = {
+        CodigoJogo: this.user.CodigoJogo,
+        CodigoUsuario: this.token.CodigoUsuario,
+        Score: this.score
+      };
+
+      this.modalService.lessonsjogoAcabar(this.score);
+      this.pausarJogoAcabar();
+
+      this.VideoService.salvarPontuacao(this.body).subscribe((subscribe: Retorno) => {
+        if (subscribe.Codigo === 200) {
+          console.log(subscribe.Mensagem);
+        } else { console.log(subscribe.Mensagem); }
+      });
+    }
+
+    // somente executa caso tenha acertado e não seja a última rodada
+    if (item.CodigoAcerto === 1 && this.i <= 15) {
+
+      this.showAcerto = idAcerto;
+
+      setTimeout(() => {
         this.jogada = this.jogadas[this.i] as RetornoRodada;
         this.arrayPalavras = this.jogada.Palavras;
-        this.carregaPalavra(this.arrayPalavras)
-        this.setaVideo(this.jogadas[this.i].Diretorio)
-        this.score +=10;
+
+        this.showAcerto = 0;
+
+        this.carregaPalavra(this.arrayPalavras);
+        this.setaVideo(this.jogadas[this.i].Diretorio);
+        this.score += 10;
         this.i++;
-        console.log(this.i , '<15');
-        }
-          
-     else{
-       this.i += 0
-      if( this.score !== 0 ) {
-        this.score -=1;
-      }
-      else{
+        console.log(this.i, '<15');
+      }, 1000);
+
+
+    } else {
+      this.showErro = idAcerto;
+      setTimeout(() => {
+        this.showErro = 0;
+      }, 1000);
+      this.i += 0;
+      if (this.score !== 0) {
+        this.score -= 1;
+      } else {
         this.score = 0;
       }
-      
+
       /*  if (this.i === 15) {
         console.log(this.i, 'i final')
         this.modalService.jogoAcabar()
       /*  this.VideoService.salvarPontuacao() */
-       
+
     }
-      
+
 
 
   }

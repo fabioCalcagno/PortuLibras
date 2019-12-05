@@ -211,7 +211,7 @@ h3 {
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 99999;
+    z-index: 4000;
     overflow: hidden !important;
     border-bottom: 4px solid rgb(235, 139, 125);
 }

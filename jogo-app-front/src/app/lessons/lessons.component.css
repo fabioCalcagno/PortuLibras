@@ -23,7 +23,7 @@ header {
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 99999;
+    z-index: 4000;
 }
 
 .design-border-header-main {
@@ -232,7 +232,7 @@ h2 {
     background-color: #6E4F4F;
     height: 40%;
     box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.55);
-    z-index: 99999;
+    z-index: 4000;
 }
 
 .menu-options {
@@ -377,7 +377,7 @@ paleta {
     background-color: rgba(0, 0, 0, 0.75);
     height: 38%;
     box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.55);
-    z-index: 99999;
+    z-index: 4000;
 }
 
 .menu-options {
@@ -425,4 +425,12 @@ paleta {
 #continuar{
     background-image: url('../../assets/imagens/long-arrow-pointing-to-the-right.png');
     background-color: #4E748F;
+}
+
+.opcao-correta{
+    background-color: #4A7351;
+}
+
+.opcao-errada{
+    background-color: #BA3F23;
 }

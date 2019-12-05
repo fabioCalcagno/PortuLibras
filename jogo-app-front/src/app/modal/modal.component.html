@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Lessons</title>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
-</head>
-
-<body>
-
+<div class="modal-wrapper" *ngIf="this.modalService.showModal || this.modalService.mostraOpcoes">
 
     <div *ngIf="this.modalService.showModal" class="alert-wrapper-not">
         <div class="alert-modal">
             <h1 class="alert-title" id="not"> {{this.modalService.alertTitle}} </h1>
             <div class="alert-options">
                 <div *ngIf="this.modalService.yesOrNoButtons">
-                    <div class="yesOrNo" id="yes" (click)="this.modalService.yesFunction()"  >{{this.modalService.sim}}</div>
-                    <div class="yesOrNo" (click)="this.modalService.noFunction()" id="no">{{this.modalService.nao}}</div>
+                    <div class="yesOrNo" id="yes" (click)="this.modalService.yesFunction()">{{this.modalService.sim}}
+                    </div>
+                    <div class="yesOrNo" (click)="this.modalService.noFunction()" id="no">{{this.modalService.nao}}
+                    </div>
                 </div>
                 <div *ngIf="this.modalService.okButton">
                     <div class="ok" (click)="this.modalService.closeModal()">ok</div>
@@ -29,22 +17,21 @@
         </div>
     </div>
 
-
     <div class="container" *ngIf="this.modalService.mostraOpcoes">
         <div class="menu-container">
-        <div *ngIf="this.modalService.opcoesMenu">
-            <div class="menu-options" id="placar" (click)="this.modalService.mostraPontuacao()">Ver Placar</div>
-            <div class="menu-options" id="voltar" (click)="this.modalService.closeUserOptionsModal()"> Voltar Tela </div>
-            <div class="menu-options" id="editar" (click)="this.modalService.editarConta()"> Editar Conta </div>
-            <div class="menu-options" id="sairJogo" (click)="this.modalService.sairConta()"> Sair Conta</div>
-        </div>
-            <div *ngIf="this.modalService.opcoesLesson" > 
-                <div class="menu-options" id="menuComeco" (click)="this.modalService.yesFunction()" >
+            <div *ngIf="this.modalService.opcoesMenu">
+                <div class="menu-options" id="placar" (click)="this.modalService.mostraPontuacao()">Ver Placar</div>
+                <div class="menu-options" id="voltar" (click)="this.modalService.closeUserOptionsModal()"> Voltar Tela
+                </div>
+                <div class="menu-options" id="editar" (click)="this.modalService.editarConta()"> Editar Conta </div>
+                <div class="menu-options" id="sairJogo" (click)="this.modalService.sairConta()"> Sair Conta</div>
+            </div>
+            <div *ngIf="this.modalService.opcoesLesson">
+                <div class="menu-options" id="menuComeco" (click)="this.modalService.yesFunction()">
                     Menu Começo
                 </div>
                 <div class="menu-options" id="continuar" (click)="this.modalService.noFunction()"> Continuar Jogo </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>

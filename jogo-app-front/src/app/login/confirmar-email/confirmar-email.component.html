@@ -1,0 +1,9 @@
+<div class="container-login bg-cor-1">
+    <div class="login-wrap col-md-6">
+
+        <p *ngIf="!this.erro">Aguarde, estamos confirmando seu e-mail!</p>
+        <p *ngIf="this.erro">{{this.mensagemErro}}</p>
+        <button *ngIf="this.erro" [routerLink]="['/']">Voltar a Home</button>
+
+    </div>
+</div>

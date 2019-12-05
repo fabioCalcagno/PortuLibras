@@ -8,7 +8,8 @@
                 <img class="icon-score" src="../../assets/imagens/icons8-pausa-40.png">
             </div>
             <div class="header-div" id="retorna">
-                <img class="icon-score" src="../../assets/imagens/question.png" (click)="tutorial()" width="40" style="margin-left: 1rem;">
+                <img class="icon-score" src="../../assets/imagens/question.png" (click)="tutorial()" width="40"
+                    style="margin-left: 1rem;">
             </div>
         </div>
         <div class="header-div" id="score">
@@ -47,7 +48,7 @@
             </div>
         </div>
     </div>
-    <ngx-spinner type="ball-clip-rotate"><span class="preparar" >Preparar...</span></ngx-spinner>
+    <ngx-spinner type="ball-clip-rotate"><span class="preparar">Preparar...</span></ngx-spinner>
     <div class="container" *ngIf="mostraOpcoes">
         <div class="menu-container">
             <div>
@@ -64,10 +65,20 @@
         <div class="questions-container col-md-8">
             <h2>Qual Palavra?</h2>
             <div class="questions-wrap" *ngIf="!menuPause && !modalConfirmacaoSaida">
-                <div #answer1 class="questions-div" (click)="onSubmit(this.a)">{{this.a?.Palavra}} </div>
-                <div class="questions-div" (click)="onSubmit(this.b)">{{this.b?.Palavra}} </div>
-                <div class="questions-div " (click)="onSubmit(this.c)">{{this.c?.Palavra}} </div>
-                <div class="questions-div " (click)="onSubmit(this.d)">{{this.d?.Palavra}} </div>
+                <div #answer1 class="questions-div" (click)="onSubmit(this.a, 1)"
+                    [ngClass]="{'opcao-correta tossing': this.showAcerto === 1, 'opcao-errada tossing': this.showErro === 1}">
+                    {{this.a?.Palavra}}
+                </div>
+
+                <div class="questions-div" (click)="onSubmit(this.b, 2)"
+                    [ngClass]="{'opcao-correta tossing': this.showAcerto === 2, 'opcao-errada tossing': this.showErro === 2 }">
+                    {{this.b?.Palavra}} </div>
+                <div class="questions-div " (click)="onSubmit(this.c, 3)"
+                    [ngClass]="{'opcao-correta tossing':this.showAcerto === 3, 'opcao-errada tossing': this.showErro === 3 }">
+                    {{this.c?.Palavra}} </div>
+                <div class="questions-div " (click)="onSubmit(this.d, 4)"
+                    [ngClass]="{'opcao-correta tossing': this.showAcerto === 4, 'opcao-errada tossing': this.showErro === 4 }">
+                    {{this.d?.Palavra}} </div>
             </div>
         </div>
 
