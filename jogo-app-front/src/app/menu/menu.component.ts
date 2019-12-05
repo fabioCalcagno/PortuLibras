@@ -47,7 +47,10 @@ export class MenuComponent implements OnInit {
 
 
 
-
+  sairJogo(){
+    this.AuthTokenService.clearAllTokens()
+    location.reload()
+  }
 
 
 
