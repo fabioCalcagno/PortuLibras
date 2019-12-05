@@ -7,6 +7,8 @@ import { AuthTokenService } from '../auth-services/header-token/token.service';
 import { Retorno } from '../models/Retorno';
 import { Router } from '@angular/router';
 
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-delete-user',
   templateUrl: './delete-user.component.html',
@@ -17,6 +19,7 @@ export class DeleteUserComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
               private ExcluirService:ExcluirService,
               private route:Router,
+              private spinner: NgxSpinnerService,
               private AuthTokenService:AuthTokenService,
               private ModalService:ModalService) { 
 
@@ -68,7 +71,16 @@ export class DeleteUserComponent implements OnInit {
  excluirConta(){   
   this.confirmacaoExclusao=false;
   console.log('USERR', this.User)
+
+
+  this.spinner.show();
+
+ 
+ 
     this.ExcluirService.excluirConta(this.User).subscribe((subscribe:Retorno)=>{
+      if(subscribe){
+        this.spinner.hide();
+      }
        if(subscribe.Codigo == 200){
          this.ModalService.modalConfirmaContaExcluida()
          console.log(subscribe.Mensagem)

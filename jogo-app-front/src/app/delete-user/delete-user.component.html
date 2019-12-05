@@ -1,12 +1,9 @@
 <div class="container-criar-conta bg-cor-1">
     <app-modal></app-modal>
     <div class="criar-conta-wrap col-md-6">
-
+            <ngx-spinner type="ball-clip-rotate"></ngx-spinner>
         <h1 class="title">Excluir Conta</h1>
         <form [formGroup]="senha"  class="col-md-12 flexcroll">
-
-           
-
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <input class="input bg-cor-2 col-12" type="password" formControlName="Senha" placeholder="Senha:">
@@ -14,10 +11,9 @@
             </div>
 
                 <button type="button" id="excluir-conta" class="botao btn btn-primary" (click)="confirmaExclusao(true)" >Excluir Conta</button>
-           
+        
             </form>
             </div>
-
             <div *ngIf="confirmacaoExclusao" class="alert-wrapper-not">
                 <div class="alert-modal">
                     <h1 class="alert-title" id="not"> Você perder conta! Você ter certeza?</h1>
@@ -29,9 +25,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             </div>
             
 

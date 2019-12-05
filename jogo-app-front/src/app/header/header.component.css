@@ -20,7 +20,11 @@
     font-size: 2em;
 }
 
-.header-divs:hover {
+#img-username,
+#img-voltar,
+#voltar,
+#tutorial,
+#username:hover {
     cursor: pointer;
 }
 
