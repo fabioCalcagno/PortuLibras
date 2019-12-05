@@ -48,6 +48,14 @@ header {
     font-size: 2rem;
 }
 
+#userName span:hover {
+    cursor: pointer;
+}
+
+#pause, #retorna:hover {
+    cursor: pointer;
+}
+
 .game-container {
     padding: 1rem;
     display: flex;
