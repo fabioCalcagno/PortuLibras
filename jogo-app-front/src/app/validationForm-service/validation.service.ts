@@ -224,6 +224,29 @@ export class ValidationFormService implements OnDestroy{
         return false;
       }
     }
+    if (user.controls['SenhaAntiga'].invalid && user.controls['SenhaAntiga'].touched ) {
+      if (user.controls['SenhaAntiga'].errors['required']) {
+        this.erro.msg = "Preencher campo senha";
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['SenhaAntiga'].errors['minlength']) {
+        this.erro.msg = "Campo senha ter mínim@ 8 caracteres+";
+        this.erro.status = false;
+        console.log(user.controls['SenhaAntiga'].value, 'askjhdjakshdkasjhdkl')
+        return false;
+      }
+      else if (user.controls['SenhaAntiga'].errors['pattern']) {
+        this.erro.msg = "Campo senha só letra + número";
+        console.log(user.controls['Senha'].value, 'valor do pattern')
+        return false;
+      }
+      else if (user.controls['Senha'].errors['maxlength']) {
+        this.erro.msg = "Campo senha ter máxim@ 12 caracteres+";
+        this.erro.status = false;
+        return false;
+      }
+    }
     
     if (user.controls['Senha'].invalid && user.controls['Senha'].touched ) {
       if (user.controls['Senha'].errors['required']) {
@@ -255,8 +278,29 @@ export class ValidationFormService implements OnDestroy{
       return false;
     }
 
+    if (user.controls['reSenha'].invalid && user.controls['reSenha'].touched ) {
+      if (user.controls['reSenha'].errors['required']) {
+        this.erro.msg = "Preencher campo senha";
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['reSenha'].errors['minlength']) {
+        this.erro.msg = "Campo senha ter mínim@ 8 caracteres+";
+        this.erro.status = false;
+        return false;
+      }
+      else if (user.controls['reSenha'].errors['pattern']) {
+        this.erro.msg = "Campo senha só letra + número";
+        console.log(user.controls['Senha'].value, 'valor do pattern')
+        return false;
+      }
+      else if (user.controls['reSenha'].errors['maxlength']) {
+        this.erro.msg = "Campo senha ter máxim@ 12 caracteres+";
+        this.erro.status = false;
+        return false;
+      }
+    }
   
-
     else {
       this.erro.msg = ''
       this.erro.status = true;
