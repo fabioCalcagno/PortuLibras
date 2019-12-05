@@ -4,6 +4,7 @@ import { IUser } from '../../models/User';
 import { LoginService } from '../services/login/login.service'
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { NgxSpinnerService } from "ngx-spinner";
 
 import { CadastrarUsuarioService } from './services/cadastro/cadastrar-usuario.service'
 import { Retorno } from '../../models/Retorno';
@@ -30,6 +31,7 @@ export class CriarContaComponent implements OnInit {
     private cadastrarUsuarioService: CadastrarUsuarioService,
     private modalService:ModalService,
     private loginService:LoginService,
+    private spinner: NgxSpinnerService,
     private headerService:HeaderService,
     private ValidationFormService:ValidationFormService,
     private router: Router
@@ -52,7 +54,7 @@ export class CriarContaComponent implements OnInit {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(20),
-          Validators.pattern('[a-zA-Z]*')
+          Validators.pattern('^[a-zA-Z]+$')
         ]
       ],
       Sobrenome: ['',
@@ -60,7 +62,7 @@ export class CriarContaComponent implements OnInit {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(50),
-          Validators.pattern('[a-zA-Z]*')
+          Validators.pattern('[a-zA-Z]+')
         ]
       ],
       Username: ['',
@@ -68,7 +70,7 @@ export class CriarContaComponent implements OnInit {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(10),
-          Validators.pattern('[a-zA-Z0-9]*')
+          Validators.pattern('[a-zA-Z0-9]+')
         ]
       ],
       Senha: ['',
@@ -102,16 +104,24 @@ export class CriarContaComponent implements OnInit {
     
 
 
-  
+  ngOnDes
 
   
 
   onSubmit(user) {
     console.log(user)
+    this.spinner.show();
+
+  
+
+
 
     this.iuser = this.user.value;
     console.log(this.iuser , 'aaaaa')
     this.cadastrarUsuarioService.criarConta(this.iuser).subscribe((signin :Retorno) => {
+      if(signin){
+        this.spinner.hide();
+      }
       if (signin.Codigo == 200) {
         window.localStorage.setItem('primeiroLogin', "true")
         console.log(signin.Codigo + " " + signin.Mensagem + " " + signin.Data)
@@ -124,6 +134,7 @@ export class CriarContaComponent implements OnInit {
     },
       (error: any) => {
         console.log(error.error)
+        this.spinner.hide();
 
       }
     )

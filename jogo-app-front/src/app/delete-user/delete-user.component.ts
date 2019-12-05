@@ -8,6 +8,7 @@ import { Retorno } from '../models/Retorno';
 import { Router } from '@angular/router';
 
 import { NgxSpinnerService } from "ngx-spinner";
+import { LoginService } from '../login/services/login/login.service';
 
 @Component({
   selector: 'app-delete-user',
@@ -20,6 +21,7 @@ export class DeleteUserComponent implements OnInit {
               private ExcluirService:ExcluirService,
               private route:Router,
               private spinner: NgxSpinnerService,
+              private loginService:LoginService,
               private AuthTokenService:AuthTokenService,
               private ModalService:ModalService) { 
 
@@ -45,17 +47,21 @@ export class DeleteUserComponent implements OnInit {
   User:IUser
   token:any;
   confirmacaoExclusao:boolean;
+  private erro = {
+    msg: '',
+    status:false
+  }
 
   ngOnInit() {
-
+     this.spinner.hide()
     this.senha = this.formBuilder.group({
      
     
       Senha: ['',
       [Validators.required,
-    /*   Validators.minLength(8),
+       Validators.minLength(8),
       Validators.maxLength(20),
-      Validators.pattern('[a-zA-Z0-9]*') */
+      Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9@#$]{8,20}$') 
       ]
     ],
   })
@@ -68,15 +74,17 @@ export class DeleteUserComponent implements OnInit {
 
 
 
- excluirConta(){   
+ excluirConta(){  
+   console.log(this.senha, 'fer')
+  this.User.Senha = this.senha.controls['Senha'].value; 
   this.confirmacaoExclusao=false;
-  console.log('USERR', this.User)
+  console.log('USERR', this.User.Senha)
 
 
   this.spinner.show();
+this.loginService.register(this.User).subscribe((subscribe:Retorno)=>{
+  if(subscribe.Codigo == 200){
 
- 
- 
     this.ExcluirService.excluirConta(this.User).subscribe((subscribe:Retorno)=>{
       if(subscribe){
         this.spinner.hide();
@@ -89,8 +97,26 @@ export class DeleteUserComponent implements OnInit {
          location.reload()
        }
        else console.log(subscribe.Mensagem, 'req')
-     }) 
+     },(error =>{
+       this.erro.status = true;
+       this.erro.msg = 'Senha combinar não';
+       this.spinner.hide()
+     })) 
+   }else{
+     this.spinner.hide()
+    this.erro.status = true;
+    this.erro.msg = subscribe.Mensagem
    }
+
+  })
+
+
+
+
+}
+ 
+ 
+    
 
 
    confirmaExclusao(boleano){

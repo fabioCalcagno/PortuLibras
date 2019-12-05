@@ -17,9 +17,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class LoginComponent implements OnInit {
 
-/*   verificaValidTouched(campo): any {
-    return !this.user.get(campo).valid && this.user.get(campo).touched
-  } */
+  /*   verificaValidTouched(campo): any {
+      return !this.user.get(campo).valid && this.user.get(campo).touched
+    } */
 
   private user: FormGroup;
   private iuser: IUser;
@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
   }
 
 
-  redirecionarCriarConta(){
-   
-    this.router.navigate(['criarconta'], ).then(sucess =>{
+  redirecionarCriarConta() {
+
+    this.router.navigate(['criarconta'], ).then(sucess => {
       this.loginService.headerOn = true;
     })
   }
@@ -65,9 +65,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  lembrarSenha(){
+  lembrarSenha() {
     this.router.navigate(['redefinir'])
-    
+
   }
 
 
@@ -79,10 +79,10 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.loginService.register(this.iuser).pipe(tap((res: Retorno) => {
 
-      if(res.Codigo!== 200){      
-          this.erro.status = true;
-          this.erro.msg = res.Mensagem;
-        }
+      if (res.Codigo !== 200) {
+        this.erro.status = true;
+        this.erro.msg = res.Mensagem;
+      }
 
       let token: any;
       token = res.Token
@@ -92,21 +92,21 @@ export class LoginComponent implements OnInit {
       this.AuthTokenService.setHeaderToken(res.Token);
       this.AuthTokenService.setLocalStorageToken(res.Token)
       console.log(res)
-    },(error =>{
+    }, (error => {
       console.log(error)
     })
-  ))
+    ))
       .subscribe((login: Retorno) => {
         if (login.Codigo === 200) {
           console.log('Mensagem ->  ' + login.Mensagem);
           this.router.navigate(['/menu'], this.MenuService.tokenDecoded.Ativo);
         }
-        
-      },(error => {
-        console.log(error,'error')
+
+      }, (error => {
+        console.log(error, 'error')
         this.spinner.hide();
-      }) 
-    )
+      })
+      )
   }
 
 

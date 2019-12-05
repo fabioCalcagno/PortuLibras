@@ -9,6 +9,7 @@ import { ModalService } from '../../modal/Services/modal.service';
 import { EmailPlusCodigo } from '../../models/EmailPlusCodigo'
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { NgxSpinnerService } from "ngx-spinner";
 import { AuthTokenService } from '../../auth-services/header-token/token.service';
 @Component({
   selector: 'app-recuperar-senha',
@@ -20,6 +21,7 @@ export class RecuperarSenhaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private headerService: HeaderService,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private modalService: ModalService,
     private AuthTokenService:AuthTokenService,
     private CriarContaService: CriarContaService,
@@ -29,7 +31,12 @@ export class RecuperarSenhaComponent implements OnInit {
 
   private Email: FormGroup;
   private codigoReset: FormGroup;
-   EmailPlusCodigo:EmailPlusCodigo
+   EmailPlusCodigo:EmailPlusCodigo;
+
+   private erro = {
+    status: false,
+    msg: ''
+  }
 
 
   
@@ -85,15 +92,31 @@ export class RecuperarSenhaComponent implements OnInit {
   }
 
   onSubmit() {
+
+    this.spinner.show();
+    setTimeout(()=>{
+      this.spinner.hide();
+    },2000)
+
     console.log(this.Email.value)
     let email = this.Email.controls['Email'].value;
     localStorage.setItem('Email:', email)
     this.CriarContaService.recuperarSenha(email).subscribe((subscribe: Retorno) => {
+      if(subscribe.Codigo !== 200){
+        this.erro.status = true;
+        this.erro.msg = subscribe.Mensagem;
+        
+      }
+     
+     
       if (subscribe.Codigo == 200) {
         this.modalService.modalRecuperacaoConta();
         this.confirmacaoEmail = false;
       }
-    })
+    }, (error =>{
+      console.log(error.message)
+      this.spinner.hide();
+    }))
   }
 
  
@@ -118,14 +141,22 @@ export class RecuperarSenhaComponent implements OnInit {
       this.AuthTokenService.setHeaderToken(res.Token);
       this.AuthTokenService.setLocalStorageToken(res.Token)
       console.log(res)
-    }))
+    },(error =>{
+      this.spinner.hide()
+      console.log(error.message)
+    })
+  ))
        .subscribe((subscribe: Retorno) => {
 
         if (subscribe.Codigo == 200) {
           this.router.navigate(['redefinirsenha'])
         }
         else console.log(subscribe.Mensagem)
+      },(error =>{
+        this.spinner.hide()
+        console.log(error.message)
       })
+    )
 
   } 
 

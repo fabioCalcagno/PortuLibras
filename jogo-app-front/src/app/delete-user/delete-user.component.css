@@ -15,6 +15,19 @@ input {
     padding: 0.5rem;
 }
 
+.inputx {
+    border: none;
+    color: white;
+    font-size: 200%;
+}
+
+.error {
+    background-color: #E47261;
+    font-size: 1em;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
 .buttons{
     display: inline;
  

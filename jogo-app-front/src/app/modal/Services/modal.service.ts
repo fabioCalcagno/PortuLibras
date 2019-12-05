@@ -41,7 +41,7 @@ export class ModalService {
     localStorage.clear();
     this.closeModal();
     location.reload()
-    this.router.navigate(['login']);
+    
     
   }
 
@@ -186,10 +186,12 @@ export class ModalService {
   }
 
   modalConfirmaContaExcluida() {
+    setTimeout(()=>{  
     this.showModal = true;
     this.alertTitle = "Conta excluir!";
     this.yesOrNoButtons = false;
     this.okButton = true;
+}, 2000);
   }
 
   modalExcluirConta(user) {

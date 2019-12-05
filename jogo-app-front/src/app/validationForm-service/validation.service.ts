@@ -1,12 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ValidationFormService {
+export class ValidationFormService implements OnDestroy{
+  ngOnDestroy(): void {
+    this.erro.msg = null;
+    this.erro.status =true
+  }
 
-  constructor() { }
+  constructor() {this.erro.msg = null,
+                this.erro.status=false }
 
    erro = {
     status: false,
@@ -15,10 +20,7 @@ export class ValidationFormService {
 
 
   campoValidate(user: FormGroup) {
-    this.erro.msg = '';
-   
-    
-    
+   try{   
     if (user.controls['Nome'].invalid && user.controls['Nome'].touched ) {
       if (user.controls['Nome'].errors['required']) {
         this.erro.msg = "Preencher campo nome";
@@ -138,7 +140,12 @@ export class ValidationFormService {
   
 
     else return true;
+  }catch (Error){
+    console.log(Error.message)
+    
   }
+  }
+
 
 
   validaNome(nome){

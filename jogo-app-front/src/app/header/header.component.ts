@@ -7,6 +7,7 @@ import { AuthTokenService } from '../auth-services/header-token/token.service';
 import { BehaviorSubject } from 'rxjs';
 import { Token } from '../models/Token';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
   constructor( private headerService: HeaderService,
                 private AuthTokenService:AuthTokenService,
                 private router:Router,
+                private spinner: NgxSpinnerService,
                private modalService: ModalService
 
   ){ }
@@ -47,11 +49,12 @@ export class HeaderComponent implements OnInit {
         return Error.message
       }
     }
+    
     if(this.decodedToken.Username !== undefined && this.decodedToken.Username !== null){
       this.decodedToken.Username = this.decodedToken.Username.toLowerCase().replace(/(?:^|\s)\S/g, 
                                                  function(a) { return a.toUpperCase(); });
     }
-    else  this.user.Username = ' '
+    else  this.spinner.hide();
    
    
                                          

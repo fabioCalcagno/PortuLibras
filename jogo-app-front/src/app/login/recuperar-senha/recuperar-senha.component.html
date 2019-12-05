@@ -14,12 +14,10 @@
     <div class="recuperar-wrap col-md-6" *ngIf="confirmacaoEmail">
         <h1 class="title">Lembrar senha</h1> 
         <form  [formGroup]="Email" (ngSubmit)="onSubmit(Email)"   class="col-md-12">
-
-            
-
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input class="input bg-cor-2" type="email" formControlName="Email" placeholder="E-mail:">
+                    <input class="input bg-cor-2" type="email" formControlName="Email"  autofocus autocomplete="email" placeholder="E-mail:">
+                    <span class="inputx  error "  type="text" placeholder="Erro:" > {{erro.msg}} </span>
                 </div>
             </div>
 
@@ -74,7 +72,7 @@
             </div>
 
         </form>
-
+        <ngx-spinner type="ball-clip-rotate"></ngx-spinner>
     </div>
 
 </div>

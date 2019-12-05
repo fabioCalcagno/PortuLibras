@@ -54,6 +54,8 @@ export class EditarContaComponent implements OnInit {
 
   ngOnInit() {
 
+    this.ValidationFormService.erro.msg = null;
+
    
     this.user = this.formBuilder.group({
      
@@ -94,7 +96,10 @@ export class EditarContaComponent implements OnInit {
      
     })
 
-   this.ValidationFormService.campoValidate(this.user)
+    if(this.user !== undefined){
+      this.ValidationFormService.campoValidate(this.user)
+    }
+   
     
   }
  
@@ -118,24 +123,45 @@ export class EditarContaComponent implements OnInit {
         Username: this.token.Username,
         Senha: this.user.controls['SenhaAntiga'].value
       }
+      /* let bodyExcluir = {
+        CodigoUsuario: this.token.CodigoUsuario,
+        Username: this.user.controls['Username'].value,
+        Senha: this.user.controls['Senha'].value
+      } */
 
-      this.LoginService.register(body).subscribe((subscribe:Retorno)=>{
-        if(subscribe.Codigo == 200){ 
+      this.User.Senha = this.user.controls['Senha'].value;
+      this.User.Username = this.user.controls['Username'].value;
 
-      this.ExcluirService.editarConta(this.User).subscribe((subscribe:Retorno)=>{
-        if(subscribe.Codigo == 200){
-          console.log(subscribe.Mensagem)
-          this.modalService.modalTrocaUsuarioSenhaOK()
-          this.router.navigate(['menu'])
-        } 
-      })
-    }else {
-      console.log('msg->' , this.ValidationFormService.erro.msg)
-      this.ValidationFormService.erro.status = false;
-      this.ValidationFormService.erro.msg = "Editar Usuario não ok"
-    }
 
-  })
+      if(body.Senha === this.User.Senha){
+        this.ValidationFormService.erro.status = false;
+      this.ValidationFormService.erro.msg = 'Senha nova igual a antiga!'
+      }
+      else{
+
+        this.LoginService.register(body).subscribe((subscribe:Retorno)=>{
+          if(subscribe.Codigo == 200){ 
+  
+        this.ExcluirService.editarConta(this.User).subscribe((subscribe:Retorno)=>{
+          if(subscribe.Codigo == 200){
+            console.log(subscribe.Mensagem)
+            this.modalService.modalTrocaUsuarioSenhaOK()
+            setTimeout(()=>{
+              this.router.navigate(['menu'])
+            },1000)
+          } 
+        })
+      }else {
+        console.log('msg->' , this.ValidationFormService.erro.msg)
+        this.ValidationFormService.erro.status = false;
+        this.ValidationFormService.erro.msg = subscribe.Mensagem
+      }
+  
+    })
+
+      }
+
+     
 
   }
 
