@@ -99,6 +99,7 @@ this.spinner.show()
               this.ModalService.modalSenhaOk()
               console.log('senhaCadastradaComSucesso', subscribe.Mensagem)
               this.router.navigate(['menu'])
+             
             }
         })
         }else {

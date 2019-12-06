@@ -25,7 +25,7 @@ input {
     background-color: #E47261;
     font-size: 1em;
     color: white;
-    text-shadow: 1px 1px black;
+    text-shadow: 2px 2px rgb(235, 109, 109);
 }
 
 .buttons{

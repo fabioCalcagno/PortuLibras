@@ -21,19 +21,19 @@
             class="col-md-12 flexcroll">
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input *ngIf="this.cadastrarUsuarioService.emailTrocarDepoisDoLogin" value={{this.User.Nome}} class="input bg-cor-2 col-12"
+                    <input *ngIf="this.cadastrarUsuarioService.emailTrocarDepoisDoLogin" disabled  value={{this.User.Nome}} class="input bg-cor-2 col-12"
                         type="text" formControlName="Nome" placeholder="Nome:" autofocus>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input *ngIf="this.cadastrarUsuarioService.emailTrocarDepoisDoLogin" value={{this.User.Sobrenome}} class="input bg-cor-2 col-12"
+                    <input *ngIf="this.cadastrarUsuarioService.emailTrocarDepoisDoLogin" disabled value={{this.User.Sobrenome}} class="input bg-cor-2 col-12"
                         type="text" formControlName="Sobrenome" placeholder="Sobrenome:">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <input *ngIf="this.cadastrarUsuarioService.emailTrocarDepoisDoLogin" value={{this.User.Username}} class="input bg-cor-2 col-12"
+                    <input *ngIf="this.cadastrarUsuarioService.emailTrocarDepoisDoLogin" disabled value={{this.User.Username}} class="input bg-cor-2 col-12"
                         type="text" formControlName="Username" placeholder="Usuário:">
                 </div>
             </div>

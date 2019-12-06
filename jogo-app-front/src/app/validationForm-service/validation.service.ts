@@ -29,7 +29,7 @@ export class ValidationFormService implements OnDestroy{
         return false;
       }
       if (user.controls['reSenha'].errors['required']) {
-        this.erro.msg = "Preencher campo repetir senha";
+        this.erro.msg = "Preencher campo confirma senha";
         this.erro.status = false;
         return false;
       }

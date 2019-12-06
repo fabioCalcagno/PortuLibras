@@ -105,7 +105,7 @@ this.loginService.register(this.User).subscribe((subscribe:Retorno)=>{
    }else{
      this.spinner.hide()
     this.erro.status = true;
-    this.erro.msg = subscribe.Mensagem
+    this.erro.msg = "Campo senha inválido"
    }
 
   })
