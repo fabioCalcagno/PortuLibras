@@ -7,6 +7,7 @@ import { ExcluirService } from '../../editar-conta/service/excluir.service';
 import { Retorno } from '../../models/Retorno';
 import { AuthTokenService } from '../../auth-services/header-token/token.service';
 import { LoginService } from '../../login/services/login/login.service';
+import { CadastrarUsuarioService } from '../../login/criar-conta/services/cadastro/cadastrar-usuario.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +15,7 @@ export class ModalService {
 
   constructor(private router: Router,
               private AuthTokenService: AuthTokenService,
+              private CadastrarUsuarioService:CadastrarUsuarioService,
               private LoginService: LoginService) { }
 
   showModal = false;
@@ -175,6 +177,7 @@ export class ModalService {
     this.sim = 'E-mail trocar';
     this.nao = 'Continuar';
     this.yesFunction = () => {
+      this.CadastrarUsuarioService.emailTrocarDepoisDoLogin = true;
       this.sim = 'Sim';
       this.nao = 'Não';
       this.router.navigate(['/menu/criarconta']);
