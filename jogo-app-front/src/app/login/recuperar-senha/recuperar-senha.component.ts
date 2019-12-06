@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
 import { AuthTokenService } from '../../auth-services/header-token/token.service';
+import { MenuService } from '../../menu/services/menu.service';
 @Component({
   selector: 'app-recuperar-senha',
   templateUrl: './recuperar-senha.component.html',
@@ -24,6 +25,7 @@ export class RecuperarSenhaComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private modalService: ModalService,
     private AuthTokenService:AuthTokenService,
+    private MenuService:MenuService,
     private CriarContaService: CriarContaService,
     
 
@@ -141,6 +143,7 @@ export class RecuperarSenhaComponent implements OnInit {
       let token: any;
       token = res.Token
       token = this.AuthTokenService.decodificadorToken(token)
+      this.MenuService.tokenDecoded.Ativo = token.Ativo
       this.CriarContaService.CodigoUsuario = token.CodigoUsuario
       console.log('testando', token)
       this.AuthTokenService.setHeaderToken(res.Token);

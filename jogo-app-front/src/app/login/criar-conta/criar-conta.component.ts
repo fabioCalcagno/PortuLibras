@@ -13,6 +13,8 @@ import { ValidationFormService } from '../../validationForm-service/validation.s
 import { ModalService } from '../../modal/Services/modal.service';
 import { AuthTokenService } from '../../auth-services/header-token/token.service';
 import { ExcluirService } from '../../editar-conta/service/excluir.service';
+import { MenuService } from '../../menu/services/menu.service';
+import { tap } from 'rxjs/operators';
 
 
 
@@ -38,6 +40,7 @@ export class CriarContaComponent implements OnInit {
     private loginService:LoginService,
     private spinner: NgxSpinnerService,
     private ExcluirService:ExcluirService,
+    private MenuService:MenuService,
     private headerService:HeaderService,
     private ValidationFormService:ValidationFormService,
     private AuthTokenService:AuthTokenService,
@@ -191,7 +194,24 @@ export class CriarContaComponent implements OnInit {
 
     this.iuser = this.user.value;
     console.log(this.iuser , 'aaaaa')
-    this.cadastrarUsuarioService.criarConta(this.iuser).subscribe((signin :Retorno) => {
+    this.cadastrarUsuarioService.criarConta(this.iuser).pipe(tap((res: Retorno) => {            
+      
+            let token: any;
+            token = res.Token
+            token = this.AuthTokenService.decodificadorToken(token)
+            this.MenuService.tokenDecoded.Ativo = token.Ativo
+            this.headerService.nomeLogado = token.Username
+            console.log('sera que foi', token)
+            this.AuthTokenService.setHeaderToken(res.Token);
+            this.AuthTokenService.setLocalStorageToken(res.Token)
+            console.log(res)
+          }, (error => {
+            console.log(error)
+          })
+          ))
+  
+    
+    .subscribe((signin :Retorno) => {
       if(signin){
         this.spinner.hide();
       }

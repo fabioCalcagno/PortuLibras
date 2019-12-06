@@ -20,6 +20,7 @@ export class HeaderService {
   }
 
   rotaVoltar: string = '/menu';
+  nomeLogado:any;
   menuLogado: boolean = false;
   telaVoltar: string = "Menu";
   opcaoVoltar: boolean = true;

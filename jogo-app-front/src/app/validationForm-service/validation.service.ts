@@ -49,9 +49,10 @@ export class ValidationFormService implements OnDestroy{
         this.erro.status = false;
         return false;
       }
-      else if(user.controls['Senha'].value !== user.controls['reSenha'].value ){
+      else if(user.controls['reSenha'].value !== user.controls['Senha'].value && user.controls['reSenha'].touched  ){
         this.erro.status = false;
         this.erro.msg = "Senha combinar-não!"
+        return false;
       }
     }else {
       this.erro.msg = ''

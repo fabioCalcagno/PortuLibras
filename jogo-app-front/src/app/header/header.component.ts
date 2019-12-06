@@ -21,11 +21,11 @@ export class HeaderComponent implements OnInit {
   string:string;
   stringHelper;
 
-  constructor( private headerService: HeaderService,
+  constructor(  private headerService: HeaderService,
                 private AuthTokenService:AuthTokenService,
                 private router:Router,
                 private spinner: NgxSpinnerService,
-               private modalService: ModalService
+                private modalService: ModalService
 
   ){ }
   private user: IUser;
@@ -54,7 +54,10 @@ export class HeaderComponent implements OnInit {
       this.decodedToken.Username = this.decodedToken.Username.toLowerCase().replace(/(?:^|\s)\S/g, 
                                                  function(a) { return a.toUpperCase(); });
     }
-    else  this.spinner.hide();
+    else {
+      this.decodedToken = this.headerService.nomeLogado
+      this.spinner.hide();
+    }
    
    
                                          
