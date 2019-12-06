@@ -2,7 +2,7 @@
     .container-criar-conta {
         position: absolute;
         width: 100%;
-        height: 100%;
+        height: auto;
         min-height: calc(100vh - 100px);
         display: flex;
         flex-flow: column nowrap;
