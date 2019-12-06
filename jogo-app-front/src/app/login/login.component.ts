@@ -80,10 +80,23 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.loginService.register(this.iuser).pipe(tap((res: Retorno) => {
 
-      if (res.Codigo !== 200) {
+/* 
+      if(res.Codigo == 400){
         this.erro.status = true;
-        this.erro.msg = res.Mensagem;
+        this.erro.msg = "Campo Senha inválida"
+      } */
+
+      if (res.Codigo !== 200) {
+        if(res.Mensagem === 'Preencher senha igual exemplo (Senha123)'){
+          this.erro.status = true;
+          this.erro.msg = "Campo senha inválido"
+        }else{
+          this.erro.status = true;
+          this.erro.msg = res.Mensagem;
+        }
+      
       }
+      
 
       let token: any;
       token = res.Token
