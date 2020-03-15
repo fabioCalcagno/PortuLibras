@@ -15,5 +15,13 @@ O aplicativo conta com verificação de dados, padrão web, como verificação p
 
 #### Envio de senha temporária por e-mail
 
-![Envio de senha temporária por email](https://user-images.githubusercontent.com/39445970/76704561-a23ace80-66b8-11ea-85b5-ddd6110f788b.png)
+![Envio de senha temporária por email](https://user-images.githubusercontent.com/39445970/76704653-445ab680-66b9-11ea-820b-45dc4c351f26.png)
 
+## Um dos exemplos de boas práticas de código que utilizamos, foi o uso de componente totalmente genérico para exibição de modais, já que eram muitos modais para avisos e opções. Segue abaixo alguns exemplos do html, e de algumas funções do serviço.
+
+### html
+![htmlModal](https://user-images.githubusercontent.com/39445970/76705208-111a2680-66bd-11ea-888f-91205ea85def.png)
+
+### serviço
+
+![serviceModal](https://user-images.githubusercontent.com/39445970/76705218-22fbc980-66bd-11ea-9550-d9a90eb69289.png)
